@@ -1,4 +1,3 @@
-feather.replace(); // Para inicializar los iconos
 // Listado de objetos de prueba
 const rentalCards = [
 	{
@@ -63,7 +62,7 @@ const rentalCards = [
 	},
 	// ... Agrega aquí los otros objetos restantes
 ];
-
+// TODO Ajustar la alturas de todas la imagenes de los carrussel para que sea la misma
 // ! Modelo de datos para cards de alojamiento
 const exampleCard = {
 	imageGallery: ['urlImg1', 'urlImg2'],
@@ -79,7 +78,15 @@ const exampleCard = {
 const $section = document.querySelector('#cards');
 
 // Funcion para renderizar una card
-function renderCard(imgList, idx) {
+function renderCard(idx, obj) {
+	// Extraigo las keys del objeto de datos
+	const {
+		imageGallery,
+		accommodationTitle,
+		accommodationLocation,
+		shortDescription,
+		accommodationPrice,
+	} = obj;
 	// Creo un div en memoria
 	const $div = document.createElement('div');
 	// Agrego las clases a este elemento padre
@@ -87,41 +94,49 @@ function renderCard(imgList, idx) {
 	// Modifico el interior del html
 	$div.innerHTML = `<div class="row g-0">
         <div class="col-md-4">
-            ${createCarrusselString(imgList, idx)}
+            ${createCarrusselString(imageGallery, idx)}
         </div>
         <div class="col-md-8">
             <div class="card-body">
-                <h5 class="card-title">Hostel Los Huancos</h5>
+                <h5 class="card-title">${accommodationTitle}</h5>
                 <h6 class="card-subtitle mb-2 text-body-secondary muted"></h6>
                 <p class="card-text">
+                <p class="card-text">${shortDescription}</p>
+                <h4 class="card-text">${accommodationPrice}</h4>
                     <i height="16" data-feather="map-pin"></i>
-                    <span class="small muted">Tilcara, Jujuy</span>
+                    <span class="small muted">${accommodationLocation}</span>
                     <i height="16" data-feather="user"></i>
                     <span class="small muted">2 Personas</span>
                 </p>
             </div>
         </div>
     </div>`;
+	// Añado el elemento al DOM
 	$section.appendChild($div);
 }
 
 // Funcion para crear un carrusel
 function createCarrusselString(imgList, idx) {
+	// Init variable
 	let carruselItems = '';
+	// Por cada imagen de la lista genero el html
 	imgList.forEach((src, idx) => {
 		let html;
 		if (idx === 0) {
+			// idx===0 es el primer elemento, le doy la clase "active"
 			html = `<div class="carousel-item active">
             <img src=${src} class="d-block w-100" alt="Random images">
           </div>`;
 		} else {
+			// el resto no tiene "active"
 			html = `<div class="carousel-item">
             <img src=${src} class="d-block w-100" alt="Random images">
           </div>`;
 		}
+		// concateno todos los strings en uno solo
 		carruselItems += html;
 	});
-
+	// defino el string total de todo el carousel
 	const string = `<div id="carousel-num-${idx}" class="carousel slide w-100">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carousel-num-${idx}" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -147,6 +162,8 @@ function createCarrusselString(imgList, idx) {
 // renderCard();
 // renderCard();
 
-rentalCards.forEach((card, idx) => renderCard(card.imageGallery, idx));
+rentalCards.forEach((card, idx) => renderCard(idx, card));
 
 // $section.appendChild(createCarrussel());
+// ! Mantener al final del script para renderizar los iconos
+feather.replace(); // Para inicializar los iconos
