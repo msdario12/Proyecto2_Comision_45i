@@ -1,8 +1,4 @@
 /* Clases para ajustar las dimensiones de las cards */
-.card-custom {
-	height: 200px;
-}
-
-.card-custom > img {
-	height: 125px !important;
+.carousel-custom > img {
+	object-position: center;
 }
