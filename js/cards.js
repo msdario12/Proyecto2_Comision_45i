@@ -91,6 +91,29 @@ const $section = document.querySelector('#cards');
 function randomNumber(max) {
 	return Math.floor(Math.random() * max);
 }
+// Generar una vocal aleatoria
+function randomVowel() {
+	const vowels = ['a', 'e', 'i', 'o', 'u'];
+	return vowels[randomNumber(vowels.length)];
+}
+
+// Generar un ID random para cada publicacion
+function createRandomID(prefix) {
+	const num1 = String(randomNumber(9999)).padEnd(4, '0');
+	const num2 = String(randomNumber(9999)).padEnd(4, '0');
+	const vowel = randomVowel().toUpperCase();
+	return String(prefix).toUpperCase() + num1 + vowel + num2;
+}
+
+// Chequear si todos los objetos tienen un ID, sino asignarles
+rentalCards.forEach((card) => {
+	if (card.hasOwnProperty('id')) {
+		return;
+	}
+	card.id = createRandomID('L');
+});
+
+console.log(rentalCards);
 
 // Funcion para renderizar una card
 function renderCard(idx, obj) {
@@ -103,6 +126,7 @@ function renderCard(idx, obj) {
 		accommodationPrice,
 		rating,
 		numberOfReviews,
+		id,
 	} = obj;
 	// Creo un div en memoria
 	const $div = document.createElement('div');
@@ -111,13 +135,13 @@ function renderCard(idx, obj) {
 	// Modifico el interior del html
 	$div.innerHTML = `<div class="row g-0">
         <div class="col-md-4" style="height: 125px">
-            ${createCarrusselString(imageGallery, idx, accommodationTitle)}
+            ${createCarrusselString(imageGallery, id, accommodationTitle)}
         </div>
         <div class="col-md-8">
             <div class="card-body">
                 <div class="d-flex justify-content-between">
                     <h5 class="card-title">${accommodationTitle}</h5>
-                    ${createFavoriteStar(idx)}
+                    ${createFavoriteStar(id)}
                 </div>
                 ${createRating(rating, numberOfReviews)}
                 <h6 class="card-subtitle mb-2 text-body-secondary muted"></h6>
