@@ -94,7 +94,7 @@ function renderCard(idx, obj) {
 	// Modifico el interior del html
 	$div.innerHTML = `<div class="row g-0">
         <div class="col-md-4" style="height: 125px">
-            ${createCarrusselString(imageGallery, idx)}
+            ${createCarrusselString(imageGallery, idx, accommodationTitle)}
         </div>
         <div class="col-md-8">
             <div class="card-body">
@@ -116,42 +116,45 @@ function renderCard(idx, obj) {
 }
 
 // Funcion para crear un carrusel
-function createCarrusselString(imgList, idx) {
+function createCarrusselString(imgList, idxCarousel, accommodationTitle) {
 	// Init variable
 	let carruselItems = '';
+	let carouselIndicators = '';
 	// Por cada imagen de la lista genero el html
 	imgList.forEach((src, idx) => {
-		let html;
+		let html, indicator;
+		// Creamos el html que mostrara cada imagen y los indicadores
 		if (idx === 0) {
 			// idx===0 es el primer elemento, le doy la clase "active"
 			html = `<div class="carousel-item carousel-custom active" style="max-height: 200px">
-            <img src=${src} class="d-block w-100 img-fluid object-fit-cover object-center" alt="Random images">
+            <img src=${src} class="d-block w-100 img-fluid object-fit-cover object-center" alt="Imagen de ${accommodationTitle}">
           </div>`;
+			indicator = `<button type="button" data-bs-target="#carousel-num-${idxCarousel}" data-bs-slide-to="${idx}" class="active" aria-current="true" aria-label="Slide ${idx}"></button>`;
 		} else {
 			// el resto no tiene "active"
 			html = `<div class="carousel-item carousel-custom" style="height: 200px">
-            <img src=${src} class="d-block w-100 img-fluid object-fit-cover object-center" alt="Random images">
+            <img src=${src} class="d-block w-100 img-fluid object-fit-cover object-center" alt="Imagen de ${accommodationTitle}">
           </div>`;
+			indicator = `<button type="button" data-bs-target="#carousel-num-${idxCarousel}" data-bs-slide-to="${idx}" aria-label="Slide ${idx}"></button>`;
 		}
 		// concateno todos los strings en uno solo
+		carouselIndicators += indicator;
 		carruselItems += html;
 	});
 	// defino el string total de todo el carousel
 	const string = `
-    <div id="carousel-num-${idx}" class="carousel slide w-100">
+    <div id="carousel-num-${idxCarousel}" class="carousel slide w-100">
         <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carousel-num-${idx}" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carousel-num-${idx}" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carousel-num-${idx}" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            ${carouselIndicators}
         </div>
         <div class="carousel-inner">
             ${carruselItems}
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-num-${idxCarousel}" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carousel-num-${idx}" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel-num-${idxCarousel}" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
