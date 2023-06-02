@@ -11,6 +11,8 @@ const rentalCards = [
 		shortDescription:
 			'Experience a relaxing vacation in this cozy beachfront villa in Mar del Plata. Enjoy stunning ocean views and access to a private pool.',
 		accommodationPrice: '$150/night',
+		rating: 9.2,
+		numberOfReviews: randomNumber(1000),
 	},
 	{
 		imageGallery: [
@@ -23,6 +25,8 @@ const rentalCards = [
 		shortDescription:
 			'Escape to the picturesque mountains of Bariloche and stay in this charming cabin. Enjoy hiking trails, breathtaking views, and a cozy fireplace.',
 		accommodationPrice: '$120/night',
+		rating: 3.2,
+		numberOfReviews: randomNumber(1000),
 	},
 	{
 		imageGallery: [
@@ -35,6 +39,8 @@ const rentalCards = [
 		shortDescription:
 			'Indulge in luxury at this stylish city apartment in the heart of Buenos Aires. Experience world-class amenities, vibrant nightlife, and top-notch restaurants.',
 		accommodationPrice: '$200/night',
+		rating: 5.2,
+		numberOfReviews: randomNumber(1000),
 	},
 	{
 		imageGallery: [
@@ -47,6 +53,8 @@ const rentalCards = [
 		shortDescription:
 			'Get away from the city buzz and unwind in this charming countryside cottage in Córdoba. Enjoy beautiful nature, a private garden, and BBQ facilities.',
 		accommodationPrice: '$80/night',
+		rating: 2.2,
+		numberOfReviews: randomNumber(1000),
 	},
 	{
 		imageGallery: [
@@ -59,6 +67,8 @@ const rentalCards = [
 		shortDescription:
 			'Immerse yourself in nature at this secluded forest retreat in Mendoza. Discover hiking trails, vineyards, and breathtaking mountain views.',
 		accommodationPrice: '$90/night',
+		rating: 7.0,
+		numberOfReviews: randomNumber(1000),
 	},
 	// ... Agrega aquí los otros objetos restantes
 ];
@@ -77,6 +87,11 @@ const exampleCard = {
 // Obtengo elementos del DOM
 const $section = document.querySelector('#cards');
 
+// Generate random number
+function randomNumber(max) {
+	return Math.floor(Math.random() * max);
+}
+
 // Funcion para renderizar una card
 function renderCard(idx, obj) {
 	// Extraigo las keys del objeto de datos
@@ -86,6 +101,8 @@ function renderCard(idx, obj) {
 		accommodationLocation,
 		shortDescription,
 		accommodationPrice,
+		rating,
+		numberOfReviews,
 	} = obj;
 	// Creo un div en memoria
 	const $div = document.createElement('div');
@@ -98,7 +115,11 @@ function renderCard(idx, obj) {
         </div>
         <div class="col-md-8">
             <div class="card-body">
-                <h5 class="card-title">${accommodationTitle}</h5>
+                <div class="d-flex justify-content-between">
+                    <h5 class="card-title">${accommodationTitle}</h5>
+                    ${createFavoriteStar(idx)}
+                </div>
+                ${createRating(rating, numberOfReviews)}
                 <h6 class="card-subtitle mb-2 text-body-secondary muted"></h6>
                 <p class="card-text">
                 <p class="card-text">${shortDescription}</p>
@@ -162,12 +183,51 @@ function createCarrusselString(imgList, idxCarousel, accommodationTitle) {
 	return string;
 }
 
-// renderCard();
-// renderCard();
-// renderCard();
+function createRating(rating, numberOfReviews) {
+	let adjetivo;
+	if (rating >= 7) adjetivo = 'Bueno';
+	if (rating >= 8) adjetivo = 'Muy Bueno';
+	if (rating >= 9) adjetivo = 'Excelente';
+	return `<h6><span class="badge bg-secondary">${rating}</span> ${
+		adjetivo ? adjetivo : ''
+	} (${numberOfReviews} Reviews)</h6>`;
+}
 
+function createFavoriteStar(idx) {
+	// Creamos un icono dentro de span porque sino no me andaba el onclick
+	return `<span id-src="star-${idx}" ><i height="24" data-feather="star"></i></span>`;
+}
+
+// Renderizar cada card en el DOM
 rentalCards.forEach((card, idx) => renderCard(idx, card));
+
+// Seleccionar todas las estrellas para darle la funcionalidad de agregar o eliminar estrellas
+
+const starsList = document.querySelectorAll('span[id-src]');
+
+function handleStarClick() {
+	// Obtengo el icono que es hijo de <span>
+	let $i = this.children[0];
+	// Chequeo si el icono ya tiene relleno
+	if (this.hasAttribute('fill')) {
+		this.removeAttribute('fill'); // Remuevo el att
+		$i.innerHTML = `<i height="24" data-feather="star"></i>`; // Reemplazo el icono con su relleno
+		feather.replace(); // Re renderizo los iconos
+		return;
+	}
+	// TODO Terminar de agregar logica para agregar la card
+	// TODO al objeto currentUser en el localStorage
+	// En caso de que no tenga relleno, le aplico
+	$i.innerHTML = `<i height="24" fill="yellow" data-feather="star"></i>`;
+	this.setAttribute('fill', 'yellow'); // Para poder detectar que tiene relleno
+
+	feather.replace(); // Re renderizo los iconos
+}
 
 // $section.appendChild(createCarrussel());
 // ! Mantener al final del script para renderizar los iconos
 feather.replace(); // Para inicializar los iconos
+
+starsList.forEach((star) => {
+	star.addEventListener('click', handleStarClick);
+});
