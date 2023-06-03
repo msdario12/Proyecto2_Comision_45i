@@ -72,17 +72,7 @@ const rentalCards = [
 	},
 	// ... Agrega aquí los otros objetos restantes
 ];
-// TODO Ajustar la alturas de todas la imagenes de los carrussel para que sea la misma
 // ! Modelo de datos para cards de alojamiento
-const exampleCard = {
-	imageGallery: ['urlImg1', 'urlImg2'],
-	accommodationTitle: 'Title of Accommodation',
-	shortDescription: 'Short description, possibly in HTML',
-	accommodationLocation: 'Location of Accommodation',
-	accommodationPrice: `$51,245`,
-	maxPeople: 4,
-	sizeM2: '20m2',
-};
 
 // Obtengo elementos del DOM
 const $section = document.querySelector('#cards');
@@ -128,13 +118,14 @@ function renderCard(idx, obj) {
 		numberOfReviews,
 		id,
 	} = obj;
+
 	// Creo un div en memoria
 	const $div = document.createElement('div');
 	// Agrego las clases a este elemento padre
 	$div.classList.add('card', 'mb-3', 'card-custom');
 	// Modifico el interior del html
 	$div.innerHTML = `<div class="row g-0">
-        <div class="col-md-4" style="height: 125px">
+        <div class="col-md-4 carousel-parent" style="height: 125px">
             ${createCarrusselString(imageGallery, id, accommodationTitle)}
         </div>
         <div class="col-md-8">
@@ -222,13 +213,6 @@ function createFavoriteStar(idx) {
 	return `<span id-src="star-${idx}" ><i height="24" data-feather="star"></i></span>`;
 }
 
-// Renderizar cada card en el DOM
-rentalCards.forEach((card, idx) => renderCard(idx, card));
-
-// Seleccionar todas las estrellas para darle la funcionalidad de agregar o eliminar estrellas
-
-const starsList = document.querySelectorAll('span[id-src]');
-
 function handleStarClick() {
 	// Obtengo el icono que es hijo de <span>
 	let $i = this.children[0];
@@ -247,6 +231,84 @@ function handleStarClick() {
 
 	feather.replace(); // Re renderizo los iconos
 }
+
+function generateFormForCreateCards() {
+	const html = ``;
+}
+
+// !-----------------------------------Filedrop
+// Register the plugin
+FilePond.registerPlugin(FilePondPluginImagePreview);
+FilePond.registerPlugin(FilePondPluginFileValidateType);
+// Get a reference to the file input element
+const inputElement = document.querySelector('input[type="file"]');
+
+// Create a FilePond instance
+const filepond = FilePond.create(inputElement, {
+	storeAsFile: true,
+	allowMultiple: true,
+	acceptedFileTypes: ['image/png', 'image/jpeg'],
+	maxFiles: 5,
+	fileValidateTypeDetectType: (source, type) =>
+		new Promise((resolve, reject) => {
+			// Do custom type detection here and return with promise
+
+			resolve(type);
+		}),
+});
+
+// !-----------------------------------Filedrop END
+
+// ?---------------------------form Input
+
+const $formCreateCard = document.querySelector('#createCardForm');
+
+$formCreateCard.addEventListener('submit', function (e) {
+	e.preventDefault();
+	const el = e.target.elements;
+	// ! modificar para array
+	const srcImg = e.target.elements.filepond.files[0]
+		? URL.createObjectURL(e.target.elements.filepond.files[0])
+		: '';
+
+	// Crear array con los servicios que se marcaron como true
+	let trueCheckbox = [];
+
+	console.log(el);
+
+	[...el].forEach((el) => {
+		if (el.type === 'checkbox' || el.checked) {
+			trueCheckbox.push(el.id);
+		}
+	});
+
+	console.log(trueCheckbox);
+
+	const newCard = {
+		id: createRandomID('L'),
+		imageGallery: [srcImg],
+		accommodationTitle: el.titleInput.value,
+		accommodationLocation: el.locationInput.value,
+		servicesIcons: ['iconOfWater', 'iconOfPool'],
+		shortDescription: el.descriptionTextArea.value,
+		accommodationPrice: priceInput.valueAsNumber,
+		rating: randomNumber(10),
+		numberOfReviews: randomNumber(1000),
+	};
+	console.log(newCard);
+
+	// filepond.removeFiles()
+	// this.reset();
+});
+
+// ?---------------------------form Input END
+
+// Renderizar cada card en el DOM
+rentalCards.forEach((card, idx) => renderCard(idx, card));
+
+// Seleccionar todas las estrellas para darle la funcionalidad de agregar o eliminar estrellas
+
+const starsList = document.querySelectorAll('span[id-src]');
 
 // $section.appendChild(createCarrussel());
 // ! Mantener al final del script para renderizar los iconos
