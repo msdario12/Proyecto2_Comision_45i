@@ -107,6 +107,7 @@ console.log(rentalCards);
 
 // Funcion para renderizar una card
 function renderCard(idx, obj) {
+	// console.log(obj);
 	// Extraigo las keys del objeto de datos
 	const {
 		imageGallery,
@@ -213,25 +214,6 @@ function createFavoriteStar(idx) {
 	return `<span id-src="star-${idx}" ><i height="24" data-feather="star"></i></span>`;
 }
 
-function handleStarClick() {
-	// Obtengo el icono que es hijo de <span>
-	let $i = this.children[0];
-	// Chequeo si el icono ya tiene relleno
-	if (this.hasAttribute('fill')) {
-		this.removeAttribute('fill'); // Remuevo el att
-		$i.innerHTML = `<i height="24" data-feather="star"></i>`; // Reemplazo el icono con su relleno
-		feather.replace(); // Re renderizo los iconos
-		return;
-	}
-	// TODO Terminar de agregar logica para agregar la card
-	// TODO al objeto currentUser en el localStorage
-	// En caso de que no tenga relleno, le aplico
-	$i.innerHTML = `<i height="24" fill="yellow" data-feather="star"></i>`;
-	this.setAttribute('fill', 'yellow'); // Para poder detectar que tiene relleno
-
-	feather.replace(); // Re renderizo los iconos
-}
-
 function generateFormForCreateCards() {
 	const html = ``;
 }
@@ -263,56 +245,91 @@ const filepond = FilePond.create(inputElement, {
 
 const $formCreateCard = document.querySelector('#createCardForm');
 
+// Manejamos el evento de submit en el form
 $formCreateCard.addEventListener('submit', function (e) {
-	e.preventDefault();
+	e.preventDefault(); // Prevenimos el reload
 	const el = e.target.elements;
-	// ! modificar para array
-	const srcImg = e.target.elements.filepond.files[0]
-		? URL.createObjectURL(e.target.elements.filepond.files[0])
-		: '';
+	let srcImg = []; // Para almacenar las URL de las img
+	// Vemos si existen archivos
+	const fileList = Array.from(el.filepond);
 
+	// ! Falta añadir una imagen tipo placeholder por defecto
+
+	if (fileList.length > 0) {
+		// En caso de que sea solo 1 imagen
+		if (fileList.length === 0) {
+			const src = URL.createObjectURL(el.filepond.files[0]);
+			srcImg.push(src);
+		} else {
+			// Sino, es que tenemos mas de 1
+			fileList.forEach((file) => {
+				console.log(file);
+				const src = URL.createObjectURL(file.files[0]);
+				srcImg.push(src);
+			});
+		}
+	}
 	// Crear array con los servicios que se marcaron como true
-	let trueCheckbox = [];
-
-	console.log(el);
-
+	let servicesList = [];
+	// Revisamos cada input, y por los que son checkbox, vemos si tienen true
 	[...el].forEach((el) => {
-		if (el.type === 'checkbox' || el.checked) {
-			trueCheckbox.push(el.id);
+		if (el.type === 'checkbox' && el.checked) {
+			servicesList.push(el.id);
 		}
 	});
 
-	console.log(trueCheckbox);
+	console.log(servicesList);
 
 	const newCard = {
 		id: createRandomID('L'),
-		imageGallery: [srcImg],
+		imageGallery: srcImg,
 		accommodationTitle: el.titleInput.value,
 		accommodationLocation: el.locationInput.value,
-		servicesIcons: ['iconOfWater', 'iconOfPool'],
+		servicesIcons: servicesList,
 		shortDescription: el.descriptionTextArea.value,
 		accommodationPrice: priceInput.valueAsNumber,
 		rating: randomNumber(10),
 		numberOfReviews: randomNumber(1000),
 	};
-	console.log(newCard);
 
+	rentalCards.unshift(newCard);
+	// renderCard(newCard);
+	renderCardList(rentalCards);
 	// filepond.removeFiles()
 	// this.reset();
 });
 
 // ?---------------------------form Input END
-
-// Renderizar cada card en el DOM
-rentalCards.forEach((card, idx) => renderCard(idx, card));
-
-// Seleccionar todas las estrellas para darle la funcionalidad de agregar o eliminar estrellas
-
-const starsList = document.querySelectorAll('span[id-src]');
-
+function renderCardList(array) {
+	$section.innerHTML = '';
+	array.forEach((card, idx) => renderCard(idx, card));
+}
+renderCardList(rentalCards);
 // $section.appendChild(createCarrussel());
 // ! Mantener al final del script para renderizar los iconos
 feather.replace(); // Para inicializar los iconos
+
+// Seleccionar todas las estrellas para darle la funcionalidad de agregar o eliminar estrellas
+const starsList = document.querySelectorAll('span[id-src]');
+
+function handleStarClick() {
+	// Obtengo el icono que es hijo de <span>
+	let $i = this.children[0];
+	// Chequeo si el icono ya tiene relleno
+	if (this.hasAttribute('fill')) {
+		this.removeAttribute('fill'); // Remuevo el att
+		$i.innerHTML = `<i height="24" data-feather="star"></i>`; // Reemplazo el icono con su relleno
+		feather.replace(); // Re renderizo los iconos
+		return;
+	}
+	// TODO Terminar de agregar logica para agregar la card
+	// TODO al objeto currentUser en el localStorage
+	// En caso de que no tenga relleno, le aplico
+	$i.innerHTML = `<i height="24" fill="yellow" data-feather="star"></i>`;
+	this.setAttribute('fill', 'yellow'); // Para poder detectar que tiene relleno
+
+	feather.replace(); // Re renderizo los iconos
+}
 
 starsList.forEach((star) => {
 	star.addEventListener('click', handleStarClick);
