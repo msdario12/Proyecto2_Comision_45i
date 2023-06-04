@@ -160,6 +160,7 @@ function createCarrusselString(imgList, idxCarousel, accommodationTitle) {
 	// Por cada imagen de la lista genero el html
 	imgList.forEach((src, idx) => {
 		let html, indicator;
+
 		// Creamos el html que mostrara cada imagen y los indicadores
 		if (idx === 0) {
 			// idx===0 es el primer elemento, le doy la clase "active"
@@ -306,8 +307,6 @@ function renderCardList(array) {
 }
 renderCardList(rentalCards);
 // $section.appendChild(createCarrussel());
-// ! Mantener al final del script para renderizar los iconos
-feather.replace(); // Para inicializar los iconos
 
 // Seleccionar todas las estrellas para darle la funcionalidad de agregar o eliminar estrellas
 const starsList = document.querySelectorAll('span[id-src]');
@@ -334,3 +333,6 @@ function handleStarClick() {
 starsList.forEach((star) => {
 	star.addEventListener('click', handleStarClick);
 });
+
+// ! Mantener al final del script para renderizar los iconos
+feather.replace(); // Para inicializar los iconos
