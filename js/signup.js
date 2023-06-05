@@ -174,9 +174,13 @@ function handleNewUserRegister(e) {
 	}
 	// Añado el obj al array de usuarios
 	if (mode === 'host') {
+		// En caso de ser host, requiere autorizacion de un admin
+		newUser.isRegistrationApproved = false;
 		globalUsersBD.hostUsers.push(newUser);
 	}
 	if (mode === 'guest') {
+		// No necesita aprobacion de un admin
+		newUser.isRegistrationApproved = true;
 		globalUsersBD.guestsUsers.push(newUser);
 	}
 	console.log(globalUsersBD, mode);
@@ -293,7 +297,13 @@ function handleLogin(e) {
 		// ! Enviar alerta de error
 		console.log('Error en el login');
 		// TODO REDIRECCIONAR
-
+		return;
+	}
+	if (!findUser.isRegistrationApproved) {
+		// El usuario no fue aprobado
+		console.log('Usuario pendiente de aprobacion');
+		// ! alerta de espera de aprobacion
+		// TODO redireccionar
 		return;
 	}
 	// Usuario autenticado
