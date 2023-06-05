@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -26,7 +26,7 @@
 		<a href="#"></a>
 		<main>
 			<section class="container">
-				<form id="createCardForm" class="row">
+				<form id="newUserRegister" class="row">
 					<div class="col-6 d-flex flex-column align-content-center gap-2">
 						<!-- email -->
 						<div class="form-floating mb-3">
@@ -37,6 +37,7 @@
 								class="form-control"
 								maxlength="64"
 								minlength="4"
+								name="emailInput"
 								id="emailInput"
 								placeholder="Ingrese su email" />
 							<label for="emailInput">Nombre de usuario</label>
@@ -51,6 +52,7 @@
 								maxlength="64"
 								minlength="4"
 								id="userInput"
+								name="userInput"
 								placeholder="Nombre de usuario" />
 							<label for="userInput">Nombre de usuario</label>
 						</div>
@@ -64,6 +66,7 @@
 								maxlength="256"
 								minlength="8"
 								id="passwordInput"
+								name="passwordInput"
 								placeholder="Ingrese su contraseña" />
 							<label for="passwordInput">Ingrese su contraseña</label>
 						</div>
@@ -71,11 +74,11 @@
 						<div class="form-floating">
 							<input
 								value="3813869543"
-								required
 								type="number"
 								class="form-control"
 								pattern="[0-9]{10}"
 								id="phoneInput"
+								name="phoneInput"
 								placeholder="Numero de celular" />
 							<label for="phoneInput">Numero de celular</label>
 						</div>
@@ -93,6 +96,6 @@
 			integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
 			crossorigin="anonymous"></script>
 		<!-- Script propio de la pagina -->
-		<script src="../js/cards.js"></script>
+		<script src="../js/signup.js"></script>
 	</body>
 </html>
