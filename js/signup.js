@@ -53,7 +53,7 @@ function handleNewUserRegister(e) {
 // Controlador eventos al submit del formSignUp
 $formSignUp.addEventListener('submit', handleNewUserRegister);
 
-// ! Logica del login
+// ! Logica del login ----------------------------------------------------------------------------------
 // Obtengo el form del login
 
 const $formLogin = document.querySelector('#userLogin');
@@ -81,6 +81,8 @@ function handleLogin(e) {
 		// La contraseña no coincide
 		// ! Enviar alerta de error
 		console.log('Error en el login');
+		// TODO REDIRECCIONAR
+
 		return;
 	}
 	// Usuario autenticado
@@ -95,7 +97,21 @@ function handleLogin(e) {
 	addToLocalStorage('currentUser', loginUser);
 	// ! Enviar login correcto
 	console.log('Usuario autenticado correctamente');
+	// TODO REDIRECCIONAR
 }
 
 // Controlador del  form de login
 $formLogin.addEventListener('submit', handleLogin);
+
+// ! Logica del logout ----------------------------------------------------------------------------------
+
+// Obtengo el boton para el logout
+const $logoutButton = document.querySelector('#logoutButton');
+// Handler del click del boton
+function handleClickLogout(e) {
+	addToLocalStorage('currentUser', {});
+	console.log('Logout del usuario');
+	// TODO REDIRECCIONAR
+}
+// Controller
+$logoutButton.addEventListener('click', handleClickLogout);
