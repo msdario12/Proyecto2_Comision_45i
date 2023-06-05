@@ -136,9 +136,13 @@ document.querySelector('#hostSignUp').onclick = handleClickSignUp;
 
 function handleNewUserRegister(e) {
 	e.preventDefault();
+	// Obtengo el atributo que me dice si es signup de host o guess
 	const mode = e.submitter.attributes.mode.value;
+	// creo el formData para obtener los valores
 	const formData = new FormData(e.target);
 	const newUser = Object.fromEntries(formData);
+	// Añado el tipo de usuario
+	newUser.type = mode;
 	//? Añado el usuario a la base de datos
 	// Vemos si ya existe la bd de users
 	let globalUsersBD = getFromLocalStorage('usersBD');
@@ -161,7 +165,6 @@ function handleNewUserRegister(e) {
 			(user) => user.emailInput === newUser.emailInput
 		);
 	}
-	console.log(findUser);
 	// Vemos si el usuario ya existe con ese email
 	if (findUser) {
 		// El email ya existe, no continuar con el registro
@@ -187,28 +190,103 @@ function handleNewUserRegister(e) {
 // $formSignUp.addEventListener('submit', handleNewUserRegister);
 
 // ! Logica del login ----------------------------------------------------------------------------------
+function createLogin(mode) {
+	const paramsGeneral = {
+		host: {
+			title: 'Autenticarse como anfitrión',
+		},
+		guest: {
+			title: 'Autenticarse como huésped',
+		},
+	};
+	const params = paramsGeneral[mode];
+	const html = `
+    <!-- email -->
+                    <h2>${params.title}</h2>
+					<div class="form-floating mb-3">
+						<input
+							value="email@gmail.com"
+							required
+							type="email"
+							class="form-control"
+							maxlength="64"
+							minlength="4"
+							name="emailLogin"
+							id="emailLogin"
+							placeholder="Ingrese su email" />
+						<label for="emailLogin">Email</label>
+					</div>
+					<!-- contraseña -->
+					<div class="form-floating mb-3">
+						<input
+							value="contrasena"
+							required
+							type="password"
+							class="form-control"
+							maxlength="256"
+							minlength="8"
+							id="passwordLogin"
+							name="passwordLogin"
+							placeholder="Ingrese su contraseña" />
+						<label for="passwordLogin">Ingrese su contraseña</label>
+					</div>
+					<input type="submit" mode=${mode} class="btn btn-primary" value="Login" />
+    `;
+	const $form = document.createElement('form');
+	$form.innerHTML = html;
+	$form.setAttribute('id', 'userLogin');
+	// $form.classList.add('row');
+	return $form;
+}
+// Handler del click para el login
+function handleClickLogin(e) {
+	// Defino si el boton fue de guest o host para el signup
+	const mode = e.target.id === 'hostLogin' ? 'host' : 'guest';
+	// Limpio el elemento padre donde renderizar
+	document.querySelector('#loginContainer').innerHTML = '';
+	// Genero el form
+	const $formLogin = createLogin(mode);
+	// Controlador del fom
+	$formLogin.addEventListener('submit', handleLogin);
+	// Inserto el elemento
+	document.querySelector('#loginContainer').appendChild($formLogin);
+	// Logica para manejar signUp
+}
+// Controladores de los botones de registro
+document.querySelector('#guestLogin').onclick = handleClickLogin;
+document.querySelector('#hostLogin').onclick = handleClickLogin;
 // Obtengo el form del login
 
-const $formLogin = document.querySelector('#userLogin');
+// const $formLogin = document.querySelector('#userLogin');
 
 // Manejador del submit del login
 function handleLogin(e) {
 	e.preventDefault();
+	// Obtengo el atributo que me dice si es signup de host o guess
+	const mode = e.submitter.attributes.mode.value;
+	// creo el formData para obtener los valores
 	const formData = new FormData(e.target);
 	const loginUser = Object.fromEntries(formData);
 	// Chequeamos si el email existe
-	let usersBD = getFromLocalStorage('usersBD');
-	// Vemos si el usuario ya existe con ese email
-	const findUser = usersBD.find(
-		(user) => user.emailInput === loginUser.emailLogin
-	);
+	let globalUsersBD = getFromLocalStorage('usersBD');
+	// Vemos donde tenemos que añadir este usuario
+	let findUser;
+	if (mode === 'host') {
+		findUser = globalUsersBD.hostUsers.find(
+			(user) => user.emailInput === loginUser.emailLogin
+		);
+	}
+	if (mode === 'guest') {
+		findUser = globalUsersBD.guestsUsers.find(
+			(user) => user.emailInput === loginUser.emailLogin
+		);
+	}
 	if (!findUser) {
 		// El email no existe
 		// ! Enviar alerta de error
 		console.log('Error en el login');
 		return;
 	}
-	console.log(loginUser, findUser);
 	// vemos si la contraseña coincide con ese email
 	if (findUser.passwordInput !== loginUser.passwordLogin) {
 		// La contraseña no coincide
@@ -234,7 +312,7 @@ function handleLogin(e) {
 }
 
 // Controlador del  form de login
-$formLogin.addEventListener('submit', handleLogin);
+// $formLogin.addEventListener('submit', handleLogin);
 
 // ! Logica del logout ----------------------------------------------------------------------------------
 

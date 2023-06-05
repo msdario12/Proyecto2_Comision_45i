@@ -25,39 +25,15 @@
 		<h1 class="">Card</h1>
 		<a href="#"></a>
 		<main>
-			<section class="container">
-				<h2>Login</h2>
-				<form id="userLogin">
-					<!-- email -->
-					<div class="form-floating mb-3">
-						<input
-							value="email@gmail.com"
-							required
-							type="email"
-							class="form-control"
-							maxlength="64"
-							minlength="4"
-							name="emailLogin"
-							id="emailLogin"
-							placeholder="Ingrese su email" />
-						<label for="emailLogin">Email</label>
-					</div>
-					<!-- contraseña -->
-					<div class="form-floating mb-3">
-						<input
-							value="contrasena"
-							required
-							type="password"
-							class="form-control"
-							maxlength="256"
-							minlength="8"
-							id="passwordLogin"
-							name="passwordLogin"
-							placeholder="Ingrese su contraseña" />
-						<label for="passwordLogin">Ingrese su contraseña</label>
-					</div>
-					<input type="submit" class="btn btn-primary" value="Login" />
-				</form>
+			<h2>Login</h2>
+			<button id="guestLogin" class="btn btn-info">
+				Autenticarse como huésped
+			</button>
+			<button id="hostLogin" class="btn btn-secondary">
+				Autenticarse como anfitrión
+			</button>
+			<section class="container" id="loginContainer">
+				<!-- form login injected via javascript -->
 			</section>
 			<section class="container">
 				<h2>Boton de logout</h2>
