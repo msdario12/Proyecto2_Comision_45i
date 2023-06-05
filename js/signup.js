@@ -1,15 +1,15 @@
 // ! Logica del signUp
 
-// Funcion para agregar elemento al localStorage
-function addToLocalStorage(name, el) {
-	const jsonElement = JSON.stringify(el);
-	const saveElement = localStorage.setItem(name, jsonElement);
-	return saveElement;
-}
 // Funcion para obtener elementos del localStorage
 function getFromLocalStorage(name) {
 	const objElement = JSON.parse(localStorage.getItem(name));
 	return objElement;
+}
+// Funcion para agregar elemento al localStorage
+function addToLocalStorage(name, el) {
+	const jsonElement = JSON.stringify(el);
+	const saveElement = localStorage.setItem(name, jsonElement);
+	return getFromLocalStorage(name);
 }
 // Funcion para eliminar elementos del localStorage
 function deleteFromLocalStorage(name) {
@@ -99,7 +99,7 @@ function createSignUp(mode) {
 							<label for="phoneInput">Numero de celular</label>
 						</div>
 
-						<input type="submit" class="btn btn-primary" value="Registrarme" />
+						<input type="submit" mode=${mode} class="btn btn-primary" value="Registrarme" />
 					</div>
     `;
 	const $form = document.createElement('form');
@@ -115,8 +115,13 @@ function handleClickSignUp(e) {
 	const mode = e.target.id === 'hostSignUp' ? 'host' : 'guest';
 	// Limpio el elemento padre donde renderizar
 	document.querySelector('#signupContainer').innerHTML = '';
+	// Genero el form
+	const $formSignUp = createSignUp(mode);
+	// Controlador del fom
+	$formSignUp.addEventListener('submit', handleNewUserRegister);
 	// Inserto el elemento
-	document.querySelector('#signupContainer').appendChild(createSignUp(mode));
+	document.querySelector('#signupContainer').appendChild($formSignUp);
+	// Logica para manejar signUp
 }
 // Controladores de los botones de registro
 document.querySelector('#guestSignUp').onclick = handleClickSignUp;
@@ -131,18 +136,33 @@ document.querySelector('#hostSignUp').onclick = handleClickSignUp;
 
 function handleNewUserRegister(e) {
 	e.preventDefault();
+	const mode = e.submitter.attributes.mode.value;
 	const formData = new FormData(e.target);
 	const newUser = Object.fromEntries(formData);
 	//? Añado el usuario a la base de datos
 	// Vemos si ya existe la bd de users
-	let usersBD = getFromLocalStorage('usersBD');
-	if (!usersBD) {
-		usersBD = addToLocalStorage('usersBD', []);
+	let globalUsersBD = getFromLocalStorage('usersBD');
+	if (!globalUsersBD) {
+		console.log('Creando localsStorage users');
+		globalUsersBD = addToLocalStorage('usersBD', {
+			hostUsers: [],
+			guestsUsers: [],
+		});
 	}
+	// Vemos donde tenemos que añadir este usuario
+	let findUser;
+	if (mode === 'host') {
+		findUser = globalUsersBD.hostUsers.find(
+			(user) => user.emailInput === newUser.emailInput
+		);
+	}
+	if (mode === 'guest') {
+		findUser = globalUsersBD.guestsUsers.find(
+			(user) => user.emailInput === newUser.emailInput
+		);
+	}
+	console.log(findUser);
 	// Vemos si el usuario ya existe con ese email
-	const findUser = usersBD.find(
-		(user) => user.emailInput === newUser.emailInput
-	);
 	if (findUser) {
 		// El email ya existe, no continuar con el registro
 		// ! Enviar alerta de error
@@ -150,9 +170,15 @@ function handleNewUserRegister(e) {
 		return;
 	}
 	// Añado el obj al array de usuarios
-	usersBD.push(newUser);
+	if (mode === 'host') {
+		globalUsersBD.hostUsers.push(newUser);
+	}
+	if (mode === 'guest') {
+		globalUsersBD.guestsUsers.push(newUser);
+	}
+	console.log(globalUsersBD, mode);
 	// Añado el la nueva lista al localStorage
-	addToLocalStorage('usersBD', usersBD);
+	addToLocalStorage('usersBD', globalUsersBD);
 	// !Enviar alerta de registro correcto
 	console.log('Registro correcto');
 }
