@@ -305,6 +305,9 @@ function handleLogin(e) {
 	// Establecemos a este usuario como currentUser sin el password
 	// Remuevo password
 	delete loginUser.passwordLogin;
+	// Añado el tipo de usuario al currentUser
+	loginUser.type = mode;
+	// Añado al localStorage
 	addToLocalStorage('currentUser', loginUser);
 	// ! Enviar login correcto
 	console.log('Usuario autenticado correctamente');
