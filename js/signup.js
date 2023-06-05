@@ -1,4 +1,4 @@
-// Logica del signUp
+// ! Logica del signUp
 
 // Funcion para agregar elemento al localStorage
 function addToLocalStorage(name, el) {
@@ -18,14 +18,84 @@ function deleteFromLocalStorage(name) {
 
 // Obtengo en formulario del HTML
 
-const $form = document.querySelector('form');
+const $formSignUp = document.querySelector('#newUserRegister');
 
-// Manejo eventos al submit del form
-$form.addEventListener('submit', (e) => {
+// Manejador de registro de usuarios
+
+function handleNewUserRegister(e) {
 	e.preventDefault();
-	console.log(e);
 	const formData = new FormData(e.target);
-	const formObj = Object.fromEntries(formData);
-	const user = formData.get('emailInput');
-	console.log(formObj);
-});
+	const newUser = Object.fromEntries(formData);
+	//? Añado el usuario a la base de datos
+	// Vemos si ya existe la bd de users
+	let usersBD = getFromLocalStorage('usersBD');
+	if (!usersBD) {
+		usersBD = addToLocalStorage('usersBD', []);
+	}
+	// Vemos si el usuario ya existe con ese email
+	const findUser = usersBD.find(
+		(user) => user.emailInput === newUser.emailInput
+	);
+	if (findUser) {
+		// El email ya existe, no continuar con el registro
+		// ! Enviar alerta de error
+		console.log('El email ya existe');
+		return;
+	}
+	// Añado el obj al array de usuarios
+	usersBD.push(newUser);
+	// Añado el la nueva lista al localStorage
+	addToLocalStorage('usersBD', usersBD);
+	// !Enviar alerta de registro correcto
+	console.log('Registro correcto');
+}
+
+// Controlador eventos al submit del formSignUp
+$formSignUp.addEventListener('submit', handleNewUserRegister);
+
+// ! Logica del login
+// Obtengo el form del login
+
+const $formLogin = document.querySelector('#userLogin');
+
+// Manejador del submit del login
+function handleLogin(e) {
+	e.preventDefault();
+	const formData = new FormData(e.target);
+	const loginUser = Object.fromEntries(formData);
+	// Chequeamos si el email existe
+	let usersBD = getFromLocalStorage('usersBD');
+	// Vemos si el usuario ya existe con ese email
+	const findUser = usersBD.find(
+		(user) => user.emailInput === loginUser.emailLogin
+	);
+	if (!findUser) {
+		// El email no existe
+		// ! Enviar alerta de error
+		console.log('Error en el login');
+		return;
+	}
+	console.log(loginUser, findUser);
+	// vemos si la contraseña coincide con ese email
+	if (findUser.passwordInput !== loginUser.passwordLogin) {
+		// La contraseña no coincide
+		// ! Enviar alerta de error
+		console.log('Error en el login');
+		return;
+	}
+	// Usuario autenticado
+	// ? vemos si existe currentUser en ls
+	let currentUser = getFromLocalStorage('currentUser');
+	if (!currentUser) {
+		currentUser = addToLocalStorage('currentUser', []);
+	}
+	// Establecemos a este usuario como currentUser sin el password
+	// Remuevo password
+	delete loginUser.passwordLogin;
+	addToLocalStorage('currentUser', loginUser);
+	// ! Enviar login correcto
+	console.log('Usuario autenticado correctamente');
+}
+
+// Controlador del  form de login
+$formLogin.addEventListener('submit', handleLogin);

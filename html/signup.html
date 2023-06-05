@@ -26,6 +26,41 @@
 		<a href="#"></a>
 		<main>
 			<section class="container">
+				<h2>Login</h2>
+				<form id="userLogin">
+					<!-- email -->
+					<div class="form-floating mb-3">
+						<input
+							value="email@gmail.com"
+							required
+							type="email"
+							class="form-control"
+							maxlength="64"
+							minlength="4"
+							name="emailLogin"
+							id="emailLogin"
+							placeholder="Ingrese su email" />
+						<label for="emailLogin">Email</label>
+					</div>
+					<!-- contraseña -->
+					<div class="form-floating mb-3">
+						<input
+							value="contrasena"
+							required
+							type="password"
+							class="form-control"
+							maxlength="256"
+							minlength="8"
+							id="passwordLogin"
+							name="passwordLogin"
+							placeholder="Ingrese su contraseña" />
+						<label for="passwordLogin">Ingrese su contraseña</label>
+					</div>
+					<input type="submit" class="btn btn-primary" value="Login" />
+				</form>
+			</section>
+			<section class="container">
+				<h2>Registro</h2>
 				<form id="newUserRegister" class="row">
 					<div class="col-6 d-flex flex-column align-content-center gap-2">
 						<!-- email -->
@@ -42,19 +77,33 @@
 								placeholder="Ingrese su email" />
 							<label for="emailInput">Nombre de usuario</label>
 						</div>
-						<!-- usuario -->
+						<!-- nombre -->
 						<div class="form-floating mb-3">
 							<input
-								value="usertesst"
+								value="nombre test"
 								required
 								type="text"
 								class="form-control"
 								maxlength="64"
 								minlength="4"
-								id="userInput"
-								name="userInput"
+								id="nameInput"
+								name="nameInput"
 								placeholder="Nombre de usuario" />
-							<label for="userInput">Nombre de usuario</label>
+							<label for="nameInput">Ingrese su nombre completo</label>
+						</div>
+						<!-- apellido -->
+						<div class="form-floating mb-3">
+							<input
+								value="nombre test"
+								required
+								type="text"
+								class="form-control"
+								maxlength="64"
+								minlength="4"
+								id="lastNameInput"
+								name="lastNameInput"
+								placeholder="Nombre de usuario" />
+							<label for="lastNameInput">Ingrese su apellido</label>
 						</div>
 						<!-- contraseña -->
 						<div class="form-floating mb-3">
