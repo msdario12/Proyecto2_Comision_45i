@@ -1,13 +1,14 @@
 nav {
   width: 100%;
   height: 100px;
-  background-color: #7c6868;
+  background-color: #8d7979;
 }
 
 body {
   position: relative;
-  padding-bottom: 120px;
+  padding-bottom: 150px;
   min-height: 100vh;
+  background-image: url(../resourses/salina1.jpg);
 }
 
 main {
@@ -22,7 +23,7 @@ main {
 .equipo{
     width: 100%;
     height: 100%;
-    background-color: #ee9b9b;
+    background-color: none;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -34,19 +35,25 @@ main {
     
     width: 100%;
     height: 100%;
-    background-color: #805a7a;
+    background-color: none;
     display: flex;
     flex-direction: row;
   
     align-items: flex-start;
     justify-content: space-between;        
     margin: 10px;
-    border: black solid 1px;
+    
 }
+
+.persona{
+  height: 100%;
+  width: 100%;
+}
+
 .caja{
     width: 200px;
     height: 50%;
-    background-color: #ffffff;
+    background-color: none;
     margin: 10px;
     display: flex;
     flex-direction: column;
@@ -58,7 +65,7 @@ main {
 
 .foto {
 
-  background-color: aqua;
+  background-color: none;
   width: 200px;
   height: 200px;
   border : black solid 1px;
@@ -85,9 +92,14 @@ main {
     margin: 5%px;
 }
 
+#ourteam{
+  font-size: 120px;
+  color: #f9f9f9;
+}
+
 footer {
   width: 100%;
-  height: 100px;
+  height: 150px;
   background-color: #7c6868;
   position: absolute;
   bottom: 0;
