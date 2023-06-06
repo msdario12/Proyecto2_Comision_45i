@@ -3,7 +3,6 @@ const usersBD = getFromLocalStorage('usersBD') || [];
 
 // Logica para manejar la tabla de usuarios que ve el administrador
 function createTable(arrayToRender, mode, ...args) {
-	args.forEach((arg) => console.log(arg));
 	const $table = document.createElement('table');
 	$table.classList.add('table');
 	const $tableHead = document.createElement('thead');
@@ -18,8 +17,27 @@ function createTable(arrayToRender, mode, ...args) {
     </tr>
     `;
 	console.log(arrayToRender, mode);
-	const banButtonHTML = `<button class="btn btn-danger">Deshabilitar Usuario</button>`;
-	const approveButtonHTML = `<button class="btn btn-success">Habilitar Usuario</button>`;
+	// Pasar como string "ban" o "approve"
+	const createButton = (obj, action) => {
+		let className = '';
+		let msg = '';
+		if (action === 'ban') {
+			msg = 'Deshabilitar Usuario';
+			className = 'btn btn-danger';
+		}
+		if (action === 'approve') {
+			msg = 'Habilitar Usuario';
+			className = 'btn btn-success';
+		}
+		return `
+		<button btn-target=${obj.emailInput} 
+				btn-mode=${action} 
+				btn-user-type=${obj.type} 
+				class="${className}">
+		${msg}
+		</button>`;
+	};
+
 	function createRow(obj, idx) {
 		return `
 		<tr>
@@ -28,7 +46,11 @@ function createTable(arrayToRender, mode, ...args) {
 			<td>${obj.lastNameInput}</td>
 			<td>${obj.emailInput}</td>
 			<td>${obj.type}</td>
-			<td>${obj.isRegistrationApproved ? banButtonHTML : approveButtonHTML}</td>
+			<td>${
+				obj.isRegistrationApproved
+					? createButton(obj, 'ban')
+					: createButton(obj, 'approve')
+			}</td>
 		</tr>
 		`;
 	}
@@ -54,45 +76,46 @@ function createTable(arrayToRender, mode, ...args) {
 	$table.appendChild($tableBody);
 	return $table;
 }
-
+// ! Setear el container de la tabla
 const $containerForUserTable = document.querySelector('#usersTableContainer');
-// ! Logica para modificar lo que se muestra en la tabla de usuarios ----------
-document.querySelector('#showGuestsUsers').onclick = () => {
-	$containerForUserTable.innerHTML = '';
+// Guardo todos los botones
+let banButtons;
+// Renderizar la tabla en funcion del modo
+function renderUserTable(htmlParent, mode) {
+	htmlParent.innerHTML = '';
 	const $tableUsers = createTable(
 		usersBD,
-		'guest',
+		mode,
 		'Nombre',
 		'Apellido',
 		'Email',
 		'Tipo de Usuario',
 		'Usuario aprobado'
 	);
-	$containerForUserTable.appendChild($tableUsers);
+	htmlParent.appendChild($tableUsers);
+	banButtons = document.querySelectorAll('button[btn-target]');
+	banButtons.forEach((btn) => (btn.onclick = handleTableButtonClick));
+}
+// ! Logica para modificar lo que se muestra en la tabla de usuarios ----------
+// Controllers de los buttons para mostrar tabla
+document.querySelector('#showGuestsUsers').onclick = () => {
+	renderUserTable($containerForUserTable, 'guest');
 };
 document.querySelector('#showHostUsers').onclick = () => {
-	$containerForUserTable.innerHTML = '';
-	const $tableUsers = createTable(
-		usersBD,
-		'host',
-		'Nombre',
-		'Apellido',
-		'Email',
-		'Tipo de Usuario',
-		'Usuario aprobado'
-	);
-	$containerForUserTable.appendChild($tableUsers);
+	renderUserTable($containerForUserTable, 'host');
 };
 document.querySelector('#showAllUsers').onclick = () => {
-	$containerForUserTable.innerHTML = '';
-	const $tableUsers = createTable(
-		usersBD,
-		'all',
-		'Nombre',
-		'Apellido',
-		'Email',
-		'Tipo de Usuario',
-		'Usuario aprobado'
-	);
-	$containerForUserTable.appendChild($tableUsers);
+	renderUserTable($containerForUserTable, 'all');
 };
+// ! Logica para aprobar o banear usuarios al click de los botones respectivos--------------------
+// Controlador para los botones de ban
+function handleTableButtonClick(e) {
+	// Obtener la accion a realizar con el boton
+	const actionToRealize = e.target.attributes['btn-mode'].value;
+	// Obtener el email del usuario del boton
+	const userEmail = e.target.attributes['btn-target'].value;
+	// Leer los datos del usuario en la base de datos
+	let globalUsersBD = getFromLocalStorage('usersBD');
+
+	console.log(userEmail, actionToRealize);
+}
