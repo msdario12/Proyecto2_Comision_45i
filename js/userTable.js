@@ -18,44 +18,81 @@ function createTable(arrayToRender, mode, ...args) {
     </tr>
     `;
 	console.log(arrayToRender, mode);
-	let tableBodyInner = ``;
-	if (mode === 'host') {
+	const banButtonHTML = `<button class="btn btn-danger">Deshabilitar Usuario</button>`;
+	const approveButtonHTML = `<button class="btn btn-success">Habilitar Usuario</button>`;
+	function createRow(obj, idx) {
+		return `
+		<tr>
+			<th scope="row">${idx}</th>
+			<td>${obj.nameInput}</td>
+			<td>${obj.lastNameInput}</td>
+			<td>${obj.emailInput}</td>
+			<td>${obj.type}</td>
+			<td>${obj.isRegistrationApproved ? banButtonHTML : approveButtonHTML}</td>
+		</tr>
+		`;
+	}
+	let tableBodyInnerHost = ``;
+	let tableBodyInnerGuest = ``;
+	let number = 0;
+
+	if (mode === 'host' || mode === 'all') {
 		arrayToRender.hostUsers.forEach((obj, idx) => {
-			// Nombre
-			// Apellido
-			// correo
-			// Fecha de registro ?
-			tableBodyInner += `
-            <tr>
-                <th scope="row">${idx}</th>
-                <td>${obj.nameInput}</td>
-                <td>${obj.lastNameInput}</td>
-                <td>${obj.emailInput}</td>
-            </tr>
-            `;
+			number++;
+			tableBodyInnerHost += createRow(obj, number);
 		});
 	}
-	if (mode === 'guest') {
+	if (mode === 'guest' || mode === 'all') {
 		arrayToRender.guestsUsers.forEach((obj, idx) => {
-			// Nombre
-			// Apellido
-			// correo
-			// Fecha de registro ?
-			tableBodyInner += `
-            <tr>
-                <th scope="row">${idx}</th>
-                <td>${obj.nameInput}</td>
-                <td>${obj.lastNameInput}</td>
-                <td>${obj.emailInput}</td>
-            </tr>
-            `;
-			console.log(tableBodyInner);
+			number++;
+			tableBodyInnerGuest += createRow(obj, number);
 		});
 	}
-
-	console.log(tableBodyInner);
-
-	console.log(tableHeadInner);
+	$tableHead.innerHTML = tableHeadInner;
+	$tableBody.innerHTML = tableBodyInnerHost + tableBodyInnerGuest;
+	$table.appendChild($tableHead);
+	$table.appendChild($tableBody);
+	return $table;
 }
 
-createTable(usersBD, 'host', 'Nombre', 'Apellido', 'Email');
+const $containerForUserTable = document.querySelector('#usersTableContainer');
+// ! Logica para modificar lo que se muestra en la tabla de usuarios ----------
+document.querySelector('#showGuestsUsers').onclick = () => {
+	$containerForUserTable.innerHTML = '';
+	const $tableUsers = createTable(
+		usersBD,
+		'guest',
+		'Nombre',
+		'Apellido',
+		'Email',
+		'Tipo de Usuario',
+		'Usuario aprobado'
+	);
+	$containerForUserTable.appendChild($tableUsers);
+};
+document.querySelector('#showHostUsers').onclick = () => {
+	$containerForUserTable.innerHTML = '';
+	const $tableUsers = createTable(
+		usersBD,
+		'host',
+		'Nombre',
+		'Apellido',
+		'Email',
+		'Tipo de Usuario',
+		'Usuario aprobado'
+	);
+	$containerForUserTable.appendChild($tableUsers);
+};
+document.querySelector('#showAllUsers').onclick = () => {
+	$containerForUserTable.innerHTML = '';
+	const $tableUsers = createTable(
+		usersBD,
+		'all',
+		'Nombre',
+		'Apellido',
+		'Email',
+		'Tipo de Usuario',
+		'Usuario aprobado'
+	);
+	$containerForUserTable.appendChild($tableUsers);
+};
