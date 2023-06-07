@@ -55,6 +55,7 @@ function createTable(arrayToRender, mode, ...args) {
 			<td>${obj.lastNameInput}</td>
 			<td>${obj.emailInput}</td>
 			<td>${obj.type}</td>
+			<td>${obj.isRegistrationApproved}</td>
 			<td>${
 				obj.isRegistrationApproved
 					? createButton(obj, 'ban')
@@ -99,7 +100,8 @@ function renderUserTable(htmlParent, mode) {
 		'Apellido',
 		'Email',
 		'Tipo de Usuario',
-		'Usuario aprobado'
+		'Estado de usuario',
+		'Accion'
 	);
 	htmlParent.appendChild($tableUsers);
 	banButtons = document.querySelectorAll('button[btn-target]');
