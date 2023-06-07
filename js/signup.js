@@ -275,6 +275,14 @@ function handleLogin(e) {
 	let globalUsersBD = getFromLocalStorage('usersBD');
 	// Vemos donde tenemos que añadir este usuario
 	let findUser;
+	// Chequeamos si el email es de un admin
+	function checkAdminUser() {
+		let user = globalUsersBD.adminUsers.find(
+			(user) => user.emailInput === loginUser.emailLogin
+		);
+		return user;
+	}
+
 	if (mode === 'host') {
 		findUser = globalUsersBD.hostUsers.find(
 			(user) => user.emailInput === loginUser.emailLogin
@@ -285,6 +293,11 @@ function handleLogin(e) {
 			(user) => user.emailInput === loginUser.emailLogin
 		);
 	}
+	// Vemos si es un admin
+	if (!findUser) {
+		findUser = checkAdminUser();
+	}
+	// Ahora si no lo encontramos en ninguna de las bd, entonces retornamos
 	if (!findUser) {
 		// El email no existe
 		// ! Enviar alerta de error
@@ -316,11 +329,19 @@ function handleLogin(e) {
 	// Remuevo password
 	delete loginUser.passwordLogin;
 	// Añado el tipo de usuario al currentUser
-	loginUser.type = mode;
+	if (findUser.type === 'admin') {
+		loginUser.type = findUser.type;
+	} else {
+		loginUser.type = mode;
+	}
 	// Añado al localStorage
 	addToLocalStorage('currentUser', loginUser);
 	// ! Enviar login correcto
 	console.log('Usuario autenticado correctamente');
+	// Renderizo la tabla de usuarios si es admin
+	if (findUser.type === 'admin') {
+		mainTable();
+	}
 	// TODO REDIRECCIONAR
 }
 
@@ -335,6 +356,9 @@ const $logoutButton = document.querySelector('#logoutButton');
 function handleClickLogout(e) {
 	addToLocalStorage('currentUser', {});
 	console.log('Logout del usuario');
+	// Limpio la tabla de usuarios
+	document.querySelector('#usersTableContainer').innerHTML = '';
+	document.querySelector('#tableButtons').innerHTML = '';
 	// TODO REDIRECCIONAR
 }
 // Controller
