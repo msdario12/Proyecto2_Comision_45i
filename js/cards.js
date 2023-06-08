@@ -1,5 +1,5 @@
 // Listado de objetos de prueba
-const rentalCards = [
+rentalHardCodedCards = [
 	{
 		imageGallery: [
 			'https://source.unsplash.com/random/?beach',
@@ -72,6 +72,13 @@ const rentalCards = [
 	},
 	// ... Agrega aquí los otros objetos restantes
 ];
+// Agrego los datos al localStorage
+let rentalCards = getFromLocalStorage('accommodationDB');
+// Veo si existe en el localStorage
+if (!rentalCards) {
+	rentalCards = addToLocalStorage('accommodationDB', [...rentalHardCodedCards]);
+}
+
 // ! Modelo de datos para cards de alojamiento
 
 // Obtengo elementos del DOM
