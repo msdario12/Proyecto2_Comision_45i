@@ -7,6 +7,7 @@ rentalHardCodedCards = [
 		],
 		accommodationTitle: 'Cozy Beachfront Villa',
 		accommodationLocation: 'Mar del Plata',
+		guestCapacity: 4,
 		servicesIcons: ['iconOfWater', 'iconOfPool'],
 		shortDescription:
 			'Experience a relaxing vacation in this cozy beachfront villa in Mar del Plata. Enjoy stunning ocean views and access to a private pool.',
@@ -21,6 +22,7 @@ rentalHardCodedCards = [
 		],
 		accommodationTitle: 'Charming Mountain Cabin',
 		accommodationLocation: 'Bariloche',
+		guestCapacity: 6,
 		servicesIcons: ['iconOfWater', 'iconOfFireplace'],
 		shortDescription:
 			'Escape to the picturesque mountains of Bariloche and stay in this charming cabin. Enjoy hiking trails, breathtaking views, and a cozy fireplace.',
@@ -35,6 +37,7 @@ rentalHardCodedCards = [
 		],
 		accommodationTitle: 'Luxurious City Apartment',
 		accommodationLocation: 'Buenos Aires',
+		guestCapacity: 8,
 		servicesIcons: ['iconOfGym', 'iconOfConcierge'],
 		shortDescription:
 			'Indulge in luxury at this stylish city apartment in the heart of Buenos Aires. Experience world-class amenities, vibrant nightlife, and top-notch restaurants.',
@@ -49,6 +52,7 @@ rentalHardCodedCards = [
 		],
 		accommodationTitle: 'Rustic Countryside Cottage',
 		accommodationLocation: 'Córdoba',
+		guestCapacity: 4,
 		servicesIcons: ['iconOfGarden', 'iconOfBBQ'],
 		shortDescription:
 			'Get away from the city buzz and unwind in this charming countryside cottage in Córdoba. Enjoy beautiful nature, a private garden, and BBQ facilities.',
@@ -63,6 +67,7 @@ rentalHardCodedCards = [
 		],
 		accommodationTitle: 'Secluded Forest Retreat',
 		accommodationLocation: 'Mendoza',
+		guestCapacity: 6,
 		servicesIcons: ['iconOfHiking', 'iconOfWine'],
 		shortDescription:
 			'Immerse yourself in nature at this secluded forest retreat in Mendoza. Discover hiking trails, vineyards, and breathtaking mountain views.',
@@ -122,6 +127,7 @@ function renderCard(idx, obj) {
 		accommodationLocation,
 		shortDescription,
 		accommodationPrice,
+		guestCapacity,
 		rating,
 		numberOfReviews,
 		id,
@@ -150,7 +156,7 @@ function renderCard(idx, obj) {
                     <i height="16" data-feather="map-pin"></i>
                     <span class="small muted">${accommodationLocation}</span>
                     <i height="16" data-feather="user"></i>
-                    <span class="small muted">2 Personas</span>
+                    <span class="small muted">${guestCapacity} Personas</span>
                 </p>
             </div>
         </div>
@@ -293,6 +299,7 @@ $formCreateCard.addEventListener('submit', function (e) {
 		imageGallery: srcImg,
 		accommodationTitle: el.titleInput.value,
 		accommodationLocation: el.locationInput.value,
+		guestCapacity: el.capacityInput.value,
 		servicesIcons: servicesList,
 		shortDescription: el.descriptionTextArea.value,
 		accommodationPrice: priceInput.valueAsNumber,
