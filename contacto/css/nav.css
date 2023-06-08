@@ -31,10 +31,9 @@ header {
   
 }
 
-@media (max-width: 1250px) {
-}
 
-@media screen and (max-width: 600px) {
+
+@media screen and (max-width: 820px) {
   .abrir-menu,
   .cerrar-menu {
     display: block;
