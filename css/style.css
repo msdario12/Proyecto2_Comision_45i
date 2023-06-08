@@ -1,4 +1,4 @@
-*{
+/* *{
     margin:0;
     padding:0;
     box-sizing:border-box;
@@ -6,23 +6,20 @@
 }
 
 body{
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    min-height: 100vh;
-    background: #333;
+    display: flex;     
 }
 
 footer{
-    position:relative;
+    background: #333;
+    align-items: flex-end;
+    position:absolute;
     width: 100%;
     background: #3586ff;
     min-height: 100px;
     padding: 20px 50px;
-    display:flex;
     justify-content: center;
-    align-items: center;
     flex-direction: column;
+    min-height: 10vh;
 }
 
 footer .imgSocial a img{
@@ -36,7 +33,7 @@ footer .imgSocial, footer .menu {
     align-items: center;
     margin:10px 0;
     flex-wrap: wrap;
-}
+} 
 
 footer .imgSocial a, footer .menu li{
  list-style: none;
@@ -102,4 +99,4 @@ footer .ola#ola1 {
         {
     background-position-x:0px ;
         }
-    }
+    } */
