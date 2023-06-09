@@ -5,6 +5,15 @@ rentalHardCodedCards = [
 			'https://source.unsplash.com/random/?beach',
 			'https://source.unsplash.com/random/?ocean',
 		],
+		hostEmail: 'host1@gmail.com',
+		guestsList: [
+			{
+				guestEmail: 'guest1@gmail.com',
+				guestsQuantity: 4,
+				checkInDate: '2023-04-04',
+				checkOutDate: '2023-04-04',
+			},
+		],
 		accommodationTitle: 'Cozy Beachfront Villa',
 		accommodationLocation: 'Mar del Plata',
 		guestCapacity: 4,
