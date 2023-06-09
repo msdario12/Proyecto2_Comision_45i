@@ -294,7 +294,7 @@ const inputElement = document.querySelector('input[type="file"]');
 // Create a FilePond instance
 const filepond = FilePond.create(inputElement, {
 	labelIdle:
-		'Arrastra las imágenes aquí o  <span class="filepond--label-action"> Selecciona archivos </span>',
+		'Arrastra las imágenes aquí o  <span class="filepond--label-action"> Selecciónalas desde tu computadora</span>',
 	storeAsFile: true,
 	allowMultiple: true,
 	acceptedFileTypes: ['image/png', 'image/jpeg'],

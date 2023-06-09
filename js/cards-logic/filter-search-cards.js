@@ -1,14 +1,19 @@
 // Logica encargada de filtrar las cards y realizar busquedas
-// Leemos los params de busqueda desde la URL
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-console.log(urlParams.get('dest'));
-// Agrego los params al localStorage
-addToLocalStorage('searchParams', {
-	quantityParam: urlParams.get('guests'),
-	checkInDateSearch: urlParams.get('in'),
-	checkOutDateSearch: urlParams.get('out'),
-});
+// !- Leemos los params de busqueda desde la URL
+function readURLSearchParams() {
+	const queryString = window.location.search;
+	const urlParams = new URLSearchParams(queryString);
+	console.log(urlParams.get('dest'));
+	// Agrego los params al localStorage
+	addToLocalStorage('searchParams', {
+		searchUbicationInput: urlParams.get('dest'),
+		quantityParam: urlParams.get('guests'),
+		checkInDateSearch: urlParams.get('in'),
+		checkOutDateSearch: urlParams.get('out'),
+	});
+}
+// Leemos los valores de la URL
+readURLSearchParams();
 // Obtener las publicaciones del localStorage
 let cardsToFilter = getFromLocalStorage('accommodationDB');
 // Obtener el form de busqueda
@@ -97,45 +102,52 @@ function handleKeyUpInputSearch(e) {
 	);
 	// Leer del localStorage solo las publicaciones que incluyan la búsqueda
 	// Guardar ese array que cumple en una variable
-	const filteredCars = cardsToFilter.filter((card) => {
-		// Condicion que verifica el titulo
-		const hasTitle = card.accommodationTitle
-			.toLowerCase()
-			.includes(searchParam);
-		// Condicion de la ubicacion
-		const hasUbication = card.accommodationLocation
-			.toLowerCase()
-			.includes(ubicationParam);
-		// Vemos si la capacidad es mayor a lo que busca
-		const hasQuantity = card.guestCapacity >= quantityParam;
 
-		let hasDateAvailable;
-		// Vemos si la card tiene lista de reservas
+	function getFilteredCards(cardList) {
+		const filtered = cardList.filter((card) => {
+			// Condicion que verifica el titulo
+			const hasTitle = card.accommodationTitle
+				.toLowerCase()
+				.includes(searchParam);
+			// Condicion de la ubicacion
+			const hasUbication = card.accommodationLocation
+				.toLowerCase()
+				.includes(ubicationParam);
+			// Vemos si la capacidad es mayor a lo que busca
+			const hasQuantity = card.guestCapacity >= quantityParam;
 
-		if (!card.guestsList) {
-			// Si no hay reservas, se puede buscar y alquilar
-			// Se niega al final
-			hasDateAvailable = !true;
-		}
+			let hasDateAvailable;
+			// Vemos si la card tiene lista de reservas
 
-		card.guestsList.forEach((reservation) => {
-			// Creo el intervalo de las fechas de reservas de la card
-			const intervalDateCard = generateDateInterval(
-				reservation.checkInDate,
-				reservation.checkOutDate
-			);
-			// Si ninguna de las fechas de los intervalos coincide devuelve false
-			hasDateAvailable = checkMatchBetweenIntervals(
-				dateIntervalSearch,
-				intervalDateCard
-			);
+			if (!card.guestsList) {
+				// Si no hay reservas, se puede buscar y alquilar
+				// Se niega al final
+				hasDateAvailable = !true;
+			}
+
+			card.guestsList.forEach((reservation) => {
+				// Creo el intervalo de las fechas de reservas de la card
+				const intervalDateCard = generateDateInterval(
+					reservation.checkInDate,
+					reservation.checkOutDate
+				);
+				// Si ninguna de las fechas de los intervalos coincide devuelve false
+				hasDateAvailable = checkMatchBetweenIntervals(
+					dateIntervalSearch,
+					intervalDateCard
+				);
+			});
+
+			// Todas las condiciones deben ser true para mostrar esa card como disponible
+			return hasTitle && hasQuantity && hasUbication && !hasDateAvailable;
 		});
+		return filtered;
+	}
 
-		// Todas las condiciones deben ser true para mostrar esa card como disponible
-		return hasTitle && hasQuantity && hasUbication && !hasDateAvailable;
-	});
+	const filteredCars = getFilteredCards(cardsToFilter);
 	// actualizamos los valores  en el localStorage la cantidad de huespedes y fechas
 	addToLocalStorage('searchParams', {
+		searchUbicationInput,
 		quantityParam,
 		checkInDateSearch,
 		checkOutDateSearch,
