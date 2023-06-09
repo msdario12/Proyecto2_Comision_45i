@@ -1,22 +1,36 @@
 // Logica encargada de filtrar las cards y realizar busquedas
 // Obtener las publicaciones del localStorage
 let cardsToFilter = getFromLocalStorage('accommodationDB');
-// Obtener el input de busqueda por titulo
-const $inputSearch = document.querySelector('#searchInput');
-// Controlador a ejecutarse con el keyUp
+// Obtener el form de busqueda
+const $searchForm = document.querySelector('#searchCardsForm');
+// Controlador a ejecutarse con el submit
 function handleKeyUpInputSearch(e) {
-	// Leer el valor del input cuando se apriete enter o el boton de buscar
-	if (e.key === 'Enter') {
-		const searchParam = String(e.target.value).toLowerCase();
-		// Leer del localStorage solo las publicaciones que incluyan la búsqueda
-		// Guardar ese array que cumple en una variable
-		const filteredCars = cardsToFilter.filter((card) => {
-			return card.accommodationTitle.toLowerCase().includes(searchParam);
-		});
-		// Limpiar las cards anteriores que se esten mostrando
-		// Renderizar las nuevas publicaciones en base a la busqueda.
+	e.preventDefault();
+	// Leo los inputs mediante el formData
+	const data = new FormData(e.target);
+	const dataObj = Object.fromEntries(data);
+	// Valor de busqueda de titulo
+	console.log(dataObj);
+	const searchParam = dataObj.searchTitleInput.toLowerCase();
+	// Cantidad de huéspedes
+	const quantityParam = dataObj.searchCapacityInput;
+	// Leer del localStorage solo las publicaciones que incluyan la búsqueda
+	// Guardar ese array que cumple en una variable
+	const filteredCars = cardsToFilter.filter((card) => {
+		// Condicion que verifica el titulo
+		const hasTitle = card.accommodationTitle
+			.toLowerCase()
+			.includes(searchParam);
+		// Vemos si la capacidad es mayor a lo que busca
+		const hasQuantity = card.guestCapacity >= quantityParam;
 
-		renderCardList(filteredCars);
-	}
+		// Todas las condiciones deben ser true
+		return hasTitle && hasQuantity;
+	});
+	// Limpiar las cards anteriores que se esten mostrando
+	// Renderizar las nuevas publicaciones en base a la busqueda.
+	console.log(filteredCars);
+	renderCardList(filteredCars);
 }
-$inputSearch.addEventListener('keyup', handleKeyUpInputSearch);
+// Manejador de eventos al submit del form de search
+$searchForm.addEventListener('submit', handleKeyUpInputSearch);

@@ -179,16 +179,49 @@
 			</section>
 			<section>
 				<h2>Buscar publicaciones</h2>
-				<div class="form-floating">
+				<form action="" id="searchCardsForm">
+					<!-- Buscar por titulo -->
+					<div class="form-floating">
+						<input
+							value="Mar del Plata"
+							required
+							type="text"
+							class="form-control"
+							name="searchTitleInput"
+							id="searchTitleInput"
+							placeholder="Busqueda" />
+						<label for="searchTitleInput">Ingrese su busqueda</label>
+					</div>
+					<!-- Buscar por cantidad de personas -->
+					<div class="form-floating">
+						<input
+							value="Mar del Plata"
+							required
+							type="number"
+							max="64"
+							class="form-control"
+							name="searchCapacityInput"
+							id="searchCapacityInput"
+							placeholder="Cantidad de huéspedes" />
+						<label for="searchCapacityInput">Cantidad de huéspedes</label>
+					</div>
+					<!-- Input entrada - datepicker -->
 					<input
-						value="Mar del Plata"
-						required
-						type="text"
-						class="form-control"
-						id="searchInput"
-						placeholder="Busqueda" />
-					<label for="searchInput">Ingrese su busqueda</label>
-				</div>
+						type="date"
+						id="dateCheckinInput"
+						placeholder="Llegada"
+						name="dateCheckinInput"
+						value="2023-05-22" />
+					<!-- Input entrada - datepicker -->
+					<input
+						type="date"
+						id="dateCheckoutInput"
+						placeholder="Salida"
+						name="dateCheckoutInput"
+						value="2023-07-22" />
+					<!-- Input submit -->
+					<input type="submit" class="btn btn-primary" value="Buscar" />
+				</form>
 			</section>
 			<section id="cards">
 				<!-- Example of one card -->

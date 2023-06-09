@@ -106,7 +106,7 @@ function createRandomID(prefix) {
 	const vowel = randomVowel().toUpperCase();
 	return String(prefix).toUpperCase() + num1 + vowel + num2;
 }
-
+// ! Agregar a las cards hardcodeadas
 // Chequear si todos los objetos tienen un ID, sino asignarles
 rentalCards.forEach((card) => {
 	if (card.hasOwnProperty('id')) {
