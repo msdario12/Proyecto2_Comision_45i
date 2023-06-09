@@ -11,14 +11,17 @@ function formatDate(date) {
 	return `${year}-${month}-${day}`;
 }
 // Restringimos la fecha del checkIn a que no se antes que hoy
-const actualDate = new Date();
+const todayDate = new Date();
 document
 	.querySelector('#dateCheckinInput')
-	.setAttribute('min', formatDate(actualDate));
+	.setAttribute('min', formatDate(todayDate));
 // Funcion que maneja el dateInput de checkout inputs, restringiendo las fechas
 function handleDateInputs(e) {
-	console.log(e);
-	const actualDate = new Date();
+	if (e.target.id === 'dateCheckinInput') {
+		console.log(e.target.value);
+		let initialDate = e.target.value;
+		e.target.form.elements.dateCheckoutInput.setAttribute('min', initialDate);
+	}
 }
 // Funcion que toma 2 fechas y genera un array con las fechas internas
 function generateDateInterval(date1, date2) {
