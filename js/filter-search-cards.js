@@ -46,21 +46,24 @@ function handleKeyUpInputSearch(e) {
 	const data = new FormData(e.target);
 	const dataObj = Object.fromEntries(data);
 	console.log(dataObj);
-	// Fecha de entrada de la búsqueda
-	const checkInDateSearch = dataObj.dateCheckInInput;
-	// Fecha de salida de la búsqueda
-	const checkOutDateSearch = dataObj.dateCheckOutInput;
+	// Object deconstruction
+	let {
+		dateCheckInInput: checkInDateSearch,
+		dateCheckOutInput: checkOutDateSearch,
+		searchTitleInput: searchParam,
+		searchUbicationInput: ubicationParam,
+		searchCapacityInput: quantityParam,
+	} = dataObj;
+
+	// Convierto a lowerCase
+	searchParam = searchParam.toLowerCase();
+	ubicationParam = ubicationParam.toLowerCase();
+
 	// Lista de fechas interiores
 	const dateIntervalSearch = generateDateInterval(
 		checkInDateSearch,
 		checkOutDateSearch
 	);
-	// Parámetro de búsqueda de titulo
-	const searchParam = dataObj.searchTitleInput.toLowerCase();
-	// Parámetro de búsqueda de ubicacion
-	const ubicationParam = dataObj.searchUbicationInput.toLowerCase();
-	// Cantidad de huéspedes
-	const quantityParam = dataObj.searchCapacityInput;
 	// Leer del localStorage solo las publicaciones que incluyan la búsqueda
 	// Guardar ese array que cumple en una variable
 	const filteredCars = cardsToFilter.filter((card) => {
