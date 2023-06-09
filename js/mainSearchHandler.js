@@ -1,3 +1,31 @@
+// Establezco los valores mínimos de los inputs de date
+// Funcion para formatear la fecha en string
+function formatDate(date) {
+	const year = date.getFullYear();
+	const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+	const day = String(date.getDate()).padStart(2, '0');
+	return `${year}-${month}-${day}`;
+}
+// Restringimos la fecha del checkIn a que no se antes que hoy
+const todayDate = new Date();
+document
+	.querySelector('#dateCheckinInput')
+	.setAttribute('min', formatDate(todayDate));
+
+// Funcion que maneja el dateInput de checkout inputs, restringiendo las fechas
+function handleDateInputs(e) {
+	console.log(e);
+	if (e.target.id === 'dateCheckinInput') {
+		console.log(e.target.value);
+		let initialDate = e.target.value;
+		e.target.form.elements.dateCheckoutInput.setAttribute('min', initialDate);
+	}
+}
+// Selecciono los input tipo date de la pagina para controlarlos
+document
+	.querySelectorAll('input[type=date]')
+	.forEach((input) => input.addEventListener('change', handleDateInputs));
+
 // Logica para manejar el redireccionamiento del boton de search
 // Obtengo el formulario del DOM
 document
