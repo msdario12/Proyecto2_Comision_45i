@@ -1,317 +1,345 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- CSS bootstrap -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-      crossorigin="anonymous"
-    />
-    <!-- CSS -->
-    <link rel="stylesheet" href="/css/style.css" />
-    <!-- Para el navbar -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;1,100;1,300&display=swap"
-      rel="stylesheet"
-    />
-    <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-    crossorigin="anonymous"
-  />
-    <link rel="stylesheet" href="/css/nav.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js"></script>
-  
-  <!-- Hasta aquí es para el navbar -->
-  <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <title>Home DescansAR</title>
-  </head>
-  <body>
-    <!-- Barra de navegación -->
-    <header>
-      <div id="logo"><h1>descansAR</h1></div>
-      <button id="abrir" class="abrir-menu"><i class="bi bi-list"></i></button>
-      <nav class="nav" id="nav">
-        <button id="cerrar" class="cerrar-menu">
-          <i class="bi bi-x-lg"></i>
-        </button>
-        <ul class="nav-list">
-          <li><a href="">Home</a></li>
-          <li> <a href="">About</a></li>
-          <li> <a href="">Contacto</a></li>
-          <li> <a href="">Entrar</a></li>
-        </ul>
-      </nav>
-    </header>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- CSS bootstrap -->
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+			crossorigin="anonymous" />
+		<!-- CSS -->
+		<link rel="stylesheet" href="/css/style.css" />
+		<!-- Para el navbar -->
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;1,100;1,300&display=swap"
+			rel="stylesheet" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+			crossorigin="anonymous" />
+		<link rel="stylesheet" href="/css/nav.css" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js"></script>
 
-    
-    <!-- Busqueda -->
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-12">
-          <div class="card">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-lg-3 col-md-6">
-                  <form class="form-group fw-bolder">
-                    <label for="Destino">Destino</label>
-                    <input type="text" alt="Destino" class="form-control" id="destination" placeholder="Ingresa tu destino">
-                  </form>
-                </div>
-                <div class="col-lg-3 col-md-6 ">
-                  <form class="form-group fw-bolder">
-                    <label for="Entrada">Entrada</label>
-                    <input type="date" class="form-control" id="check-in">
-                  </form>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                  <form class="form-group fw-bolder">
-                    <label for="Salida">Salida</label>
-                    <input type="date" class="form-control" id="check-out">
-                  </form>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                  <form class="form-group fw-bolder">
-                    <label for="Huéspedes">Huéspedes</label>
-                    <select class="form-control" id="guests">
-                      <option>1 huésped</option>
-                      <option>2 huéspedes</option>
-                      <option>3 huéspedes</option>
-                      <option>5 huéspedes</option>
-                      <option>5 huéspedes</option>
-                      <option>6 huéspedes</option>
-                      <option>7 huéspedes</option>
-                      <option>8 huéspedes</option>
-                      <option>9 huéspedes</option>
-                      <option>10 huéspedes</option>
-                      <!-- Agrega más opciones según sea necesario -->
-                    </select>
-                  </form>
-                </div>
-              </div>
-              <div class="row justify-content-center">
-                <div class="d-grid gap-2 col-md-6 mx-auto">
-                  <button type="submit" class="btn btn-outline-primary fs-5 fw-bolder">Buscar Reservas</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+		<!-- Hasta aquí es para el navbar -->
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+			crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+		<title>Home DescansAR</title>
+	</head>
+	<body>
+		<!-- Barra de navegación -->
+		<header>
+			<div id="logo"><h1>descansAR</h1></div>
+			<button id="abrir" class="abrir-menu"><i class="bi bi-list"></i></button>
+			<nav class="nav" id="nav">
+				<button id="cerrar" class="cerrar-menu">
+					<i class="bi bi-x-lg"></i>
+				</button>
+				<ul class="nav-list">
+					<li><a href="">Home</a></li>
+					<li><a href="">About</a></li>
+					<li><a href="">Contacto</a></li>
+					<li><a href="">Entrar</a></li>
+				</ul>
+			</nav>
+		</header>
 
-    
-   
-    <!-- <div class="container-fluid"></div> -->
-     <!-- InicinioConteiner principal -->
-     <!-- TARJETAS CON CAROUSEL -->
-     <div id="placesCarousel" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-4 col-md-6">
-                <div class="card">
-                  <img src="ruta-de-la-imagen" class="card-img-top" alt="Imagen del lugar">
-                  <div class="card-body">
-                    <h5 class="card-title">Nombre del Lugar</h5>
-                    <p class="card-text">Descripción del lugar.</p>
-                    <a href="#" class="btn btn-primary">Ver Detalles</a>
-                  </div>
-                </div>
-              </div>
-              <!-- Repite el código de la tarjeta para cada lugar -->
-            </div>
-          </div>
-        </div>
-        <!-- nueva tarjeta -->
-        <div class="carousel-item active">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-4 col-md-6">
-                <div class="card">
-                  <img src="ruta-de-la-imagen" class="card-img-top" alt="Imagen del lugar">
-                  <div class="card-body">
-                    <h5 class="card-title">Nombre del Lugar</h5>
-                    <p class="card-text">Descripción del lugar.</p>
-                    <a href="#" class="btn btn-primary">Ver Detalles</a>
-                  </div>
-                </div>
-              </div>
-              <!-- Repite el código de la tarjeta para cada lugar -->
-            </div>
-          </div>
-        </div>
-        <!-- nueva tarjeta -->
-        <div class="carousel-item active">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-4 col-md-6">
-                <div class="card">
-                  <img src="ruta-de-la-imagen" class="card-img-top" alt="Imagen del lugar">
-                  <div class="card-body">
-                    <h5 class="card-title">Nombre del Lugar</h5>
-                    <p class="card-text">Descripción del lugar.</p>
-                    <a href="#" class="btn btn-primary">Ver Detalles</a>
-                  </div>
-                </div>
-              </div>
-              <!-- Repite el código de la tarjeta para cada lugar -->
-            </div>
-          </div>
-        </div>
-        <!-- nueva tarjeta -->
-        <div class="carousel-item active">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-4 col-md-6">
-                <div class="card">
-                  <img src="ruta-de-la-imagen" class="card-img-top" alt="Imagen del lugar">
-                  <div class="card-body">
-                    <h5 class="card-title">Nombre del Lugar</h5>
-                    <p class="card-text">Descripción del lugar.</p>
-                    <a href="#" class="btn btn-primary">Ver Detalles</a>
-                  </div>
-                </div>
-              </div>
-              <!-- Repite el código de la tarjeta para cada lugar -->
-            </div>
-          </div>
-        </div>
-        <!-- nueva tarjeta -->
-        <div class="carousel-item active">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-4 col-md-6">
-                <div class="card">
-                  <img src="ruta-de-la-imagen" class="card-img-top" alt="Imagen del lugar">
-                  <div class="card-body">
-                    <h5 class="card-title">Nombre del Lugar</h5>
-                    <p class="card-text">Descripción del lugar.</p>
-                    <a href="#" class="btn btn-primary">Ver Detalles</a>
-                  </div>
-                </div>
-              </div>
-              <!-- Repite el código de la tarjeta para cada lugar -->
-            </div>
-          </div>
-        </div>
-        <!-- nueva tarjeta -->
-        <div class="carousel-item active">
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-4 col-md-6">
-                <div class="card">
-                  <img src="ruta-de-la-imagen" class="card-img-top" alt="Imagen del lugar">
-                  <div class="card-body">
-                    <h5 class="card-title">Nombre del Lugar</h5>
-                    <p class="card-text">Descripción del lugar.</p>
-                    <a href="#" class="btn btn-primary">Ver Detalles</a>
-                  </div>
-                </div>
-              </div>
-              <!-- Repite el código de la tarjeta para cada lugar -->
-            </div>
-          </div>
-        </div>
-        <!-- Agrega más elementos carousel-item según sea necesario -->
-      </div>
-      <a class="carousel-control-prev" href="#placesCarousel" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Anterior</span>
-      </a>
-      <a class="carousel-control-next" href="#placesCarousel" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Siguiente</span>
-      </a>
-    </div>
-    
-     <div class="container">
-      <div class="row">
-        <div class="col-lg-4 col-md-6">
-          <div class="card">
-            <img src="ruta-de-la-imagen" class="card-img-top" alt="Imagen del lugar">
-            <div class="card-body">
-              <h5 class="card-title">Nombre del Lugar</h5>
-              <p class="card-text">Descripción del lugar.</p>
-              <p class="card-text">Ubicación del lugar.</p>
-              <a href="#" class="btn btn-primary">Ver Detalles</a>
-            </div>
-          </div>
-        </div>
-        <!-- Repite el código de la tarjeta para cada lugar -->
-      </div>
-    </div>
-
-    
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4 col-md-6">
-          <div class="card">
-            <img src="ruta-de-la-imagen" class="card-img-top" alt="Imagen del lugar">
-            <div class="card-body">
-              <h5 class="card-title">Nombre del Lugar</h5>
-              <p class="card-text">Descripción del lugar.</p>
-              <a href="#" class="btn btn-primary">Ver Detalles</a>
-            </div>
-          </div>
-        </div>
-        <!-- Repite el código de la tarjeta para cada lugar -->
-      </div>
-    </div>
-
-
-    
-	<div class="container text-center"> <!-- Contenido principal -->
-		<div class="row g-2">
-		  <div class="col-6">
-			<div class="p-3">Custom column padding</div>
-		  </div>
-		  <div class="col-6">
-			<div class="p-3">Custom column padding</div>
-		  </div>
-		  <div class="col-6">
-			<div class="p-3">Custom column padding</div>
-		  </div>
-		  <div class="col-6">
-			<div class="p-3">Custom column padding</div>
-		  </div>
-		  <div class="col-6">
-			<div class="p-3">Custom column padding</div>
-		  </div>
-		  <div class="col-6">
-			<div class="p-3">Custom column padding</div>
-		  </div>
+		<!-- Busqueda -->
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-lg-3 col-md-6">
+									<form class="form-group fw-bolder">
+										<label for="Destino">Destino</label>
+										<input
+											type="text"
+											alt="Destino"
+											class="form-control"
+											id="destination"
+											placeholder="Ingresa tu destino" />
+									</form>
+								</div>
+								<div class="col-lg-3 col-md-6">
+									<form class="form-group fw-bolder">
+										<label for="Entrada">Entrada</label>
+										<input type="date" class="form-control" id="check-in" />
+									</form>
+								</div>
+								<div class="col-lg-3 col-md-6">
+									<form class="form-group fw-bolder">
+										<label for="Salida">Salida</label>
+										<input type="date" class="form-control" id="check-out" />
+									</form>
+								</div>
+								<div class="col-lg-3 col-md-6">
+									<form class="form-group fw-bolder">
+										<label for="Huéspedes">Huéspedes</label>
+										<select class="form-control" id="guests">
+											<option>1 huésped</option>
+											<option>2 huéspedes</option>
+											<option>3 huéspedes</option>
+											<option>5 huéspedes</option>
+											<option>5 huéspedes</option>
+											<option>6 huéspedes</option>
+											<option>7 huéspedes</option>
+											<option>8 huéspedes</option>
+											<option>9 huéspedes</option>
+											<option>10 huéspedes</option>
+											<!-- Agrega más opciones según sea necesario -->
+										</select>
+									</form>
+								</div>
+							</div>
+							<div class="row justify-content-center">
+								<div class="d-grid gap-2 col-md-6 mx-auto">
+									<button
+										type="submit"
+										class="btn btn-outline-primary fs-5 fw-bolder">
+										Buscar Reservas
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-	  </div>
 
-    
-    
-    
-   
-    
-    <!-- </div> Fin del conteiner -->
-<!-- Footer -->
-    
-    <!-- <footer> 
+		<!-- <div class="container-fluid"></div> -->
+		<!-- InicinioConteiner principal -->
+		<!-- TARJETAS CON CAROUSEL -->
+		<div id="placesCarousel" class="carousel slide" data-ride="carousel">
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-4 col-md-6">
+								<div class="card">
+									<img
+										src="ruta-de-la-imagen"
+										class="card-img-top"
+										alt="Imagen del lugar" />
+									<div class="card-body">
+										<h5 class="card-title">Nombre del Lugar</h5>
+										<p class="card-text">Descripción del lugar.</p>
+										<a href="#" class="btn btn-primary">Ver Detalles</a>
+									</div>
+								</div>
+							</div>
+							<!-- Repite el código de la tarjeta para cada lugar -->
+						</div>
+					</div>
+				</div>
+				<!-- nueva tarjeta -->
+				<div class="carousel-item active">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-4 col-md-6">
+								<div class="card">
+									<img
+										src="ruta-de-la-imagen"
+										class="card-img-top"
+										alt="Imagen del lugar" />
+									<div class="card-body">
+										<h5 class="card-title">Nombre del Lugar</h5>
+										<p class="card-text">Descripción del lugar.</p>
+										<a href="#" class="btn btn-primary">Ver Detalles</a>
+									</div>
+								</div>
+							</div>
+							<!-- Repite el código de la tarjeta para cada lugar -->
+						</div>
+					</div>
+				</div>
+				<!-- nueva tarjeta -->
+				<div class="carousel-item active">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-4 col-md-6">
+								<div class="card">
+									<img
+										src="ruta-de-la-imagen"
+										class="card-img-top"
+										alt="Imagen del lugar" />
+									<div class="card-body">
+										<h5 class="card-title">Nombre del Lugar</h5>
+										<p class="card-text">Descripción del lugar.</p>
+										<a href="#" class="btn btn-primary">Ver Detalles</a>
+									</div>
+								</div>
+							</div>
+							<!-- Repite el código de la tarjeta para cada lugar -->
+						</div>
+					</div>
+				</div>
+				<!-- nueva tarjeta -->
+				<div class="carousel-item active">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-4 col-md-6">
+								<div class="card">
+									<img
+										src="ruta-de-la-imagen"
+										class="card-img-top"
+										alt="Imagen del lugar" />
+									<div class="card-body">
+										<h5 class="card-title">Nombre del Lugar</h5>
+										<p class="card-text">Descripción del lugar.</p>
+										<a href="#" class="btn btn-primary">Ver Detalles</a>
+									</div>
+								</div>
+							</div>
+							<!-- Repite el código de la tarjeta para cada lugar -->
+						</div>
+					</div>
+				</div>
+				<!-- nueva tarjeta -->
+				<div class="carousel-item active">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-4 col-md-6">
+								<div class="card">
+									<img
+										src="ruta-de-la-imagen"
+										class="card-img-top"
+										alt="Imagen del lugar" />
+									<div class="card-body">
+										<h5 class="card-title">Nombre del Lugar</h5>
+										<p class="card-text">Descripción del lugar.</p>
+										<a href="#" class="btn btn-primary">Ver Detalles</a>
+									</div>
+								</div>
+							</div>
+							<!-- Repite el código de la tarjeta para cada lugar -->
+						</div>
+					</div>
+				</div>
+				<!-- nueva tarjeta -->
+				<div class="carousel-item active">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-4 col-md-6">
+								<div class="card">
+									<img
+										src="ruta-de-la-imagen"
+										class="card-img-top"
+										alt="Imagen del lugar" />
+									<div class="card-body">
+										<h5 class="card-title">Nombre del Lugar</h5>
+										<p class="card-text">Descripción del lugar.</p>
+										<a href="#" class="btn btn-primary">Ver Detalles</a>
+									</div>
+								</div>
+							</div>
+							<!-- Repite el código de la tarjeta para cada lugar -->
+						</div>
+					</div>
+				</div>
+				<!-- Agrega más elementos carousel-item según sea necesario -->
+			</div>
+			<a
+				class="carousel-control-prev"
+				href="#placesCarousel"
+				role="button"
+				data-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="sr-only">Anterior</span>
+			</a>
+			<a
+				class="carousel-control-next"
+				href="#placesCarousel"
+				role="button"
+				data-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="sr-only">Siguiente</span>
+			</a>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 col-md-6">
+					<div class="card">
+						<img
+							src="ruta-de-la-imagen"
+							class="card-img-top"
+							alt="Imagen del lugar" />
+						<div class="card-body">
+							<h5 class="card-title">Nombre del Lugar</h5>
+							<p class="card-text">Descripción del lugar.</p>
+							<p class="card-text">Ubicación del lugar.</p>
+							<a href="#" class="btn btn-primary">Ver Detalles</a>
+						</div>
+					</div>
+				</div>
+				<!-- Repite el código de la tarjeta para cada lugar -->
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 col-md-6">
+					<div class="card">
+						<img
+							src="ruta-de-la-imagen"
+							class="card-img-top"
+							alt="Imagen del lugar" />
+						<div class="card-body">
+							<h5 class="card-title">Nombre del Lugar</h5>
+							<p class="card-text">Descripción del lugar.</p>
+							<a href="#" class="btn btn-primary">Ver Detalles</a>
+						</div>
+					</div>
+				</div>
+				<!-- Repite el código de la tarjeta para cada lugar -->
+			</div>
+		</div>
+
+		<div class="container text-center">
+			<!-- Contenido principal -->
+			<div class="row g-2">
+				<div class="col-6">
+					<div class="p-3">Custom column padding</div>
+				</div>
+				<div class="col-6">
+					<div class="p-3">Custom column padding</div>
+				</div>
+				<div class="col-6">
+					<div class="p-3">Custom column padding</div>
+				</div>
+				<div class="col-6">
+					<div class="p-3">Custom column padding</div>
+				</div>
+				<div class="col-6">
+					<div class="p-3">Custom column padding</div>
+				</div>
+				<div class="col-6">
+					<div class="p-3">Custom column padding</div>
+				</div>
+			</div>
+		</div>
+		<a href="/html/cards.html">Test cards</a>
+		<!-- </div> Fin del conteiner -->
+		<!-- Footer -->
+
+		<!-- <footer> 
       <div class="olas">
           <div class="ola" id="ola1"></div>
           <div class="ola" id="ola2"></div>
@@ -341,17 +369,16 @@
               Privacidad/Términos y condiciones/©2023 DescansAR
             </p>
   </footer>    -->
-  <!-- Fin del Footer -->
-  
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
-    <!-- Bootstrap CDN -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-      crossorigin="anonymous"
-    ></script>
-    
-    <!-- Para el nav -->    
-    <script src="/js/nav.js"></script> 
-  </body>
+		<!-- Fin del Footer -->
+
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
+		<!-- Bootstrap CDN -->
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+			crossorigin="anonymous"></script>
+
+		<!-- Para el nav -->
+		<script src="/js/nav.js"></script>
+	</body>
 </html>
