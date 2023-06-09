@@ -3,10 +3,12 @@
 async function sweetAlertRender(checkin, checkout, quantity, card) {
 	const { value: formValues } = await Swal.fire({
 		title: `Confirma tu reserva en ${card.accommodationTitle}`,
-		html: `<form action="" id="searchCardsForm">
+		confirmButtonText: 'Cotizar reserva',
+		html: `<form action="" id="searchCardsFormAlert">
             <!-- Buscar por cantidad de personas -->
             <div class="form-floating mb-4">
                 <input
+                    alert
                     value="${quantity}"
                     required
                     type="number"
@@ -19,6 +21,7 @@ async function sweetAlertRender(checkin, checkout, quantity, card) {
             </div>
             <!-- Input entrada - datepicker -->
             <input
+                alert
                 type="date"
                 value="${checkin}"
                 id="dateCheckinInputAlert"
@@ -26,27 +29,42 @@ async function sweetAlertRender(checkin, checkout, quantity, card) {
                 name="dateCheckInInput" />
             <!-- Input entrada - datepicker -->
             <input
+                alert
                 type="date"
                 value="${checkout}"
                 id="dateCheckoutInputAlert"
                 placeholder="Salida"
                 name="dateCheckOutInput" />
-        </form>`,
+        </form>
+        `,
 		focusConfirm: false,
 		preConfirm: () => {
-			const dateIn = document.querySelector('#dateCheckinInputAlert');
-			console.dir(dateIn);
-			return [
-				document.querySelector('#searchCapacityInputAlert').value,
-				document.querySelector('#dateCheckinInputAlert').value,
-				document.querySelector('#dateCheckoutInputAlert').value,
-			];
+			// Luego de confirmar las fechas obtenemos la cantidad de dias
+			const dateIn = document.querySelector('#dateCheckinInputAlert').value;
+			const dateOut = document.querySelector('#dateCheckoutInputAlert').value;
+			// Genero el intervalo de fechas
+			const interval = generateDateInterval(dateIn, dateOut);
+			const days = interval.length - 1;
+			// Obntengo numero de huespedes
+			const quantity = document.querySelector(
+				'#searchCapacityInputAlert'
+			).valueAsNumber;
+			const price = card.accommodationPrice;
+
+			return `El monto total es de $${days * quantity * price}`;
 		},
 	});
 	if (formValues) {
-		Swal.fire(JSON.stringify(formValues));
+		const { value: confirm } = await Swal.fire(formValues);
+		if (confirm) {
+			Swal.fire({
+				icon: 'success',
+				title: 'Confirmación reservada!',
+			});
+		}
 	}
 }
+
 // !Test sweet alert
 
 // Manejador del click en "reservar ahora"
