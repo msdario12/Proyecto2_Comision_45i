@@ -1,0 +1,15 @@
+/* Clases para ajustar las dimensiones de las cards */
+.carousel-parent {
+	height: 125px;
+}
+
+.carousel-custom {
+	max-height: 200px;
+}
+.carousel-custom > img {
+	object-position: center;
+}
+
+#descriptionTextArea {
+	height: 100px;
+}
