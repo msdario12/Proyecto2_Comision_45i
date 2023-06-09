@@ -65,7 +65,7 @@
 				<div class="col-lg-12">
 					<div class="card">
 						<div class="card-body">
-							<form class="form-group fw-bolder">
+							<form class="form-group fw-bolder" id="mainSearchForm">
 								<div class="row">
 									<div class="col-lg-3 col-md-6">
 										<div>
@@ -103,19 +103,15 @@
 										</select>
 									</div>
 								</div>
-							</form>
-							<div class="row justify-content-center">
-								<div class="d-grid gap-2 col-md-6 mx-auto">
-									<input
-										type="submit"
-										id="searchButton"
-										class="btn btn-outline-primary fs-5 fw-bolder"
-                    value="Buscar reservas"
-                    >
-									</input>
+								<div class="row justify-content-center">
+									<div class="d-grid gap-2 col-md-6 mx-auto">
+										<input
+											type="submit"
+											class="btn btn-outline-primary fs-5 fw-bolder"
+											value="Buscar reservas" />
+									</div>
 								</div>
-							</div>
-							
+							</form>
 						</div>
 					</div>
 				</div>
@@ -378,5 +374,7 @@
 
 		<!-- Para el nav -->
 		<script src="/js/nav.js"></script>
+		<!-- Manejador del formulario de search -->
+		<script src="/js/mainSearchHandler.js"></script>
 	</body>
 </html>
