@@ -7,4 +7,10 @@ document
 function handleSearchMainSubmit(e) {
 	e.preventDefault();
 	console.log(e);
+
+	// Obtengo datos del formulario
+	const dataForm = new FormData(e.target);
+	const data = Object.fromEntries(dataForm);
+
+	console.log(data);
 }
