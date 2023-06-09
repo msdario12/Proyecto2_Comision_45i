@@ -10,8 +10,8 @@ rentalHardCodedCards = [
 			{
 				guestEmail: 'guest1@gmail.com',
 				guestsQuantity: 4,
-				checkInDate: '2023-04-04',
-				checkOutDate: '2023-04-04',
+				checkInDate: '2023-05-20',
+				checkOutDate: '2023-05-25',
 			},
 		],
 		accommodationTitle: 'Cozy Beachfront Villa',
@@ -29,6 +29,15 @@ rentalHardCodedCards = [
 			'https://source.unsplash.com/random/?mountain',
 			'https://source.unsplash.com/random/?cabin',
 		],
+		hostEmail: 'host2@gmail.com',
+		guestsList: [
+			{
+				guestEmail: 'guest2@gmail.com',
+				guestsQuantity: 2,
+				checkInDate: '2023-06-20',
+				checkOutDate: '2023-06-25',
+			},
+		],
 		accommodationTitle: 'Charming Mountain Cabin',
 		accommodationLocation: 'Bariloche',
 		guestCapacity: 6,
@@ -43,6 +52,15 @@ rentalHardCodedCards = [
 		imageGallery: [
 			'https://source.unsplash.com/random/?city',
 			'https://source.unsplash.com/random/?apartment',
+		],
+		hostEmail: 'host3@gmail.com',
+		guestsList: [
+			{
+				guestEmail: 'guest3@gmail.com',
+				guestsQuantity: 2,
+				checkInDate: '2023-07-20',
+				checkOutDate: '2023-07-25',
+			},
 		],
 		accommodationTitle: 'Luxurious City Apartment',
 		accommodationLocation: 'Buenos Aires',
@@ -59,6 +77,15 @@ rentalHardCodedCards = [
 			'https://source.unsplash.com/random/?countryside',
 			'https://source.unsplash.com/random/?cottage',
 		],
+		hostEmail: 'host1@gmail.com',
+		guestsList: [
+			{
+				guestEmail: 'guest1@gmail.com',
+				guestsQuantity: 4,
+				checkInDate: '2023-08-20',
+				checkOutDate: '2023-08-25',
+			},
+		],
 		accommodationTitle: 'Rustic Countryside Cottage',
 		accommodationLocation: 'Córdoba',
 		guestCapacity: 4,
@@ -73,6 +100,15 @@ rentalHardCodedCards = [
 		imageGallery: [
 			'https://source.unsplash.com/random/?forest',
 			'https://source.unsplash.com/random/?retreat',
+		],
+		hostEmail: 'host2@gmail.com',
+		guestsList: [
+			{
+				guestEmail: 'guest2@gmail.com',
+				guestsQuantity: 4,
+				checkInDate: '2023-08-20',
+				checkOutDate: '2023-08-25',
+			},
 		],
 		accommodationTitle: 'Secluded Forest Retreat',
 		accommodationLocation: 'Mendoza',
