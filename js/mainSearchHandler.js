@@ -11,6 +11,17 @@ function handleSearchMainSubmit(e) {
 	// Obtengo datos del formulario
 	const dataForm = new FormData(e.target);
 	const data = Object.fromEntries(dataForm);
+	// Ejemplo de la estructura de data:
+	// {
+	//     "destination": "",
+	//     "check-in": "",
+	//     "check-out": "",
+	//     "guests": "1"
+	// }
 
+	// Redireccionar con parametros
+	const baseURL = `/html/cards.html`;
+	const query = `?dest=${data.destination}&in=${data['check-in']}&out=${data['check-out']}&guests=${data.guests}`;
+	window.location.href = baseURL + query;
 	console.log(data);
 }
