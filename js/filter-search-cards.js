@@ -45,7 +45,6 @@ function handleKeyUpInputSearch(e) {
 	// Leo los inputs mediante el formData
 	const data = new FormData(e.target);
 	const dataObj = Object.fromEntries(data);
-	// Valor de busqueda de titulo
 	console.log(dataObj);
 	// Fecha de entrada de la búsqueda
 	const checkInDateSearch = dataObj.dateCheckInInput;
@@ -58,6 +57,8 @@ function handleKeyUpInputSearch(e) {
 	);
 	// Parámetro de búsqueda de titulo
 	const searchParam = dataObj.searchTitleInput.toLowerCase();
+	// Parámetro de búsqueda de ubicacion
+	const ubicationParam = dataObj.searchUbicationInput.toLowerCase();
 	// Cantidad de huéspedes
 	const quantityParam = dataObj.searchCapacityInput;
 	// Leer del localStorage solo las publicaciones que incluyan la búsqueda
@@ -67,6 +68,10 @@ function handleKeyUpInputSearch(e) {
 		const hasTitle = card.accommodationTitle
 			.toLowerCase()
 			.includes(searchParam);
+		// Condicion de la ubicacion
+		const hasUbication = card.accommodationLocation
+			.toLowerCase()
+			.includes(ubicationParam);
 		// Vemos si la capacidad es mayor a lo que busca
 		const hasQuantity = card.guestCapacity >= quantityParam;
 
@@ -75,7 +80,8 @@ function handleKeyUpInputSearch(e) {
 
 		if (!card.guestsList) {
 			// Si no hay reservas, se puede buscar y alquilar
-			hasDateAvailable = false;
+			// Se niega al final
+			hasDateAvailable = !true;
 		}
 
 		card.guestsList.forEach((reservation) => {
@@ -84,8 +90,7 @@ function handleKeyUpInputSearch(e) {
 				reservation.checkInDate,
 				reservation.checkOutDate
 			);
-			// Chequear si el intervalo que se busca esta libre en esta card
-			// Devuelve true si las fechas que buscamos estan incluidas en las reservas actuales de la card
+			// Si ninguna de las fechas de los intervalos coincide devuelve false
 			hasDateAvailable = checkMatchBetweenIntervals(
 				dateIntervalSearch,
 				intervalDateCard
@@ -93,7 +98,7 @@ function handleKeyUpInputSearch(e) {
 		});
 
 		// Todas las condiciones deben ser true para mostrar esa card como disponible
-		return hasTitle && hasQuantity && !hasDateAvailable;
+		return hasTitle && hasQuantity && hasUbication && !hasDateAvailable;
 	});
 	// Limpiar las cards anteriores que se esten mostrando
 	// Renderizar las nuevas publicaciones en base a la busqueda.

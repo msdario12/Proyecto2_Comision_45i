@@ -363,6 +363,7 @@ $formCreateCard.addEventListener('submit', function (e) {
 function renderCardList(array) {
 	$section.innerHTML = '';
 	array.forEach((card, idx) => renderCard(idx, card));
+	feather.replace(); // Para inicializar los iconos
 }
 renderCardList(rentalCards);
 // $section.appendChild(createCarrussel());

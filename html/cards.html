@@ -180,17 +180,29 @@
 			<section>
 				<h2>Buscar publicaciones</h2>
 				<form action="" id="searchCardsForm">
+					<!-- Buscar por ubicacion -->
+					<div class="form-floating">
+						<input
+							value="cordoba"
+							required
+							type="text"
+							class="form-control"
+							name="searchUbicationInput"
+							id="searchUbicationInput"
+							placeholder="Su destino" />
+						<label for="searchUbicationInput">Su destino</label>
+					</div>
 					<!-- Buscar por titulo -->
 					<div class="form-floating">
 						<input
-							value="cozzy"
-							required
 							type="text"
 							class="form-control"
 							name="searchTitleInput"
 							id="searchTitleInput"
 							placeholder="Busqueda" />
-						<label for="searchTitleInput">Ingrese su busqueda</label>
+						<label for="searchTitleInput"
+							>Buscar por titulo de la publicacion</label
+						>
 					</div>
 					<!-- Buscar por cantidad de personas -->
 					<div class="form-floating">
