@@ -197,7 +197,7 @@ function renderCard(idx, obj) {
                 <h6 class="card-subtitle mb-2 text-body-secondary muted"></h6>
                 <p class="card-text">
                 <p class="card-text">${shortDescription}</p>
-                <h4 class="card-text">${accommodationPrice}</h4>
+                <span class="lead">Desde</span><h4 class="card-text"> $${accommodationPrice}/noche</h4>
 				<div class="row">
 					<div class="col-6 d-flex align-items-center justify-content-start">
 						<i height="16" data-feather="map-pin"></i>
