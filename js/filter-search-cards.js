@@ -28,6 +28,17 @@ function checkIfDateIsBetween(interval, date) {
 	const dateString = new Date(date).toString();
 	return interval.includes(dateString);
 }
+// Funcion que recorre 2 intervalos viendo si alguna fecha coincide
+function checkMatchBetweenIntervals(interval1, interval2) {
+	for (let i = 0; i < interval1.length; i++) {
+		for (let j = 0; j < interval2.length; j++) {
+			// Si algun elemento es igual se detiene el loop
+			if (interval1[i] === interval2[j]) {
+				return true;
+			}
+		}
+	}
+}
 // Controlador a ejecutarse con el submit
 function handleKeyUpInputSearch(e) {
 	e.preventDefault();
@@ -36,12 +47,15 @@ function handleKeyUpInputSearch(e) {
 	const dataObj = Object.fromEntries(data);
 	// Valor de busqueda de titulo
 	console.log(dataObj);
-	// Fecha de entrada
-	const checkInDate = dataObj.dateCheckInInput;
-	// Fecha de salida
-	const checkOutDate = dataObj.dateCheckOutInput;
+	// Fecha de entrada de la búsqueda
+	const checkInDateSearch = dataObj.dateCheckInInput;
+	// Fecha de salida de la búsqueda
+	const checkOutDateSearch = dataObj.dateCheckOutInput;
 	// Lista de fechas interiores
-	const dateInterval = generateDateInterval(checkInDate, checkOutDate);
+	const dateIntervalSearch = generateDateInterval(
+		checkInDateSearch,
+		checkOutDateSearch
+	);
 	// Parámetro de búsqueda de titulo
 	const searchParam = dataObj.searchTitleInput.toLowerCase();
 	// Cantidad de huéspedes
@@ -56,8 +70,30 @@ function handleKeyUpInputSearch(e) {
 		// Vemos si la capacidad es mayor a lo que busca
 		const hasQuantity = card.guestCapacity >= quantityParam;
 
-		// Todas las condiciones deben ser true
-		return hasTitle && hasQuantity;
+		let hasDateAvailable;
+		// Vemos si la card tiene lista de reservas
+
+		if (!card.guestsList) {
+			// Si no hay reservas, se puede buscar y alquilar
+			hasDateAvailable = false;
+		}
+
+		card.guestsList.forEach((reservation) => {
+			// Creo el intervalo de las fechas de reservas de la card
+			const intervalDateCard = generateDateInterval(
+				reservation.checkInDate,
+				reservation.checkOutDate
+			);
+			// Chequear si el intervalo que se busca esta libre en esta card
+			// Devuelve true si las fechas que buscamos estan incluidas en las reservas actuales de la card
+			hasDateAvailable = checkMatchBetweenIntervals(
+				dateIntervalSearch,
+				intervalDateCard
+			);
+		});
+
+		// Todas las condiciones deben ser true para mostrar esa card como disponible
+		return hasTitle && hasQuantity && !hasDateAvailable;
 	});
 	// Limpiar las cards anteriores que se esten mostrando
 	// Renderizar las nuevas publicaciones en base a la busqueda.
