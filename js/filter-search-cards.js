@@ -15,56 +15,6 @@ const todayDate = new Date();
 document
 	.querySelector('#dateCheckinInput')
 	.setAttribute('min', formatDate(todayDate));
-// !Test sweet alert
-async function sweetAlertRender() {
-	const { value: formValues } = await Swal.fire({
-		title: 'Multiple inputs',
-		html: `<form action="" id="searchCardsForm">
-            <!-- Buscar por cantidad de personas -->
-            <div class="form-floating mb-4">
-                <input
-                    value="3"
-                    required
-                    type="number"
-                    max="64"
-                    class="form-control"
-                    name="searchCapacityInput"
-                    id="searchCapacityInputAlert"
-                    placeholder="Cantidad de huéspedes" />
-                <label for="searchCapacityInput">Cantidad de huéspedes</label>
-            </div>
-            <!-- Input entrada - datepicker -->
-            <input
-                type="date"
-                id="dateCheckinInputAlert"
-                placeholder="Llegada"
-                name="dateCheckInInput" />
-            <!-- Input entrada - datepicker -->
-            <input
-                type="date"
-                id="dateCheckoutInputAlert"
-                placeholder="Salida"
-                name="dateCheckOutInput" />
-            <!-- Input submit -->
-            <input type="submit" class="btn btn-primary" value="Buscar" />
-        </form>`,
-		focusConfirm: false,
-		preConfirm: () => {
-			const dateIn = document.querySelector('#dateCheckinInputAlert');
-			console.dir(dateIn);
-			return [
-				document.querySelector('#searchCapacityInputAlert').value,
-				document.querySelector('#dateCheckinInputAlert').value,
-				document.querySelector('#dateCheckoutInputAlert').value,
-			];
-		},
-	});
-	if (formValues) {
-		Swal.fire(JSON.stringify(formValues));
-	}
-}
-
-// !Test sweet alert
 
 // Funcion que maneja el dateInput de checkout inputs, restringiendo las fechas
 function handleDateInputs(e) {
@@ -174,13 +124,19 @@ function handleKeyUpInputSearch(e) {
 		// Todas las condiciones deben ser true para mostrar esa card como disponible
 		return hasTitle && hasQuantity && hasUbication && !hasDateAvailable;
 	});
+	// Guardamos en localStorage la cantidad de huespedes y fechas
+	addToLocalStorage('searchParams', {
+		quantityParam,
+		checkInDateSearch,
+		checkOutDateSearch,
+	});
 	// Limpiar las cards anteriores que se esten mostrando
 	// Renderizar las nuevas publicaciones en base a la busqueda.
-	console.log(filteredCars);
 	renderCardList(filteredCars);
 }
 // Manejador de eventos al submit del form de search
 $searchForm.addEventListener('submit', handleKeyUpInputSearch);
+// Selecciono los input tipo date de la pagina para controlarlos
 document
 	.querySelectorAll('input[type=date]')
 	.forEach((input) => input.addEventListener('change', handleDateInputs));
