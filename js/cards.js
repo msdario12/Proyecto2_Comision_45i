@@ -198,10 +198,17 @@ function renderCard(idx, obj) {
                 <p class="card-text">
                 <p class="card-text">${shortDescription}</p>
                 <h4 class="card-text">${accommodationPrice}</h4>
-                    <i height="16" data-feather="map-pin"></i>
-                    <span class="small muted">${accommodationLocation}</span>
-                    <i height="16" data-feather="user"></i>
-                    <span class="small muted">${guestCapacity} Personas</span>
+				<div class="row">
+					<div class="col-6 d-flex align-items-center justify-content-start">
+						<i height="16" data-feather="map-pin"></i>
+						<span class="small muted">${accommodationLocation}</span>
+						<i height="16" data-feather="user"></i>
+						<span class="small muted">${guestCapacity} Personas</span>
+					</div>
+					<div class="col-6 d-flex align-items-center justify-content-end">
+						<button publication-id=${id} class="btn btn-outline-success">Reservar ahora</button>
+					</div>
+				</div>
                 </p>
             </div>
         </div>
