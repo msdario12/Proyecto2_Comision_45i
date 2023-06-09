@@ -371,6 +371,7 @@ function renderCardList(array) {
 	$section.innerHTML = '';
 	array.forEach((card, idx) => renderCard(idx, card));
 	feather.replace(); // Para inicializar los iconos
+	getButtonsBookingNow(); // Añadimos función a botones de reservar
 }
 renderCardList(rentalCards);
 // $section.appendChild(createCarrussel());
