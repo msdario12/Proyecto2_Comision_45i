@@ -1,4 +1,14 @@
 // Logica encargada de filtrar las cards y realizar busquedas
+// Leemos los params de busqueda desde la URL
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+console.log(urlParams.get('dest'));
+// Agrego los params al localStorage
+addToLocalStorage('searchParams', {
+	quantityParam: urlParams.get('guests'),
+	checkInDateSearch: urlParams.get('in'),
+	checkOutDateSearch: urlParams.get('out'),
+});
 // Obtener las publicaciones del localStorage
 let cardsToFilter = getFromLocalStorage('accommodationDB');
 // Obtener el form de busqueda
@@ -124,7 +134,7 @@ function handleKeyUpInputSearch(e) {
 		// Todas las condiciones deben ser true para mostrar esa card como disponible
 		return hasTitle && hasQuantity && hasUbication && !hasDateAvailable;
 	});
-	// Guardamos en localStorage la cantidad de huespedes y fechas
+	// actualizamos los valores  en el localStorage la cantidad de huespedes y fechas
 	addToLocalStorage('searchParams', {
 		quantityParam,
 		checkInDateSearch,

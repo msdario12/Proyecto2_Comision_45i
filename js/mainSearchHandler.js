@@ -1,4 +1,4 @@
-// Establezco los valores mínimos de los inputs de date
+// !- Establezco los valores mínimos de los inputs de date
 // Funcion para formatear la fecha en string
 function formatDate(date) {
 	const year = date.getFullYear();
@@ -26,7 +26,7 @@ document
 	.querySelectorAll('input[type=date]')
 	.forEach((input) => input.addEventListener('change', handleDateInputs));
 
-// Logica para manejar el redireccionamiento del boton de search
+//!-  Logica para manejar el redireccionamiento del boton de search
 // Obtengo el formulario del DOM
 document
 	.querySelector('#mainSearchForm')
@@ -51,5 +51,4 @@ function handleSearchMainSubmit(e) {
 	const baseURL = `/html/cards.html`;
 	const query = `?dest=${data.destination}&in=${data['check-in']}&out=${data['check-out']}&guests=${data.guests}`;
 	window.location.href = baseURL + query;
-	console.log(data);
 }
