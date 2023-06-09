@@ -77,6 +77,14 @@ rentalHardCodedCards = [
 	},
 	// ... Agrega aquí los otros objetos restantes
 ];
+// ! Agregar a las cards hardcodeadas
+// Chequear si todos los objetos tienen un ID, sino asignarles
+rentalHardCodedCards.forEach((card) => {
+	if (card.hasOwnProperty('id')) {
+		return;
+	}
+	card.id = createRandomID('L');
+});
 // Agrego los datos al localStorage
 let rentalCards = getFromLocalStorage('accommodationDB');
 // Veo si existe en el localStorage
@@ -106,14 +114,6 @@ function createRandomID(prefix) {
 	const vowel = randomVowel().toUpperCase();
 	return String(prefix).toUpperCase() + num1 + vowel + num2;
 }
-// ! Agregar a las cards hardcodeadas
-// Chequear si todos los objetos tienen un ID, sino asignarles
-rentalCards.forEach((card) => {
-	if (card.hasOwnProperty('id')) {
-		return;
-	}
-	card.id = createRandomID('L');
-});
 
 console.log(rentalCards);
 
