@@ -16,3 +16,7 @@ $(document).ready(function() {
         source: locations
     });
 });
+
+// Logica para manejar el redireccionamiento del boton de search
+// Obtengo el elemento del DOM
+

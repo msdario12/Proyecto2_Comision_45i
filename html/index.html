@@ -66,8 +66,8 @@
 					<div class="card">
 						<div class="card-body">
 							<div class="row">
-								<div class="col-lg-3 col-md-6">
-									<form class="form-group fw-bolder">
+								<form class="form-group fw-bolder">
+									<div class="col-lg-3 col-md-6">
 										<label for="Destino">Destino</label>
 										<input
 											type="text"
@@ -75,22 +75,16 @@
 											class="form-control"
 											id="destination"
 											placeholder="Ingresa tu destino" />
-									</form>
-								</div>
-								<div class="col-lg-3 col-md-6">
-									<form class="form-group fw-bolder">
+									</div>
+									<div class="col-lg-3 col-md-6">
 										<label for="Entrada">Entrada</label>
 										<input type="date" class="form-control" id="check-in" />
-									</form>
-								</div>
-								<div class="col-lg-3 col-md-6">
-									<form class="form-group fw-bolder">
+									</div>
+									<div class="col-lg-3 col-md-6">
 										<label for="Salida">Salida</label>
 										<input type="date" class="form-control" id="check-out" />
-									</form>
-								</div>
-								<div class="col-lg-3 col-md-6">
-									<form class="form-group fw-bolder">
+									</div>
+									<div class="col-lg-3 col-md-6">
 										<label for="Huéspedes">Huéspedes</label>
 										<select class="form-control" id="guests">
 											<option>1 huésped</option>
@@ -105,13 +99,14 @@
 											<option>10 huéspedes</option>
 											<!-- Agrega más opciones según sea necesario -->
 										</select>
-									</form>
-								</div>
+									</div>
+								</form>
 							</div>
 							<div class="row justify-content-center">
 								<div class="d-grid gap-2 col-md-6 mx-auto">
 									<button
 										type="submit"
+										id="searchButton"
 										class="btn btn-outline-primary fs-5 fw-bolder">
 										Buscar Reservas
 									</button>
@@ -335,7 +330,6 @@
 				</div>
 			</div>
 		</div>
-		<a href="/html/cards.html">Test cards</a>
 		<!-- </div> Fin del conteiner -->
 		<!-- Footer -->
 
