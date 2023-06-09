@@ -20,7 +20,7 @@ rentalHardCodedCards = [
 		servicesIcons: ['iconOfWater', 'iconOfPool'],
 		shortDescription:
 			'Experience a relaxing vacation in this cozy beachfront villa in Mar del Plata. Enjoy stunning ocean views and access to a private pool.',
-		accommodationPrice: '$150/night',
+		accommodationPrice: 150,
 		rating: 9.2,
 		numberOfReviews: randomNumber(1000),
 	},
@@ -44,7 +44,7 @@ rentalHardCodedCards = [
 		servicesIcons: ['iconOfWater', 'iconOfFireplace'],
 		shortDescription:
 			'Escape to the picturesque mountains of Bariloche and stay in this charming cabin. Enjoy hiking trails, breathtaking views, and a cozy fireplace.',
-		accommodationPrice: '$120/night',
+		accommodationPrice: 120,
 		rating: 3.2,
 		numberOfReviews: randomNumber(1000),
 	},
@@ -68,7 +68,7 @@ rentalHardCodedCards = [
 		servicesIcons: ['iconOfGym', 'iconOfConcierge'],
 		shortDescription:
 			'Indulge in luxury at this stylish city apartment in the heart of Buenos Aires. Experience world-class amenities, vibrant nightlife, and top-notch restaurants.',
-		accommodationPrice: '$200/night',
+		accommodationPrice: 200,
 		rating: 5.2,
 		numberOfReviews: randomNumber(1000),
 	},
@@ -92,7 +92,7 @@ rentalHardCodedCards = [
 		servicesIcons: ['iconOfGarden', 'iconOfBBQ'],
 		shortDescription:
 			'Get away from the city buzz and unwind in this charming countryside cottage in Córdoba. Enjoy beautiful nature, a private garden, and BBQ facilities.',
-		accommodationPrice: '$80/night',
+		accommodationPrice: 80,
 		rating: 2.2,
 		numberOfReviews: randomNumber(1000),
 	},
@@ -116,7 +116,7 @@ rentalHardCodedCards = [
 		servicesIcons: ['iconOfHiking', 'iconOfWine'],
 		shortDescription:
 			'Immerse yourself in nature at this secluded forest retreat in Mendoza. Discover hiking trails, vineyards, and breathtaking mountain views.',
-		accommodationPrice: '$90/night',
+		accommodationPrice: 90,
 		rating: 7.0,
 		numberOfReviews: randomNumber(1000),
 	},
