@@ -11,11 +11,23 @@ function readURLSearchParams() {
 		checkInDateSearch: urlParams.get('in'),
 		checkOutDateSearch: urlParams.get('out'),
 	});
+
+	// Creo un objeto para pasarlo a la funcion que filtra
+	const obj = {
+		dateCheckInInput: urlParams.get('in'),
+		dateCheckOutInput: urlParams.get('out'),
+		searchTitleInput: '',
+		searchUbicationInput: urlParams.get('dest'),
+		searchCapacityInput: urlParams.get('guests'),
+	};
+	return obj;
 }
-// Leemos los valores de la URL
-readURLSearchParams();
+// Leemos los valores de la URL y los guardamos
+const objParamsURL = readURLSearchParams();
 // Obtener las publicaciones del localStorage
 let cardsToFilter = getFromLocalStorage('accommodationDB');
+// Renderizamos en funcion de esos params
+renderFilteredCardsByParams(objParamsURL);
 // Obtener el form de busqueda
 const $searchForm = document.querySelector('#searchCardsForm');
 // Funcion para formatear la fecha en string
@@ -75,13 +87,8 @@ function checkMatchBetweenIntervals(interval1, interval2) {
 		}
 	}
 }
-// Controlador a ejecutarse con el submit
-function handleKeyUpInputSearch(e) {
-	e.preventDefault();
-	// Leo los inputs mediante el formData
-	const data = new FormData(e.target);
-	const dataObj = Object.fromEntries(data);
-	console.log(dataObj);
+// Funcion que se encarga de recibir la lista de cards y filtrar
+function renderFilteredCardsByParams(obj) {
 	// Object deconstruction
 	let {
 		dateCheckInInput: checkInDateSearch,
@@ -89,7 +96,7 @@ function handleKeyUpInputSearch(e) {
 		searchTitleInput: searchParam,
 		searchUbicationInput: ubicationParam,
 		searchCapacityInput: quantityParam,
-	} = dataObj;
+	} = obj;
 
 	// Convierto a lowerCase
 	searchParam = searchParam.toLowerCase();
@@ -103,6 +110,7 @@ function handleKeyUpInputSearch(e) {
 	// Leer del localStorage solo las publicaciones que incluyan la búsqueda
 	// Guardar ese array que cumple en una variable
 
+	// Funcion que realiza el filtrado de las cards en base a los params
 	function getFilteredCards(cardList) {
 		const filtered = cardList.filter((card) => {
 			// Condicion que verifica el titulo
@@ -155,6 +163,17 @@ function handleKeyUpInputSearch(e) {
 	// Limpiar las cards anteriores que se esten mostrando
 	// Renderizar las nuevas publicaciones en base a la busqueda.
 	renderCardList(filteredCars);
+}
+
+// Controlador a ejecutarse con el submit
+function handleKeyUpInputSearch(e) {
+	e.preventDefault();
+	// Leo los inputs mediante el formData
+	const data = new FormData(e.target);
+	const dataObj = Object.fromEntries(data);
+	console.log(dataObj);
+	// Filtra y renderiza las cards que cumplan las condiciones
+	renderFilteredCardsByParams(dataObj);
 }
 // Manejador de eventos al submit del form de search
 $searchForm.addEventListener('submit', handleKeyUpInputSearch);

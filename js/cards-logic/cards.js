@@ -374,6 +374,10 @@ function renderCardList(array) {
 	array.forEach((card, idx) => renderCard(idx, card));
 	feather.replace(); // Para inicializar los iconos
 	getButtonsBookingNow(); // Añadimos función a botones de reservar
+	const starsList = document.querySelectorAll('span[id-src]');
+	starsList.forEach((star) => {
+		star.addEventListener('click', handleStarClick);
+	});
 }
 renderCardList(rentalCards);
 // $section.appendChild(createCarrussel());
