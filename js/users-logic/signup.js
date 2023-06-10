@@ -192,6 +192,10 @@ function handleNewUserRegister(e) {
 	if (findUser) {
 		// El email ya existe, no continuar con el registro
 		// ! Enviar alerta de error
+		renderAlertError(
+			'Error en el registro',
+			'El correo ingresado ya está registrado.'
+		);
 		console.log('El email ya existe');
 		return;
 	}
@@ -210,6 +214,7 @@ function handleNewUserRegister(e) {
 	// Añado el la nueva lista al localStorage
 	addToLocalStorage('usersBD', globalUsersBD);
 	// !Enviar alerta de registro correcto
+	renderAlertSuccess('Registro correcto', '');
 	console.log('Registro correcto');
 }
 
