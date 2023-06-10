@@ -39,7 +39,7 @@ function renderAlertSuccessHome(title) {
 		icon: 'success',
 		showCloseButton: true,
 		html: 'Será redireccionado al home en <b></b> ms.',
-		timer: 3500,
+		timer: 2000,
 		timerProgressBar: true,
 		didOpen: () => {
 			Swal.showLoading();

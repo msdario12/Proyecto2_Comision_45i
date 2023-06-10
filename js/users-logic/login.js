@@ -139,6 +139,8 @@ function handleLogin(e) {
 	// Establecemos a este usuario como currentUser sin el password
 	// Remuevo password
 	delete loginUser.passwordLogin;
+	// Añado el primer nombre
+	loginUser.firstName = findUser.nameInput;
 	// Añado el tipo de usuario al currentUser
 	if (findUser.type === 'admin') {
 		loginUser.type = findUser.type;
