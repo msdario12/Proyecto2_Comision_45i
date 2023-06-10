@@ -51,21 +51,52 @@
 					<li><a href="">Home</a></li>
 					<li><a href="">About</a></li>
 					<li><a href="">Contacto</a></li>
-					<div class="dropdown">
-						<button
-							class="btn btn-secondary dropdown-toggle"
-							type="button"
-							data-bs-toggle="dropdown"
-							aria-expanded="false">
-							Dropdown button
-						</button>
-						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="#">Action</a></li>
-							<li><a class="dropdown-item" href="#">Another action</a></li>
-							<li><a class="dropdown-item" href="#">Something else here</a></li>
-						</ul>
-					</div>
-					<li><a href="">Entrar</a></li>
+					<li>
+						<div class="dropdown">
+							<button
+								class="btn btn-primary dropdown-toggle"
+								type="button"
+								data-bs-toggle="dropdown"
+								aria-expanded="false">
+								Registrarme
+							</button>
+							<ul class="dropdown-menu">
+								<li>
+									<a id="signup-guest" class="dropdown-item" signup href="#"
+										>Como huésped</a
+									>
+								</li>
+								<li>
+									<a id="signup-host" signup class="dropdown-item" href="#"
+										>Como anfitrión</a
+									>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li>
+						<div class="dropdown">
+							<button
+								class="btn btn-secondary dropdown-toggle"
+								type="button"
+								data-bs-toggle="dropdown"
+								aria-expanded="false">
+								Login
+							</button>
+							<ul class="dropdown-menu">
+								<li>
+									<a id="login-guest" login class="dropdown-item" href="#"
+										>Como huésped</a
+									>
+								</li>
+								<li>
+									<a id="login-host" login class="dropdown-item" href="#"
+										>Como anfitrión</a
+									>
+								</li>
+							</ul>
+						</div>
+					</li>
 				</ul>
 			</nav>
 		</header>
@@ -396,5 +427,7 @@
 		<script src="/js/nav.js"></script>
 		<!-- Manejador del formulario de search -->
 		<script src="/js/mainSearchHandler.js"></script>
+		<!-- Redireccionamiento del login y signUp -->
+		<script src="/js/mainUserRedirection.js"></script>
 	</body>
 </html>
