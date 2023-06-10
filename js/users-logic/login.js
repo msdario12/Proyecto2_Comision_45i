@@ -106,6 +106,7 @@ function handleLogin(e) {
 	if (!findUser) {
 		// El email no existe
 		// ! Enviar alerta de error
+		renderAlertError('Error en el login', 'Revise los datos ingresados');
 		console.log('Error en el login');
 		return;
 	}
@@ -113,6 +114,7 @@ function handleLogin(e) {
 	if (findUser.passwordInput !== loginUser.passwordLogin) {
 		// La contraseña no coincide
 		// ! Enviar alerta de error
+		renderAlertError('Error en el login', 'Revise los datos ingresados');
 		console.log('Error en el login');
 		// TODO REDIRECCIONAR
 		return;
@@ -121,6 +123,10 @@ function handleLogin(e) {
 		// El usuario no fue aprobado
 		console.log('Usuario pendiente de aprobacion');
 		// ! alerta de espera de aprobacion
+		renderInfoAlert(
+			'Usuario pendiente de aprobacion',
+			'Por favor, espere que un administrador valide sus datos para poder acceder'
+		);
 		// TODO redireccionar
 		return;
 	}
@@ -142,6 +148,7 @@ function handleLogin(e) {
 	// Añado al localStorage
 	addToLocalStorage('currentUser', loginUser);
 	// ! Enviar login correcto
+	renderAlertSuccess('Autenticación correcta', '');
 	console.log('Usuario autenticado correctamente');
 	// Renderizo la tabla de usuarios si es admin
 	if (findUser.type === 'admin') {

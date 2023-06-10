@@ -21,3 +21,14 @@ function renderAlertError(title, content) {
 		confirmButtonAriaLabel: 'Error en la operación',
 	});
 }
+function renderInfoAlert(title,content) {
+    Swal.fire({
+		title: `${title}`,
+		icon: 'info',
+		text: content,
+		showCloseButton: true,
+		focusConfirm: false,
+		confirmButtonText: '<i class="fa fa-thumbs-up"></i> Cerrar',
+		confirmButtonAriaLabel: 'Información',
+	});
+}
