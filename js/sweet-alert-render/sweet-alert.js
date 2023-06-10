@@ -21,8 +21,8 @@ function renderAlertError(title, content) {
 		confirmButtonAriaLabel: 'Error en la operación',
 	});
 }
-function renderInfoAlert(title,content) {
-    Swal.fire({
+function renderInfoAlert(title, content) {
+	Swal.fire({
 		title: `${title}`,
 		icon: 'info',
 		text: content,
@@ -30,5 +30,33 @@ function renderInfoAlert(title,content) {
 		focusConfirm: false,
 		confirmButtonText: '<i class="fa fa-thumbs-up"></i> Cerrar',
 		confirmButtonAriaLabel: 'Información',
+	});
+}
+function renderAlertSuccessHome(title) {
+	let timerInterval;
+	Swal.fire({
+		title: title,
+		icon: 'success',
+		showCloseButton: true,
+		html: 'Será redireccionado al home en <b></b> ms.',
+		timer: 3500,
+		timerProgressBar: true,
+		didOpen: () => {
+			Swal.showLoading();
+			const b = Swal.getHtmlContainer().querySelector('b');
+			timerInterval = setInterval(() => {
+				b.textContent = Swal.getTimerLeft();
+			}, 100);
+		},
+		willClose: () => {
+			clearInterval(timerInterval);
+			// redirecciono al home
+			window.location.href = '/html/index.html';
+		},
+	}).then((result) => {
+		/* Read more about handling dismissals below */
+		if (result.dismiss === Swal.DismissReason.timer) {
+			console.log('I was closed by the timer');
+		}
 	});
 }

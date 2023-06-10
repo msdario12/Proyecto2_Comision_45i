@@ -148,7 +148,8 @@ function handleLogin(e) {
 	// Añado al localStorage
 	addToLocalStorage('currentUser', loginUser);
 	// ! Enviar login correcto
-	renderAlertSuccess('Autenticación correcta', '');
+	renderAlertSuccessHome('Autenticación correcta');
+	// renderAlertSuccess('Autenticación correcta', '');
 	console.log('Usuario autenticado correctamente');
 	// Renderizo la tabla de usuarios si es admin
 	if (findUser.type === 'admin') {

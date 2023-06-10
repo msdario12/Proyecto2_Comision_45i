@@ -214,7 +214,7 @@ function handleNewUserRegister(e) {
 	// Añado el la nueva lista al localStorage
 	addToLocalStorage('usersBD', globalUsersBD);
 	// !Enviar alerta de registro correcto
-	renderAlertSuccess('Registro correcto', '');
+	renderAlertSuccessHome('Registro correcto!');
 	console.log('Registro correcto');
 }
 
