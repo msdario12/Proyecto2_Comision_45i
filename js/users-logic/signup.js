@@ -108,11 +108,8 @@ function createSignUp(mode) {
 	$form.classList.add('row');
 	return $form;
 }
-
-// Handler del click para registrar usuario
-function handleClickSignUp(e) {
-	// Defino si el boton fue de guest o host para el signup
-	const mode = e.target.id === 'hostSignUp' ? 'host' : 'guest';
+// Funcion encargada de limpiar y renderizar el form del registro
+function renderSignUpForm(mode) {
 	// Limpio el elemento padre donde renderizar
 	document.querySelector('#signupContainer').innerHTML = '';
 	// Genero el form
@@ -123,10 +120,36 @@ function handleClickSignUp(e) {
 	document.querySelector('#signupContainer').appendChild($formSignUp);
 	// Logica para manejar signUp
 }
+// Handler del click para registrar usuario
+function handleClickSignUp(e) {
+	// Defino si el boton fue de guest o host para el signup
+	const mode = e.target.id === 'hostSignUp' ? 'host' : 'guest';
+
+	renderSignUpForm(mode);
+}
 // Controladores de los botones de registro
 document.querySelector('#guestSignUp').onclick = handleClickSignUp;
 document.querySelector('#hostSignUp').onclick = handleClickSignUp;
 
+// Carga el signUp en base a la URL al cargar
+document.addEventListener('DOMContentLoaded', handleLoadDOMContent);
+// Handler para la carga del DOM
+function handleLoadDOMContent(e) {
+	// Leemos los parametros de la URL
+	const queryString = window.location.search;
+	const urlParams = new URLSearchParams(queryString);
+
+	const signupMode = urlParams.get('mode');
+
+	if (signupMode === 'signup-guest') {
+		renderSignUpForm('guest');
+	}
+	if (signupMode === 'signup-host') {
+		renderSignUpForm('host');
+	}
+
+	console.log(signupMode);
+}
 // !----------------Logica de signUP
 // Obtengo en formulario del HTML
 
