@@ -204,7 +204,7 @@ function handleNewUserRegister(e) {
 		// En caso de ser host, requiere autorizacion de un admin
 		newUser.isRegistrationApproved = false;
 		// Creamos la propiedad que tiene el array de publicaciones realizadas
-		newUser.rentalListingsIds = [];
+		newUser.userListings = [];
 		globalUsersBD.hostUsers.push(newUser);
 
 		renderAlertWithRedirection(
@@ -218,6 +218,8 @@ function handleNewUserRegister(e) {
 	if (mode === 'guest') {
 		// No necesita aprobacion de un admin
 		newUser.isRegistrationApproved = true;
+		// Array que contiene la lista de reservas del usuario
+		newUser.userBookings = [];
 		globalUsersBD.guestsUsers.push(newUser);
 
 		renderAlertWithRedirection(
