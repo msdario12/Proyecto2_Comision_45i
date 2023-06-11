@@ -205,6 +205,9 @@ function handleNewUserRegister(e) {
 		newUser.isRegistrationApproved = false;
 		// Creamos la propiedad que tiene el array de publicaciones realizadas
 		newUser.userListings = [];
+		// Lista que va a almacenar la lista de reservas a este usuario
+		newUser.ownerBookings = [];
+		// Agregamos el usuario a la lista
 		globalUsersBD.hostUsers.push(newUser);
 
 		renderAlertWithRedirection(

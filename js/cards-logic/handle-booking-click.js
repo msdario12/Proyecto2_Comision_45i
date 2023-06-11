@@ -57,10 +57,71 @@ async function sweetAlertRender(checkin, checkout, quantity, card) {
 	if (formValues) {
 		const { value: confirm } = await Swal.fire(formValues);
 		if (confirm) {
-			// En caso de confirmar la reserva se añade el id al localStorage
+			//? En caso de confirmar la reserva se añade el id al GUEST localStorage
 			// Obtenemos el usuario que esta solicitando reservar
-			const emailUser = getFromLocalStorage('currentUser').emailLogin
-			const guestsUsersList = getFromLocalStorage('usersBD').guestsUsers
+			const emailUserGuest = getFromLocalStorage('currentUser').emailLogin;
+			const usersList = getFromLocalStorage('usersBD');
+			const guestsUsersList = usersList.guestsUsers;
+			// Buscamos por email
+			console.log(emailUserGuest);
+			const findUserGuestIndex = guestsUsersList.findIndex(
+				(user) => user.emailInput === emailUserGuest
+			);
+			// Creamos el objeto de la reserva
+			const newBookingInGuest = {
+				dateOfReservation: new Date().toString,
+				publicationId: card.id,
+				hostEmail: card.hostEmail,
+			};
+			// Añadimos el id de la publicacion a ese usuario
+			guestsUsersList[findUserGuestIndex].userBookings.unshift(
+				newBookingInGuest
+			);
+			// Guardamos la reserva en el usuario en el localStorage
+			addToLocalStorage('usersBD', { ...usersList, guestsUsersList });
+			// ? Añadimos la reserva a la publicación
+			if (!card.guestsList) card.guestsList = [];
+			// Obtenemos el ID de la publicacion
+			const publicationId = card.id;
+			// Buscamos el index de la publicacion
+			const listOfCards = getFromLocalStorage('accommodationDB');
+			const pubIdx = listOfCards.findIndex((card) => card.id === publicationId);
+			// Creamos la nueva reservación para poner en la card
+			const newReservationInCard = {
+				guestEmail: emailUserGuest,
+				guestsQuantity: quantity,
+				checkInDate: checkin,
+				checkOutDate: checkout,
+				guestsQuantity: quantity,
+			};
+			// Añadimos la reservacion
+			listOfCards[pubIdx].guestsList.push(newReservationInCard);
+			// Guardamos en localStorage de las publicaciones
+			addToLocalStorage('accommodationDB', listOfCards);
+			// ? Guardamos la reservacion en el perfil del host
+			// Obtenemos el usuario que es
+			const emailUserHost = getFromLocalStorage('currentUser').emailLogin;
+			const hostsUsersList = getFromLocalStorage('usersBD').guestsUsers;
+			// Buscamos por email
+			const findUserHostIndex = hostsUsersList.findIndex(
+				(user) => user.emailInput === emailUserHost
+			);
+			// Creamos el objeto de la reserva
+			const newBookingInHost = {
+				dateOfReservation: new Date().toString,
+				publicationId: card.id,
+				guestEmail: emailUserGuest,
+			};
+			// Añadimos el id de la publicacion a ese usuario
+			console.log(hostsUsersList[findUserHostIndex]);
+			// Si no tiene la lista de reservaciones la creamos
+			if (!hostsUsersList[findUserHostIndex].ownerBookings) {
+				hostsUsersList[findUserHostIndex].ownerBookings = [];
+			}
+			hostsUsersList[findUserHostIndex].ownerBookings.unshift(newBookingInHost);
+			// Guardamos la reserva en el usuario en el localStorage
+			addToLocalStorage('usersBD', { ...usersList, hostsUsersList });
+
 			Swal.fire({
 				icon: 'success',
 				title: 'Confirmación reservada!',
