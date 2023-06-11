@@ -100,7 +100,7 @@ function renderFilteredCardsByParams(obj) {
 
 	// Convierto a lowerCase
 	searchParam = searchParam.toLowerCase();
-	ubicationParam = ubicationParam.toLowerCase();
+	ubicationParam = ubicationParam ? ubicationParam.toLowerCase() : '';
 
 	// Lista de fechas interiores
 	const dateIntervalSearch = generateDateInterval(
@@ -131,20 +131,20 @@ function renderFilteredCardsByParams(obj) {
 				// Si no hay reservas, se puede buscar y alquilar
 				// Se niega al final
 				hasDateAvailable = !true;
+			} else {
+				card.guestsList.forEach((reservation) => {
+					// Creo el intervalo de las fechas de reservas de la card
+					const intervalDateCard = generateDateInterval(
+						reservation.checkInDate,
+						reservation.checkOutDate
+					);
+					// Si ninguna de las fechas de los intervalos coincide devuelve false
+					hasDateAvailable = checkMatchBetweenIntervals(
+						dateIntervalSearch,
+						intervalDateCard
+					);
+				});
 			}
-
-			card.guestsList.forEach((reservation) => {
-				// Creo el intervalo de las fechas de reservas de la card
-				const intervalDateCard = generateDateInterval(
-					reservation.checkInDate,
-					reservation.checkOutDate
-				);
-				// Si ninguna de las fechas de los intervalos coincide devuelve false
-				hasDateAvailable = checkMatchBetweenIntervals(
-					dateIntervalSearch,
-					intervalDateCard
-				);
-			});
 
 			// Todas las condiciones deben ser true para mostrar esa card como disponible
 			return hasTitle && hasQuantity && hasUbication && !hasDateAvailable;
