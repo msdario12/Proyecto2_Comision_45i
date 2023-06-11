@@ -57,6 +57,8 @@ async function sweetAlertRender(checkin, checkout, quantity, card) {
 	if (formValues) {
 		const { value: confirm } = await Swal.fire(formValues);
 		if (confirm) {
+			// En caso de confirmar la reserva se añade el id al localStorage
+
 			Swal.fire({
 				icon: 'success',
 				title: 'Confirmación reservada!',

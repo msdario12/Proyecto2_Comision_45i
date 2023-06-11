@@ -203,6 +203,8 @@ function handleNewUserRegister(e) {
 	if (mode === 'host') {
 		// En caso de ser host, requiere autorizacion de un admin
 		newUser.isRegistrationApproved = false;
+		// Creamos la propiedad que tiene el array de publicaciones realizadas
+		newUser.rentalListingsIds = [];
 		globalUsersBD.hostUsers.push(newUser);
 	}
 	if (mode === 'guest') {

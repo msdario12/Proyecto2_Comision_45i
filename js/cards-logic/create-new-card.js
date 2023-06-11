@@ -111,10 +111,12 @@ function createFormNewCard() {
 		});
 
 		console.log(servicesList);
-
+		// Añado el email del host y creo el array de las reservaciones
 		const newCard = {
 			id: createRandomID('L'),
 			imageGallery: srcImg,
+			hostEmail: currentUser.emailLogin,
+			guestsList: [],
 			accommodationTitle: el.titleInput.value,
 			accommodationLocation: el.locationInput.value,
 			guestCapacity: el.capacityInput.value,
@@ -125,10 +127,13 @@ function createFormNewCard() {
 			numberOfReviews: randomNumber(1000),
 		};
 
-		// Añadimos la nueva card al localStorage
+		// Añadimos la nueva card al localStorage de las publicaciones
 		const rentalCards = getFromLocalStorage('accommodationDB');
 		addToLocalStorage('accommodationDB', [newCard, ...rentalCards]);
-		// Alert de creacion completa y redireccinado
+		// Añadimos la publicación a la lista de publicaciones del usuario
+		
+
+		// Alert de creación completa y redireccinado
 
 		renderAlertWithRedirection(
 			'Publicación creada correctamente',
