@@ -46,35 +46,61 @@ function createFormNewCard() {
 	}
 
 	const $formCreateCard = document.querySelector('#createCardForm');
-
 	// Manejamos el evento de submit en el form
-	$formCreateCard.addEventListener('submit', function (e) {
+	$formCreateCard.addEventListener('submit', async function (e) {
 		e.preventDefault(); // Prevenimos el reload
 		const el = e.target.elements;
 		let srcImg = []; // Para almacenar las URL de las img
 		// Vemos si existen archivos
 		const fileList = Array.from(e.target.elements.filepond);
-		console.log(e);
+		// Función que devuelve una promesa cuando se termina de leer el archivo
+		const readFile = (file) => {
+			return new Promise((resolve, reject) => {
+				const reader = new FileReader();
 
-		// ! Falta añadir una imagen tipo placeholder por defecto
-		if (fileList.length > 0) {
-			// En caso de que sea solo 1 imagen
+				reader.onload = function (event) {
+					const base64Image = event.target.result;
+					resolve(base64Image);
+				};
+
+				reader.onerror = function (event) {
+					reject(event.target.error);
+				};
+
+				reader.readAsDataURL(file);
+			});
+		};
+		if (fileList) {
+			// Array donde vamos a poner todas las promesas
+			let promises = [];
+			// ! Falta añadir una imagen tipo placeholder por defecto
+			// Caso de que sea una sola imagen
 			if (fileList.length === 0) {
-				const src = URL.createObjectURL(el.filepond.files[0]);
-				srcImg.push(src);
-			} else {
-				// Sino, es que tenemos mas de 1
+				console.log('Tenemos 1 imagen');
+				promises.push(readFile(el.filepond.files[0]));
+			}
+			// Caso con multiples imagenes
+			if (fileList.length > 0) {
+				console.log('Tenemos mas de 1 imagen');
+				// Tenemos mas de 1 imagen
 				fileList.forEach((input) => {
-					console.log(input);
-					const src = URL.createObjectURL(input.files[0]);
-					srcImg.push(src);
+					// Ponemos en el array una promesa por cada archivo que se esta leyendo
+					promises.push(readFile(input.files[0]));
 				});
 			}
+
+			try {
+				// Esperamos la resolución de todas las promesas
+				srcImg = await Promise.all(promises);
+			} catch (error) {
+				// Caso en que no se cargaron imagenes
+				console.log('No se cagaron imagenes');
+				// Cargar imagen por defecto tipo placeholder
+				srcImg.push('https://placehold.co/400x400?text=Publicacion+sin+imagen');
+			}
 		}
-		// if (e.target.elements.filepond.files[0]) {
-		// 	const src = URL.createObjectURL(e.target.elements.filepond.files[0]);
-		// 	srcImg.push(src);
-		// }
+
+		console.log(srcImg);
 		// Crear array con los servicios que se marcaron como true
 		let servicesList = [];
 		// Revisamos cada input, y por los que son checkbox, vemos si tienen true
@@ -104,13 +130,13 @@ function createFormNewCard() {
 		addToLocalStorage('accommodationDB', [newCard, ...rentalCards]);
 		// Alert de creacion completa y redireccinado
 
-		// renderAlertWithRedirection(
-		// 	'Publicación creada correctamente',
-		// 	'Sera redirigido al listado de publicaciones en',
-		// 	'success',
-		// 	2500,
-		// 	'/html/cards.html'
-		// );
+		renderAlertWithRedirection(
+			'Publicación creada correctamente',
+			'Sera redirigido al listado de publicaciones en',
+			'success',
+			2500,
+			'/html/cards.html'
+		);
 
 		// Reiniciar campos
 		// filepond.removeFiles()
