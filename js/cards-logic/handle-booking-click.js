@@ -71,6 +71,19 @@ async function sweetAlertRender(checkin, checkout, quantity, card) {
 
 // Manejador del click en "reservar ahora"
 function handleBookingNowClick(e) {
+	// Chequeamos si el usuario esta autenticado como guest
+	const currentUser = getFromLocalStorage('currentUser');
+	if (!currentUser || currentUser.type !== 'guest') {
+		// El user no esta logueado o no es guest, redirigir
+		renderAlertWithRedirection(
+			'Necesitas estar logueado como huésped para continuar',
+			'Seras redirigido al login en',
+			'info',
+			1500,
+			'/html/login.html?mode=login-guest&continueToCards=true'
+		);
+		return;
+	}
 	// Obtenemos el id de la publicacion
 	const publicationId = e.target.attributes['publication-id'].value;
 	// Obtenemos informacion de la card del localStorage

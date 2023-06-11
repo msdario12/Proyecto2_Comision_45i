@@ -1,5 +1,5 @@
 // Crear el form del login
-function createLogin(mode) {
+function createLogin(mode, urlToRedirect) {
 	const paramsGeneral = {
 		host: {
 			title: 'Autenticarse como anfitrión',
@@ -48,13 +48,14 @@ function createLogin(mode) {
 	return $form;
 }
 // Funcion para renderizar el form del login
-function renderLoginForm(mode) {
+function renderLoginForm(mode, urlToRedirect = false) {
+	console.log(urlToRedirect);
 	// Limpio el elemento padre donde renderizar
 	document.querySelector('#loginContainer').innerHTML = '';
 	// Genero el form
 	const $formLogin = createLogin(mode);
 	// Controlador del fom
-	$formLogin.addEventListener('submit', handleLogin);
+	$formLogin.addEventListener('submit', (e) => handleLogin(e, urlToRedirect));
 	// Inserto el elemento
 	document.querySelector('#loginContainer').appendChild($formLogin);
 }
@@ -69,8 +70,9 @@ document.querySelector('#guestLogin').onclick = handleClickLogin;
 document.querySelector('#hostLogin').onclick = handleClickLogin;
 
 // Manejador del submit del login
-function handleLogin(e) {
+function handleLogin(e, urlToRedirect) {
 	e.preventDefault();
+	console.log(urlToRedirect);
 	// Obtengo el atributo que me dice si es signup de host o guess
 	const mode = e.submitter.attributes.mode.value;
 	// creo el formData para obtener los valores
@@ -150,6 +152,16 @@ function handleLogin(e) {
 	// Añado al localStorage
 	addToLocalStorage('currentUser', loginUser);
 	// ! Enviar login correcto
+	if (urlToRedirect) {
+		renderAlertWithRedirection(
+			'Autenticación correcta',
+			'Seras redirigido en',
+			'success',
+			1500,
+			urlToRedirect
+		);
+		return;
+	}
 	renderAlertSuccessHome('Autenticación correcta');
 	// renderAlertSuccess('Autenticación correcta', '');
 	console.log('Usuario autenticado correctamente');
@@ -168,6 +180,10 @@ function handleLoginLoadDOMContent(e) {
 	const signupMode = urlParams.get('mode');
 
 	if (signupMode === 'login-guest') {
+		if (urlParams.has('continueToCards')) {
+			renderLoginForm('guest', '/html/cards.html');
+			return;
+		}
 		renderLoginForm('guest');
 	}
 	if (signupMode === 'login-host') {
