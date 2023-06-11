@@ -10,7 +10,7 @@ cerrar.addEventListener('click', () => {
 	nav.classList.remove('visible');
 });
 
-// !Handle nav logic
+// !Handle nav logic ----------------------
 // Obtengo los elementos de login y signup antes de borrarlos
 const $signup = document.querySelector('#dropdownSignUp');
 const $login = document.querySelector('#dropdownLogin');
@@ -27,8 +27,11 @@ function renderNavElements() {
 		}
 		if (user.type === 'admin') {
 			classColor = 'text-bg-warning';
+			// Le doy display flex al boton de tabla de usuarios
+			document.querySelector('li[users-table]').classList.toggle('d-none');
 		}
 		document.querySelector('#dropdownSignUp').innerHTML = '';
+		// document.querySelector('#dropdownSignUp').style.display = 'none';
 		document.querySelector('#dropdownLogin').innerHTML = '';
 		document.querySelector('#dropdownLogin').innerHTML = `
         <div class="d-flex gap-3 align-items-center">
@@ -46,10 +49,12 @@ function renderNavElements() {
         </div>
     `;
 	}
+	// Si no esta logueado volver a cargar los botones de login y signUp
 	function navIfUserIsNotLogged() {
 		document.querySelector('#dropdownSignUp').appendChild($signup);
 		document.querySelector('#dropdownLogin').appendChild($login);
 	}
+	// Obtengo el currentUser del localStorage
 	const currentUser = getFromLocalStorage('currentUser');
 	if (!currentUser) {
 		// El usuario no esta logueado
