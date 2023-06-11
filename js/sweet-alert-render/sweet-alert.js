@@ -88,3 +88,60 @@ function renderAlertErrorHome(title) {
 		}
 	});
 }
+function renderAlertInfoSignUpHost(title) {
+	let timerInterval;
+	Swal.fire({
+		title: title,
+		icon: 'info',
+		showCloseButton: true,
+		html: 'Será redireccionado a la página de registro en <b></b> ms.',
+		timer: 3500,
+		timerProgressBar: true,
+		didOpen: () => {
+			Swal.showLoading();
+			const b = Swal.getHtmlContainer().querySelector('b');
+			timerInterval = setInterval(() => {
+				b.textContent = Swal.getTimerLeft();
+			}, 100);
+		},
+		willClose: () => {
+			clearInterval(timerInterval);
+			// redirecciono al home
+			window.location.href = '/html/signup.html?mode=signup-host&create=true';
+		},
+	}).then((result) => {
+		/* Read more about handling dismissals below */
+		if (result.dismiss === Swal.DismissReason.timer) {
+			console.log('I was closed by the timer');
+		}
+	});
+}
+
+function renderAlertWithRedirection(title, content, icon, time, urlToRedirect) {
+	let timerInterval;
+	Swal.fire({
+		title: title,
+		icon: icon,
+		showCloseButton: true,
+		html: `${content} <b></b> ms.`,
+		timer: time,
+		timerProgressBar: true,
+		didOpen: () => {
+			Swal.showLoading();
+			const b = Swal.getHtmlContainer().querySelector('b');
+			timerInterval = setInterval(() => {
+				b.textContent = Swal.getTimerLeft();
+			}, 100);
+		},
+		willClose: () => {
+			clearInterval(timerInterval);
+			// redirecciono al home
+			window.location.href = urlToRedirect;
+		},
+	}).then((result) => {
+		/* Read more about handling dismissals below */
+		if (result.dismiss === Swal.DismissReason.timer) {
+			console.log('I was closed by the timer');
+		}
+	});
+}

@@ -214,7 +214,14 @@ function handleNewUserRegister(e) {
 	// Añado el la nueva lista al localStorage
 	addToLocalStorage('usersBD', globalUsersBD);
 	// !Enviar alerta de registro correcto
-	renderAlertSuccessHome('Registro correcto!');
+
+	renderAlertWithRedirection(
+		'Registro correcto!',
+		'Por favor espera a que un administrador apruebe tu cuenta, seras redirigido en',
+		'info',
+		3500,
+		'/html/index.html'
+	);
 	console.log('Registro correcto');
 }
 
