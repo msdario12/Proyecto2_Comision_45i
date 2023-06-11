@@ -32,12 +32,6 @@ const filepond = FilePond.create(inputElement, {
 	allowMultiple: true,
 	acceptedFileTypes: ['image/png', 'image/jpeg'],
 	maxFiles: 5,
-	fileValidateTypeDetectType: (source, type) =>
-		new Promise((resolve, reject) => {
-			// Do custom type detection here and return with promise
-
-			resolve(type);
-		}),
 });
 
 // !-----------------------------------Filedrop END
