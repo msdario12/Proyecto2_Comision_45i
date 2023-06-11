@@ -153,10 +153,6 @@ function handleLogin(e) {
 	renderAlertSuccessHome('Autenticación correcta');
 	// renderAlertSuccess('Autenticación correcta', '');
 	console.log('Usuario autenticado correctamente');
-	// Renderizo la tabla de usuarios si es admin
-	if (findUser.type === 'admin') {
-		mainTable();
-	}
 	// TODO REDIRECCIONAR
 }
 

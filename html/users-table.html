@@ -19,40 +19,14 @@
 			rel="stylesheet" />
 		<link rel="stylesheet" href="../css/cards.css" />
 
-		<title>Login</title>
+		<title>Tabla de usuarios</title>
 	</head>
 	<body>
-		<h1 class="">Card</h1>
-		<a href="#"></a>
+		<h1 class="">Tabla de usuarios</h1>
 		<main>
-			<h2>Login</h2>
-			<button id="guestLogin" class="btn btn-info">
-				Autenticarse como huésped
-			</button>
-			<button id="hostLogin" class="btn btn-secondary">
-				Autenticarse como anfitrión
-			</button>
-			<section class="container" id="loginContainer">
-				<!-- form login injected via javascript -->
-			</section>
-			<section class="container">
-				<h2>Boton de logout</h2>
-				<button id="logoutButton" class="btn btn-danger">Logout</button>
-			</section>
-			<h2>Registro</h2>
-			<button id="guestSignUp" class="btn btn-info">
-				Registrarme como huésped
-			</button>
-			<button id="hostSignUp" class="btn btn-secondary">
-				Registrarme como anfitrión
-			</button>
-			<section class="container" id="signupContainer">
-				<!-- Form inject from javascript -->
-			</section>
 			<div id="tableButtons">
 				<!-- Table injecto from javascript -->
 			</div>
-
 			<section class="container" id="usersTableContainer">
 				<!-- Table injecto from javascript -->
 			</section>
@@ -67,10 +41,11 @@
 			integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
 			crossorigin="anonymous"></script>
 		<!-- Script propio de la pagina -->
-		<script src="/js/cards-logic/localsotrage-functions.js"></script>
 		<script src="/js/sweet-alert-render/sweet-alert.js"></script>
+		<!-- Funciones del localStorage -->
+		<script src="/js/cards-logic/localsotrage-functions.js"></script>
 		<!-- <script src="/js/users-logic/signup.js"></script> -->
-		<script src="/js/users-logic/login.js"></script>
-		<script src="/js/users-logic/adminUsers.js"></script>
+		<!-- <script src="/js/users-logic/adminUsers.js"></script> -->
+		<script src="/js/users-logic/userTable.js"></script>
 	</body>
 </html>

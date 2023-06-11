@@ -39,6 +39,34 @@ function renderAlertSuccessHome(title) {
 		icon: 'success',
 		showCloseButton: true,
 		html: 'Será redireccionado al home en <b></b> ms.',
+		timer: 1500,
+		timerProgressBar: true,
+		didOpen: () => {
+			Swal.showLoading();
+			const b = Swal.getHtmlContainer().querySelector('b');
+			timerInterval = setInterval(() => {
+				b.textContent = Swal.getTimerLeft();
+			}, 100);
+		},
+		willClose: () => {
+			clearInterval(timerInterval);
+			// redirecciono al home
+			window.location.href = '/html/index.html';
+		},
+	}).then((result) => {
+		/* Read more about handling dismissals below */
+		if (result.dismiss === Swal.DismissReason.timer) {
+			console.log('I was closed by the timer');
+		}
+	});
+}
+function renderAlertErrorHome(title) {
+	let timerInterval;
+	Swal.fire({
+		title: title,
+		icon: 'error',
+		showCloseButton: true,
+		html: 'Será redireccionado al home en <b></b> ms.',
 		timer: 2000,
 		timerProgressBar: true,
 		didOpen: () => {

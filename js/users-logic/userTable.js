@@ -18,8 +18,12 @@ function mainTable() {
 `;
 	// Obtengo el currentUser
 	const currentUser = getFromLocalStorage('currentUser');
+	if (!currentUser) {
+		renderAlertErrorHome('Ups, esta página es solo para administradores');
+	}
 	// Veo si el usuario es admin para renderizar la tabla
 	if (currentUser.type === 'admin') {
+		// El usuario es admin
 		document.querySelector('#tableButtons').innerHTML = tableButtons;
 	}
 
@@ -123,6 +127,8 @@ function mainTable() {
 		banButtons = document.querySelectorAll('button[btn-target]');
 		banButtons.forEach((btn) => (btn.onclick = handleTableButtonClick));
 	}
+	// Renderizo por primera vez la tabla
+	renderUserTable($containerForUserTable, 'all');
 	// ! Logica para modificar lo que se muestra en la tabla de usuarios ----------
 	// Controllers de los buttons para mostrar tabla
 	document.querySelector('#showGuestsUsers').onclick = () => {
@@ -200,3 +206,5 @@ function mainTable() {
 		console.log(viewMode);
 	}
 }
+
+mainTable();
