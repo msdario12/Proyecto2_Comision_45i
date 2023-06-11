@@ -206,24 +206,33 @@ function handleNewUserRegister(e) {
 		// Creamos la propiedad que tiene el array de publicaciones realizadas
 		newUser.rentalListingsIds = [];
 		globalUsersBD.hostUsers.push(newUser);
+
+		renderAlertWithRedirection(
+			'Registro correcto!',
+			'Por favor espera a que un administrador apruebe tu cuenta, seras redirigido en',
+			'info',
+			2000,
+			'/html/index.html'
+		);
 	}
 	if (mode === 'guest') {
 		// No necesita aprobacion de un admin
 		newUser.isRegistrationApproved = true;
 		globalUsersBD.guestsUsers.push(newUser);
+
+		renderAlertWithRedirection(
+			'Registro correcto!',
+			'Bienvenido!, ahora puedes reservar en nuestro sitio!. Seras redirigido en',
+			'success',
+			2000,
+			'/html/index.html'
+		);
 	}
 	console.log(globalUsersBD, mode);
 	// Añado el la nueva lista al localStorage
 	addToLocalStorage('usersBD', globalUsersBD);
 	// !Enviar alerta de registro correcto
 
-	renderAlertWithRedirection(
-		'Registro correcto!',
-		'Por favor espera a que un administrador apruebe tu cuenta, seras redirigido en',
-		'info',
-		3500,
-		'/html/index.html'
-	);
 	console.log('Registro correcto');
 }
 
