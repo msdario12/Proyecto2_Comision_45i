@@ -48,7 +48,7 @@ function renderCard(idx, obj) {
 	$div.classList.add('card', 'mb-3', 'card-custom');
 	// Modifico el interior del html
 	$div.innerHTML = `<div class="row g-0">
-        <div class="col-md-4 carousel-parent" style="height: 125px">
+        <div class="col-md-4 carousel-parent">
             ${createCarrusselString(imageGallery, id, accommodationTitle)}
         </div>
         <div class="col-md-8">
@@ -93,13 +93,13 @@ function createCarrusselString(imgList, idxCarousel, accommodationTitle) {
 		// Creamos el html que mostrara cada imagen y los indicadores
 		if (idx === 0) {
 			// idx===0 es el primer elemento, le doy la clase "active"
-			html = `<div class="carousel-item carousel-custom active" style="max-height: 200px">
+			html = `<div class="carousel-item carousel-custom active">
             <img src=${src} class="d-block w-100 img-fluid object-fit-cover object-center" alt="Imagen de ${accommodationTitle}">
           </div>`;
 			indicator = `<button type="button" data-bs-target="#carousel-num-${idxCarousel}" data-bs-slide-to="${idx}" class="active" aria-current="true" aria-label="Slide ${idx}"></button>`;
 		} else {
 			// el resto no tiene "active"
-			html = `<div class="carousel-item carousel-custom" style="height: 200px">
+			html = `<div class="carousel-item carousel-custom">
             <img src=${src} class="d-block w-100 img-fluid object-fit-cover object-center" alt="Imagen de ${accommodationTitle}">
           </div>`;
 			indicator = `<button type="button" data-bs-target="#carousel-num-${idxCarousel}" data-bs-slide-to="${idx}" aria-label="Slide ${idx}"></button>`;
@@ -110,11 +110,11 @@ function createCarrusselString(imgList, idxCarousel, accommodationTitle) {
 	});
 	// defino el string total de todo el carousel
 	const string = `
-    <div id="carousel-num-${idxCarousel}" class="carousel slide w-100">
+    <div id="carousel-num-${idxCarousel}" class="carousel slide w-100 h-100">
         <div class="carousel-indicators">
             ${carouselIndicators}
         </div>
-        <div class="carousel-inner">
+        <div class="carousel-inner h-100">
             ${carruselItems}
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carousel-num-${idxCarousel}" data-bs-slide="prev">
