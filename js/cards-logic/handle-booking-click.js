@@ -127,7 +127,7 @@ async function sweetAlertRender(checkin, checkout, quantity, card) {
 				const usersList = getFromLocalStorage('usersBD');
 				const guestsUsers = usersList.guestsUsers;
 				// Fecha actual
-				const actualDay = new Date().toDateString();
+				const actualDay = new Date().toString();
 				// Buscamos por email
 				console.log(emailUserGuest);
 				const findUserGuestIndex = guestsUsers.findIndex(
@@ -169,10 +169,10 @@ async function sweetAlertRender(checkin, checkout, quantity, card) {
 				// ? Guardamos la reservacion en el perfil del host
 				// Obtenemos el usuario que es
 				const emailUserHost = getFromLocalStorage('currentUser').emailLogin;
-				const hostsUsersList = usersList.hostUsers;
-				console.log(hostsUsersList);
+				const hostUsers = usersList.hostUsers;
+				console.log(hostUsers);
 				// Buscamos por email
-				const findUserHostIndex = hostsUsersList.findIndex(
+				const findUserHostIndex = hostUsers.findIndex(
 					(user) => user.emailInput === card.hostEmail
 				);
 				// Creamos el objeto de la reserva para el anfitrion
@@ -186,16 +186,14 @@ async function sweetAlertRender(checkin, checkout, quantity, card) {
 				};
 				// Añadimos el id de la publicacion a ese usuario
 				console.log(findUserHostIndex);
-				console.log(hostsUsersList[findUserHostIndex]);
+				console.log(hostUsers[findUserHostIndex]);
 				// Si no tiene la lista de reservaciones la creamos
-				if (!hostsUsersList[findUserHostIndex].ownerBookings) {
-					hostsUsersList[findUserHostIndex].ownerBookings = [];
+				if (!hostUsers[findUserHostIndex].ownerBookings) {
+					hostUsers[findUserHostIndex].ownerBookings = [];
 				}
-				hostsUsersList[findUserHostIndex].ownerBookings.unshift(
-					newBookingInHost
-				);
+				hostUsers[findUserHostIndex].ownerBookings.unshift(newBookingInHost);
 				// Guardamos la reserva en el usuario en el localStorage
-				addToLocalStorage('usersBD', { ...usersList, hostsUsersList });
+				addToLocalStorage('usersBD', { ...usersList, hostUsers });
 			}
 		})
 		.then((res) => {

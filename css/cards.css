@@ -22,7 +22,7 @@
 }
 
 /* Media query  */
-@media (min-height: 570px) {
+@media (max-height: 570px) {
 	.carousel-custom {
 		height: 100px;
 	}

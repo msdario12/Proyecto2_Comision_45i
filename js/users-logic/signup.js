@@ -169,13 +169,7 @@ function handleNewUserRegister(e) {
 	//? Añado el usuario a la base de datos
 	// Vemos si ya existe la bd de users
 	let globalUsersBD = getFromLocalStorage('usersBD');
-	if (!globalUsersBD) {
-		console.log('Creando localsStorage users');
-		globalUsersBD = addToLocalStorage('usersBD', {
-			hostUsers: [],
-			guestsUsers: [],
-		});
-	}
+
 	// Vemos donde tenemos que añadir este usuario
 	let findUser;
 	if (mode === 'host') {

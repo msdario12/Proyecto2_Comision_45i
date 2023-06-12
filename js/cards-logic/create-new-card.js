@@ -39,7 +39,7 @@ const filepond = FilePond.create(inputElement, {
 function createFormNewCard() {
 	// Chequeamos si el usuario esta registrado
 	const currentUser = getFromLocalStorage('currentUser');
-	if (!currentUser) {
+	if (!currentUser || currentUser.type !== 'host') {
 		// Redireccionar al signUp de anfitriones
 		renderAlertInfoSignUpHost('Necesita una cuenta de anfitrión para publicar');
 		return;
@@ -111,9 +111,12 @@ function createFormNewCard() {
 		});
 
 		console.log(servicesList);
+		// Creo el id de la publicacion
+		const actualDate = new Date().toString();
+		const idCard = createRandomID('L');
 		// Añado el email del host y creo el array de las reservaciones
 		const newCard = {
-			id: createRandomID('L'),
+			id: idCard,
 			imageGallery: srcImg,
 			hostEmail: currentUser.emailLogin,
 			guestsList: [],
@@ -131,7 +134,20 @@ function createFormNewCard() {
 		const rentalCards = getFromLocalStorage('accommodationDB');
 		addToLocalStorage('accommodationDB', [newCard, ...rentalCards]);
 		// Añadimos la publicación a la lista de publicaciones del usuario
-		
+		// Obtenemos la lista de usuarios
+		const globalUsersBD = getFromLocalStorage('usersBD');
+		const userIndex = globalUsersBD.hostUsers.findIndex(
+			(user) => user.emailInput === currentUser.emailLogin
+		);
+		if (!globalUsersBD.hostUsers[userIndex].userListings) {
+			globalUsersBD.hostUsers[userIndex].userListings = [];
+		}
+		globalUsersBD.hostUsers[userIndex].userListings.push({
+			idCard,
+			dateOfCreation: actualDate,
+		});
+		console.log(globalUsersBD);
+		addToLocalStorage('usersBD', globalUsersBD);
 
 		// Alert de creación completa y redireccinado
 
