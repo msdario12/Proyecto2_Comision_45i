@@ -80,12 +80,17 @@ async function sweetAlertRender(checkin, checkout, quantity, card) {
 			const swalQty = Swal.getPopup().querySelector(
 				'#searchCapacityInputAlert'
 			).valueAsNumber;
-
+			// Si alguno de los campos no esta completo arrojar error
 			if (!swalIn || !swalOut || !swalQty) {
 				Swal.showValidationMessage(
 					`Por favor rellene todos los campos para continuar`
 				);
 			}
+			// Genero el intervalo de fechas
+			const interval = generateDateInterval(swalIn, swalOut);
+			const days = interval.length - 1;
+
+			
 
 			// Setear los valores de los inputs de date de manera que actualicen el localStorage o las variables de checkin
 			function handleChangeInputsAlert(e) {
@@ -97,18 +102,13 @@ async function sweetAlertRender(checkin, checkout, quantity, card) {
 				.forEach((input) =>
 					input.addEventListener('change', handleChangeInputsAlert)
 				);
-			// Luego de confirmar las fechas obtenemos la cantidad de dias
-			const dateIn = document.querySelector('#dateCheckinInputAlert').value;
-			const dateOut = document.querySelector('#dateCheckoutInputAlert').value;
-			// Genero el intervalo de fechas
-			const interval = generateDateInterval(dateIn, dateOut);
-			const days = interval.length - 1;
+			
 			// Obtenga numero de huéspedes
 			const quantity = document.querySelector(
 				'#searchCapacityInputAlert'
 			).valueAsNumber;
 			const price = card.accommodationPrice;
-			return { days, quantity, price, dateIn, dateOut };
+			return { days, quantity, price, swalIn, swalOut };
 			// return `El monto total es de $${days * quantity * price}`;
 		},
 	})
