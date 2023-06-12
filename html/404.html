@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERROR 404</title>
+    <link rel="stylesheet" href="/css/error-style.css">
+</head>
+<body>
+    <section> 
+
+        <div class="bannerVideo" id="slideShow">
+            <video src="/assets/error-404/GLORIA.mp4" autoplay muted loop class="active"></video>
+            <video src="/assets/error-404/JUJUY.mp4" autoplay muted loop></video>
+            <video src="/assets/error-404/TUCUMAN.mp4" autoplay muted loop></video>
+            <video src="/assets/error-404/PERICO.mp4" autoplay muted loop></video>
+       
+        </div>
+        
+
+
+           <div class="container">
+            <div class="content">
+                <div class="bannerText" id="slideShowText">
+                    <div class="active">
+                        <h1>ERROR 404</h1>        
+                        <p>Oops!¡Algo salió mal! Mientras preparamos tu página, ¿Quieres conocer más sobre nuestros destinos disponibles?</p>
+
+                        <p>¡Recorra Argentina Tierra de campeones!</p>
+
+                        <a href="" target="_blank">VOLVER AL INICIO</a>
+
+
+                        
+                    </div>
+
+                    </div>
+       
+                </div>
+            </div>
+
+
+
+<ul class="controls">
+ <li onclick="prevtSlide();prevSlideText()"><img src="/assets/error-404/left.png" alt=""></li>
+ <li onclick="nextSlide ();nextSlideText()";><img src="/assets/error-404/right.png" alt=""></li>
+</ul>
+
+
+
+ </div>
+    </section>
+
+    <script>
+        const slideShow=document.getElementById ('slideShow');
+        const slides=slideShow.getElementsByTagName('video');
+        var index =0;
+
+        function nextSlide()
+        {
+            slides[index].classList.remove('active');
+            index=(index + 1) % slides.length;
+            slides[index].classList.add('active');
+        }
+
+        function prevtSlide()
+        {
+            slides[index].classList.remove('active');
+            index=(index - 1 + slides.length) % slides.length;
+            slides[index].classList.add('active');
+        }
+
+
+        const slideShowText=document.getElementById ('slideShowText');
+        const slidesText=slideShowText.getElementsByTagName('div');
+        var i=0;
+
+        function nextSlideText()
+        {
+            slides[i].classList.remove('active');
+            i=(i + 1) % slidesText.length;
+            slidesText[i].classList.add('active');
+        }
+
+        function prevSlideText ()
+        {
+            slidesText[i].classList.remove('active');
+            i=(i - 1 + slidesText.length) % slides.length;
+            slidesText[i].classList.add('active');
+        }
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+    </script>
+</body>
+</html>
