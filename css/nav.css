@@ -13,8 +13,7 @@ header {
   background-color: rgb(241, 241, 237);
 }
 
-.abrir-menu,
-.cerrar-menu {
+.abrir-menu, .cerrar-menu {
   display: none;
 }
 
@@ -34,7 +33,7 @@ header {
 @media (max-width: 1250px) {
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 768px) {
   .abrir-menu,
   .cerrar-menu {
     display: block;
@@ -65,8 +64,7 @@ header {
   }
 
   .abrir-menu, .cerrar-menu{
-    display: 
-    block;
+    display: block;
     border: 0;
     font-size: 1.25rem;
     background-color: transparent;
