@@ -48,32 +48,31 @@ function renderCard(idx, obj) {
 	$div.classList.add('card', 'mb-3', 'card-custom');
 	// Modifico el interior del html
 	$div.innerHTML = `<div class="row g-0">
-        <div class="col-md-4 carousel-parent">
+        <div class="col-sm-4 carousel-parent">
             ${createCarrusselString(imageGallery, id, accommodationTitle)}
         </div>
-        <div class="col-md-8">
-            <div class="card-body">
+        <div class="col-sm-8">
+            <div class="card-body h-100 d-flex flex-column justify-content-between">
                 <div class="d-flex justify-content-between">
                     <h5 class="card-title">${accommodationTitle}</h5>
                     ${createFavoriteStar(id)}
-                </div>
+				</div>
                 ${createRating(rating, numberOfReviews)}
                 <h6 class="card-subtitle mb-2 text-body-secondary muted"></h6>
-                <p class="card-text">
+                
                 <p class="card-text">${shortDescription}</p>
                 <span class="lead">Desde</span><h4 class="card-text"> $${accommodationPrice}/noche</h4>
 				<div class="row">
-					<div class="col-6 d-flex align-items-center justify-content-start">
+					<div class="col-12 col-sm-6 d-flex align-items-center justify-content-end justify-content-sm-start">
 						<i height="16" data-feather="map-pin"></i>
 						<span class="small muted">${accommodationLocation}</span>
 						<i height="16" data-feather="user"></i>
 						<span class="small muted">${guestCapacity} Personas</span>
 					</div>
-					<div class="col-6 d-flex align-items-center justify-content-end">
+					<div class="col-12 col-sm-6 d-flex align-items-center justify-content-end justify-content-sm-end mt-2">
 						<button publication-id=${id} class="btn btn-outline-success">Reservar ahora</button>
 					</div>
 				</div>
-                </p>
             </div>
         </div>
     </div>`;

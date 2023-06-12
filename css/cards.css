@@ -20,3 +20,13 @@
 #descriptionTextArea {
 	height: 100px;
 }
+
+/* Media query  */
+@media (min-height: 570px) {
+	.carousel-custom {
+		height: 100px;
+	}
+	.carousel-custom > img {
+		height: 250px;
+	}
+}
