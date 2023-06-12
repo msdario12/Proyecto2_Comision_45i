@@ -19,11 +19,17 @@ function renderNavElements() {
 	// Esconder los botones de login y signup si es que ya esta logueado
 	function navIfUserIsLogged(user) {
 		let classColor = '';
+		let button = '';
+		// Color en funcion del tipo de usuario logueado
 		if (user.type === 'guest') {
 			classColor = 'text-bg-info';
+			button =
+				'<li><a personal-table id="#myBookings" class="dropdown-item" href="#">Mis reservas</a></li>';
 		}
 		if (user.type === 'host') {
 			classColor = 'text-bg-success';
+			button =
+				'<li><a personal-table id="#myPublications" class="dropdown-item" href="#">Mis publicaciones</a></li>';
 		}
 		if (user.type === 'admin') {
 			classColor = 'text-bg-warning';
@@ -45,8 +51,20 @@ function renderNavElements() {
                     </span>
                 </div>
             </div>
-            <button id="logoutButton" class="btn btn-danger">Logout</button>
+
+            <div class="dropdown">
+				<button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+					Mi cuenta
+				</button>
+				<ul class="dropdown-menu">
+					${button}
+					<li><a id="logoutButton" class="dropdown-item" href="#">Logout</a></li>
+				</ul>
+			</div>
+
         </div>
+
+		
     `;
 	}
 	// Si no esta logueado volver a cargar los botones de login y signUp
@@ -70,12 +88,13 @@ function renderNavElements() {
 		deleteFromLocalStorage('currentUser');
 		// addToLocalStorage('currentUser', {});
 		console.log('Logout del usuario');
-
 		// TODO REDIRECCIONAR
 		renderAlertSuccessHome('Saliste de tu cuenta');
 		renderNavElements();
 	}
-	// Controller
+
+	// Controllers
+	// Logout
 	$logoutButton.addEventListener('click', handleClickLogout);
 }
 

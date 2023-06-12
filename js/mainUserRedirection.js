@@ -4,6 +4,12 @@ document
 	.forEach((el) =>
 		el.addEventListener('click', handleSignUpRedirectionFromMain)
 	);
+// Obtenemos botones que mandan a las tablas de mis reservas y mis publicaciones
+document
+	.querySelectorAll('a[personal-table]')
+	.forEach((button) =>
+		button.addEventListener('click', handleClickPersonalTable)
+	);
 // Funcion que maneja el click en los <a> de redireccion
 function handleSignUpRedirectionFromMain(e) {
 	e.preventDefault();
@@ -23,4 +29,16 @@ function handleSignUpRedirectionFromMain(e) {
 		window.location.href = pathURLSignUp + query;
 	}
 	// Redireccino a pagna de registro con query
+}
+
+// Handler boton de mis reservas y publicaciones
+function handleClickPersonalTable(e) {
+	e.preventDefault();
+	console.log(e);
+	const type = e.target.id;
+
+	const path = '/html/personal-table.html';
+	const query = `?type=${type}`;
+
+	window.location.href = path + query;
 }
