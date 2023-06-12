@@ -10,7 +10,10 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 2rem;
-  background-color: rgb(241, 241, 237);
+  background-color: #F9F8F7;  
+}
+.header-with-border{
+  border-bottom: .16rem solid black;
 }
 
 .abrir-menu, .cerrar-menu {

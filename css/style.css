@@ -5,7 +5,51 @@
     font-family: jetbrains mono 'Courier New', Courier, monospace Arial, Helvetica, sans-serif Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   }
 
-  footer {
+  body{
+    background-color: white
+  }
+  /* Aquí empiezan los estilos para la barra de busqueda para generar reservas en el Main */
+  .container{
+    align-content: center;
+    flex-wrap: wrap;
+    
+  }
+  .row #card-busqueda{    
+    margin-top: 1rem;
+    border: none;
+  }
+
+  .row #buscar-reservas{
+    margin-top: .70rem;
+  }
+
+  /* Aquí terminan los estilos para la barra de busqueda para generar reservas en el Main */
+
+  /* Aquí empiezan los estilos para las tarjetas del Main */
+#card-primer-fila{
+    margin-top: .2rem;
+    margin-bottom: 2rem;
+    border-radius: 15px 30px 15px 30px;
+}
+
+#card-segunda-fila{
+    border-radius: 25px 25px 25px 25px;
+    margin-bottom: 1rem;
+}
+
+#card-tercer-fila{
+    border-radius: 30px 10px 30px 10px;
+    margin-bottom: 2rem;
+}
+
+.row #card-segunda-fila{
+    margin: 1rem;
+}
+  /* Aquí terminan los estilos para las tarjetas del Main */
+
+/* Aquí empiezan los estilos para el Footer */
+
+footer {
     position: relative;
     width: 100%;
     background: #3586ff;
@@ -16,8 +60,6 @@
     align-items: center;
     flex-direction: column;
 }
-
-/* Aquí empiezan los estilos para el Footer */
 footer .imgSocial a img {
     width: 20px;
 }
