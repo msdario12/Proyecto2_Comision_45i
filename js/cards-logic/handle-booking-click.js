@@ -89,8 +89,39 @@ async function sweetAlertRender(checkin, checkout, quantity, card) {
 			// Genero el intervalo de fechas
 			const interval = generateDateInterval(swalIn, swalOut);
 			const days = interval.length - 1;
-
-			
+			// Reviso si la publicacion tiene reservaciones existentes
+			if (card.guestsList.length > 0) {
+				console.log('dentro de la verificacion');
+				// Debemos chequear por todas las reservaciones
+				card.guestsList.forEach((reservation) => {
+					// En caso de existir debemos comprobar en que fechas estan
+					const existingCheckIn = reservation.checkInDate;
+					const existingCheckOut = reservation.checkOutDate;
+					// Genero el intervalo para estas fechas
+					const existingInterval = generateDateInterval(
+						existingCheckIn,
+						existingCheckOut
+					);
+					// Veo si existe coincidencia entre los intervalos
+					const hasSameDateReservation = checkMatchBetweenIntervals(
+						interval,
+						existingInterval
+					);
+					console.log(hasSameDateReservation);
+					// En caso de tenerlos dar error
+					if (hasSameDateReservation) {
+						Swal.showValidationMessage(
+							`Por favor revise o cambie las fechas de sus reservación. Las fechas indicadas ya están actualmente reservadas.`
+						);
+					}
+				});
+			}
+			// Reviso que el numero de huespedes sea menor o igual al de la publicacion
+			if (Number(swalQty) > card.guestCapacity) {
+				Swal.showValidationMessage(
+					`La cantidad total de huéspedes supera al mostrado en la publicación`
+				);
+			}
 
 			// Setear los valores de los inputs de date de manera que actualicen el localStorage o las variables de checkin
 			function handleChangeInputsAlert(e) {
@@ -102,7 +133,7 @@ async function sweetAlertRender(checkin, checkout, quantity, card) {
 				.forEach((input) =>
 					input.addEventListener('change', handleChangeInputsAlert)
 				);
-			
+
 			// Obtenga numero de huéspedes
 			const quantity = document.querySelector(
 				'#searchCapacityInputAlert'
