@@ -13,7 +13,6 @@ function mainPersonalTable() {
 		);
 	}
 
-	// ! del otro
 	// Obtenemos la lista de usuarios global
 	const globalUsers = getFromLocalStorage('usersBD');
 	// Obtenemos el elemento donde renderizar la tabla
@@ -30,7 +29,18 @@ function mainPersonalTable() {
 		);
 		const bookingList = findUser.userBookings;
 
-		renderUserTable($container, 'all', bookingList);
+		renderGuestTable(
+			$container,
+			'all',
+			bookingList,
+			'Destino',
+			'Fecha de salida',
+			'Fecha de regreso',
+			'Monto a pagar',
+			'Cantidad de huéspedes',
+			'Email del dueño',
+			'Publicación'
+		);
 	}
 	if (currentUser.type === 'host') {
 		// El usuario es guest, mostrar sus publicaciones o reservas
@@ -46,41 +56,21 @@ function mainPersonalTable() {
 	let usersBD = getFromLocalStorage('usersBD') || [];
 
 	// Logica para manejar la tabla de usuarios que ve el administrador
-	function createTable(arrayToRender, mode, ...args) {
+	function createGuestTable(arrayToRender, mode, ...args) {
 		const $table = document.createElement('table');
 		$table.classList.add('table');
 		const $tableHead = document.createElement('thead');
 		const $tableBody = document.createElement('tbody');
 
 		const tableHeadInner = `
-    <tr>
-        <th scope="col">#</th>
-        ${args.reduce((acc, cu) => {
-					return acc + "<th scope='col'>" + cu + '</th>\n';
-				}, '')}
-    </tr>
-    `;
+        <tr>
+            <th scope="col">#</th>
+            ${args.reduce((acc, cu) => {
+							return acc + "<th scope='col'>" + cu + '</th>\n';
+						}, '')}
+        </tr>
+        `;
 		console.log(arrayToRender, mode);
-		// !Pasar como string "ban" o "approve"
-		// const createButton = (obj, action) => {
-		// 	let className = '';
-		// 	let msg = '';
-		// 	if (action === 'ban') {
-		// 		msg = 'Deshabilitar Usuario';
-		// 		className = 'btn btn-danger';
-		// 	}
-		// 	if (action === 'approve') {
-		// 		msg = 'Habilitar Usuario';
-		// 		className = 'btn btn-success';
-		// 	}
-		// 	return `
-		// <button btn-target=${obj.emailInput}
-		// 		btn-mode=${action}
-		// 		btn-user-type=${obj.type}
-		// 		class="${className}">
-		// ${msg}
-		// </button>`;
-		// };
 
 		const button = (obj) => `
         <button	publication-id=${obj.publicationId} class="btn btn-outline-primary">
@@ -116,29 +106,14 @@ function mainPersonalTable() {
 		return $table;
 	}
 	// ! Setear el container de la tabla
-	const $containerForUserTable = document.querySelector('#usersTableContainer');
-	// Guardo todos los botones
-	let banButtons;
 	// Renderizar la tabla en funcion del modo
-	function renderUserTable(htmlParent, mode, array) {
+	function renderGuestTable(htmlParent, mode, array, ...args) {
 		htmlParent.innerHTML = '';
-		const $tableUsers = createTable(
-			array,
-			mode,
-			'Destino',
-			'Fecha de salida',
-			'Fecha de regreso',
-			'Monto a pagar',
-			'Cantidad de huéspedes',
-			'Email del dueño',
-			'Publicación'
-		);
+		const $tableUsers = createGuestTable(array, mode, ...args);
 		htmlParent.appendChild($tableUsers);
-		// banButtons = document.querySelectorAll('button[btn-target]');
-		// banButtons.forEach((btn) => (btn.onclick = handleTableButtonClick));
 	}
 	// Renderizo por primera vez la tabla
-	// renderUserTable($containerForUserTable, 'all');
+	// renderGuestTable($containerForUserTable, 'all');
 	// ! Logica para modificar lo que se muestra en la tabla de usuarios ----------
 	// Controllers de los buttons para mostrar tabla
 	document
@@ -150,19 +125,19 @@ function mainPersonalTable() {
 	// 	addToLocalStorage('userTableViewMode', {
 	// 		category: 'guest',
 	// 	});
-	// 	renderUserTable($containerForUserTable, 'guest');
+	// 	renderGuestTable($containerForUserTable, 'guest');
 	// };
 	// document.querySelector('#showHostUsers').onclick = () => {
 	// 	addToLocalStorage('userTableViewMode', {
 	// 		category: 'host',
 	// 	});
-	// 	renderUserTable($containerForUserTable, 'host');
+	// 	renderGuestTable($containerForUserTable, 'host');
 	// };
 	// document.querySelector('#showAllUsers').onclick = () => {
 	// 	addToLocalStorage('userTableViewMode', {
 	// 		category: 'all',
 	// 	});
-	// 	renderUserTable($containerForUserTable, 'all');
+	// 	renderGuestTable($containerForUserTable, 'all');
 	// };
 	// Handler para click en link de publicaciones
 	function handleClickLinkPublication(e) {
@@ -223,7 +198,7 @@ function mainPersonalTable() {
 		}
 		usersBD = getFromLocalStorage('usersBD');
 		const viewMode = getFromLocalStorage('userTableViewMode');
-		renderUserTable($containerForUserTable, viewMode.category);
+		renderGuestTable($containerForUserTable, viewMode.category);
 
 		console.log(viewMode);
 	}
