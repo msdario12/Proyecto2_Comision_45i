@@ -10,6 +10,7 @@ cerrar.addEventListener('click', () => {
 	nav.classList.remove('visible');
 });
 
+
 // !Handle nav logic ----------------------
 // Obtengo los elementos de login y signup antes de borrarlos
 const $signup = document.querySelector('#dropdownSignUp');
@@ -28,8 +29,7 @@ function renderNavElements() {
 		}
 		if (user.type === 'host') {
 			classColor = 'text-bg-success';
-			button =
-				`<li><a personal-table id="#myPublications" class="dropdown-item" href="#">Mis publicaciones</a></li>
+			button = `<li><a personal-table id="#myPublications" class="dropdown-item" href="#">Mis publicaciones</a></li>
 				<li><a personal-table id="#myRentals" class="dropdown-item" href="#">Mis alquileres</a></li>`;
 		}
 		if (user.type === 'admin') {
