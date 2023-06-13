@@ -15,7 +15,7 @@ function createLogin(mode, urlToRedirect) {
 					<div style="justify-self: center">
 						<div class="form-floating mb-3">
 							<input
-								value="email@gmail.com"
+								
 								required
 								type="email"
 								class="form-control"
@@ -29,7 +29,7 @@ function createLogin(mode, urlToRedirect) {
 						<!-- contraseña -->
 						<div class="form-floating mb-3">
 							<input
-								value="contrasena"
+								
 								required
 								type="password"
 								class="form-control"

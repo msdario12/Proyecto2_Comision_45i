@@ -34,7 +34,7 @@ function createSignUp(mode) {
 				<!-- email -->
 				<div class="form-floating mb-3">
 					<input
-						value="email@gmail.com"
+						
 						required
 						type="email"
 						class="form-control"
@@ -48,7 +48,7 @@ function createSignUp(mode) {
 				<!-- nombre -->
 				<div class="form-floating mb-3">
 					<input
-						value="nombre test"
+						
 						required
 						type="text"
 						class="form-control"
@@ -62,7 +62,7 @@ function createSignUp(mode) {
 				<!-- apellido -->
 				<div class="form-floating mb-3">
 					<input
-						value="nombre test"
+						
 						required
 						type="text"
 						class="form-control"
@@ -76,7 +76,7 @@ function createSignUp(mode) {
 				<!-- contraseña -->
 				<div class="form-floating mb-3">
 					<input
-						value="contrasena"
+						
 						required
 						type="password"
 						class="form-control"
@@ -90,7 +90,7 @@ function createSignUp(mode) {
 				<!-- numero celular (optativo) -->
 				<div class="form-floating mb-3">
 					<input
-						value="3813869543"
+						
 						type="number"
 						class="form-control"
 						pattern="[0-9]{10}"
