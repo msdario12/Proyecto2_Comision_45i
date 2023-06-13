@@ -1,3 +1,108 @@
+// !- Creamos y renderizamos el nav
+// Creamos los elementos del head
+const $linkIconsBootstrap = document.createElement('link');
+$linkIconsBootstrap.setAttribute(
+	'href',
+	'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css'
+);
+$linkIconsBootstrap.setAttribute('rel', 'stylesheet');
+const $linkCssNav = document.createElement('link');
+$linkCssNav.setAttribute('rel', 'stylesheet');
+$linkCssNav.setAttribute('href', '/css/nav.css');
+// Añadimos los link al head
+document.head.appendChild($linkIconsBootstrap);
+document.head.appendChild($linkCssNav);
+const $header = document.createElement('header');
+$header.setAttribute('id', 'mainHeader');
+$header.innerHTML = `
+<div id="logo"><h1>descansAR</h1></div>
+			<button id="abrir" class="abrir-menu"><i class="bi bi-list"></i></button>
+			<nav class="nav" id="nav">
+				<button id="cerrar" class="cerrar-menu">
+					<i class="bi bi-x-lg"></i>
+				</button>
+				<ul class="nav-list">
+					<li class="d-flex align-items-center"><a href="">Home</a></li>
+					<li class="d-flex align-items-center"><a href="">About</a></li>
+					<li class="d-flex align-items-center"><a href="">Contacto</a></li>
+					<li class="d-flex align-items-center">
+						<a href="/html/create-publication.html">Publicar</a>
+					</li>
+					<li users-table class="d-flex d-none align-items-center">
+						<a href="/html/users-table.html">Tabla de Usuarios</a>
+					</li>
+					<li class="d-flex align-items-center" id="dropdownSignUp">
+						<div class="dropdown">
+							<button
+								class="btn btn-primary dropdown-toggle"
+								type="button"
+								data-bs-toggle="dropdown"
+								aria-expanded="false">
+								Registrarme
+							</button>
+							<ul class="dropdown-menu">
+								<li>
+									<a
+										id="signup-guest"
+										class="dropdown-item"
+										redirection
+										signup
+										href="#"
+										>Como huésped</a
+									>
+								</li>
+								<li>
+									<a
+										id="signup-host"
+										redirection
+										signup
+										class="dropdown-item"
+										href="#"
+										>Como anfitrión</a
+									>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li class="d-flex align-items-center" id="dropdownLogin">
+						<div class="dropdown">
+							<button
+								class="btn btn-secondary dropdown-toggle"
+								type="button"
+								data-bs-toggle="dropdown"
+								aria-expanded="false">
+								Login
+							</button>
+							<ul class="dropdown-menu">
+								<li>
+									<a
+										id="login-guest"
+										redirection
+										login
+										class="dropdown-item"
+										href="#"
+										>Como huésped</a
+									>
+								</li>
+								<li>
+									<a
+										id="login-host"
+										redirection
+										login
+										class="dropdown-item"
+										href="#"
+										>Como anfitrión</a
+									>
+								</li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</nav>
+`;
+document.querySelector('#headerBefore').before($header);
+
+// --------------
 const nav = document.querySelector('#nav');
 const abrir = document.querySelector('#abrir');
 const cerrar = document.querySelector('#cerrar');
@@ -9,7 +114,6 @@ abrir.addEventListener('click', () => {
 cerrar.addEventListener('click', () => {
 	nav.classList.remove('visible');
 });
-
 
 // !Handle nav logic ----------------------
 // Obtengo los elementos de login y signup antes de borrarlos
@@ -41,7 +145,7 @@ function renderNavElements() {
 		// document.querySelector('#dropdownSignUp').style.display = 'none';
 		document.querySelector('#dropdownLogin').innerHTML = '';
 		document.querySelector('#dropdownLogin').innerHTML = `
-        <div class="d-flex gap-3 align-items-center">
+        <div class="d-flex gap-3 align-items-center flex-column flex-md-row">
             <div class="d-flex flex-column">
                 <p class="my-auto">
                     Hola <b>${user.firstName}</b>!
@@ -53,7 +157,7 @@ function renderNavElements() {
                 </div>
             </div>
 
-            <div class="dropdown">
+            <div class="dropdown" data-bs-theme="dark">
 				<button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 					Mi cuenta
 				</button>
