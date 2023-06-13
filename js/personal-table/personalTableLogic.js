@@ -115,6 +115,16 @@ function mainPersonalTable() {
 			let location = '';
 			if (mode === 'host-publications') {
 				const date = new Date(obj.dateOfCreation).toLocaleString();
+				const actionButtons = `
+                <div>
+                    ${button(obj, mode).replace('Ir', 'Editar')}
+                    <button	publication-id=${
+											obj.publicationId
+										} delete-publication=true class="btn btn-outline-danger">
+                        Borrar
+                    </button>
+                </div>
+                `;
 				return `
                 <tr>
                     <th scope="row">${idx}</th>
@@ -123,8 +133,8 @@ function mainPersonalTable() {
                     <td>${obj.accommodationLocation}</td>
                     <td>${obj.guestCapacity}</td>
                     <td>${obj.shortDescription}</td>
-                    <td>${obj.accommodationPrice}</td>
-                    <td>${button(obj, mode)}</td>
+                    <td>$${obj.accommodationPrice}</td>
+                    <td>${actionButtons}</td>
                 </tr>
                 `;
 			}
@@ -142,7 +152,7 @@ function mainPersonalTable() {
                     <td>${location}</td>
                     <td>${obj.checkInDate}</td>
                     <td>${obj.checkOutDate}</td>
-                    <td>${obj.totalCost}</td>
+                    <td>$${obj.totalCost}</td>
                     <td>${obj.guestsQuantity}</td>
                     <td>${email}</td>
                     <td>${button(obj, mode)}</td>
@@ -199,6 +209,12 @@ function mainPersonalTable() {
 		if (mode === 'hostBookings') {
 			const bookingList = findUser.ownerBookings;
 
+			// En caso de no tener reservas
+			if (bookingList.length === 0) {
+				$container.innerHTML = `<h4>Aún tienes reservas en tus publicaciones</h4>`;
+				return;
+			}
+
 			renderGuestTable(
 				$container,
 				'host',
@@ -217,17 +233,23 @@ function mainPersonalTable() {
 		if (mode === 'hostPublications') {
 			const userListings = findUser.userListings;
 
+			// En caso de no tener publicaciones
+			if (userListings.length === 0) {
+				$container.innerHTML = `<h4>Todavía no publicaste ningún aviso, que estas esperando?</h4>`;
+				return;
+			}
+
 			renderGuestTable(
 				$container,
 				'host-publications',
 				userListings,
-				'Fecha de creación',
+				'Última modificación',
 				'Título',
 				'Ubicación',
 				'Cantidad de huéspedes',
 				'Descripción',
 				'Precio por noche',
-				'Editar la publicacion'
+				'Acciones'
 			);
 			mainPersonalTable();
 			return;
@@ -244,6 +266,79 @@ function mainPersonalTable() {
 		const path = '/html/create-publication.html';
 		const query = `?edit=true&id=${publicationId}`;
 		window.location.href = path + query;
+	}
+	// Controlador para eliminar publicaciones
+	document
+		.querySelectorAll('button[delete-publication]')
+		.forEach((btn) => btn.addEventListener('click', handleClickDeleteCard));
+	// Handler para eliminar cards
+	function handleClickDeleteCard(e) {
+		// Confirmacion con sweetAlert
+		const swalWithBootstrapButtons = Swal.mixin({
+			customClass: {
+				confirmButton: 'btn btn-success',
+				cancelButton: 'btn btn-danger',
+			},
+			buttonsStyling: false,
+		});
+
+		swalWithBootstrapButtons
+			.fire({
+				title: 'Estás seguro?',
+				text: 'Eliminar una publicación es permanente, no puede deshacerse!',
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonText: 'Eliminar',
+				cancelButtonText: 'Cancelar',
+				reverseButtons: true,
+			})
+			.then((result) => {
+				if (result.isConfirmed) {
+					// Caso de confirmar la eliminacion
+					// Eliminacion de la card del listado de publicaciones
+					const publicationId = e.target.attributes['publication-id'].value;
+					const rentalCards = getFromLocalStorage('accommodationDB');
+					const findCardIndex = rentalCards.findIndex(
+						(card) => card.id === publicationId
+					);
+					rentalCards.splice(findCardIndex, 1);
+					addToLocalStorage('accommodationDB', rentalCards);
+					// Eliminacion del listado de publicaciones del usuario
+					const globalUsersBD = getFromLocalStorage('usersBD');
+					const userIndex = globalUsersBD.hostUsers.findIndex(
+						(user) => user.emailInput === currentUser.emailLogin
+					);
+					const cardResIndex = globalUsersBD.hostUsers[
+						userIndex
+					].userListings.findIndex(
+						(card) => card.publicationId === publicationId
+					);
+					// Eliminamos ese registro
+					globalUsersBD.hostUsers[userIndex].userListings.splice(
+						cardResIndex,
+						1
+					);
+					// Escribimos en el localStorage
+					addToLocalStorage('usersBD', globalUsersBD);
+					// Mensaje de confirmación
+					swalWithBootstrapButtons
+						.fire(
+							'Publicación eliminada',
+							'Ya no podrás acceder a ella',
+							'success'
+						)
+						.then(() => location.reload());
+				} else if (
+					/* Read more about handling dismissals below */
+					result.dismiss === Swal.DismissReason.cancel
+				) {
+					swalWithBootstrapButtons.fire(
+						'Cancelado',
+						'Tu publicación todavía existe :)',
+						'error'
+					);
+				}
+			});
 	}
 }
 mainPersonalTable();
