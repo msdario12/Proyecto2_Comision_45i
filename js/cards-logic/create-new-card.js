@@ -134,20 +134,8 @@ function createFormNewCard() {
 			numberOfReviews: randomNumber(1000),
 		};
 
-		// !Si estamos en modo edicion, eliminamos la card del localStorage
-		if (urlParams.has('edit')) {
-			const publicationId = urlParams.get('id');
-			const cardsList = getFromLocalStorage('accommodationDB');
-			const findCardIndex = cardsList.findIndex(
-				(card) => card.id === publicationId
-			);
-			cardsList.splice(findCardIndex, 1);
-			addToLocalStorage('accommodationDB', cardsList);
-		}
-
-		// Añadimos la nueva card al localStorage de las publicaciones
 		const rentalCards = getFromLocalStorage('accommodationDB');
-		addToLocalStorage('accommodationDB', [newCard, ...rentalCards]);
+
 		// Añadimos la publicación a la lista de publicaciones del usuario
 		// Obtenemos la lista de usuarios
 		const globalUsersBD = getFromLocalStorage('usersBD');
@@ -168,15 +156,47 @@ function createFormNewCard() {
 			accommodationPrice: priceInput.valueAsNumber,
 		});
 		console.log(globalUsersBD);
+
+		// !Si estamos en modo edicion, eliminamos la card del localStorage
+		if (urlParams.has('edit')) {
+			// Eliminamos del listado de publicaciones
+			const publicationId = urlParams.get('id');
+			// const rentalCards = getFromLocalStorage('accommodationDB');
+			const findCardIndex = rentalCards.findIndex(
+				(card) => card.id === publicationId
+			);
+			rentalCards.splice(findCardIndex, 1);
+			addToLocalStorage('accommodationDB', rentalCards);
+			// Eliminamos del listado del usuario host
+			// Buscamos la publicacion en el array de publicaciones del usuario
+			const cardResIndex = globalUsersBD.hostUsers[
+				userIndex
+			].userListings.findIndex((card) => card.publicationId === publicationId);
+			// Eliminamos ese registro
+			globalUsersBD.hostUsers[userIndex].userListings.splice(cardResIndex, 1);
+		}
+
+		// ! Escritura en el localStorage
+		addToLocalStorage('accommodationDB', [newCard, ...rentalCards]);
 		addToLocalStorage('usersBD', globalUsersBD);
 
+		// Mensaje de confirmacion en caso de completar edicion
+		if (urlParams.has('edit')) {
+			renderAlertWithRedirection(
+				'Publicación editada correctamente',
+				'Continua editando tus publicaciones, seras redirigido en',
+				'success',
+				2000,
+				'/html/personal-table.html?type=#myPublications'
+			);
+			return;
+		}
 		// Alert de creación completa y redireccinado
-
 		renderAlertWithRedirection(
 			'Publicación creada correctamente',
 			'Sera redirigido al listado de publicaciones en',
 			'success',
-			2500,
+			2000,
 			'/html/cards.html'
 		);
 
