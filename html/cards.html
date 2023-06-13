@@ -22,168 +22,23 @@
 		<title>Cards</title>
 	</head>
 	<body>
-		<h1 class="">Card</h1>
-		<a href="#"></a>
-		<main>
-			<section class="container">
-				<h2>Crear una publicacion</h2>
-				<form id="createCardForm" class="row">
-					<div
-						class="col-6 d-flex flex-column justify-content-center align-content-center">
-						<!-- carga de imagenes -->
-						<div>
-							<input
-								type="file"
-								name="filepond"
-								class="filepond"
-								multiple
-								data-allow-reorder="true"
-								data-max-file-size="4MB"
-								data-max-files="4" />
-						</div>
-					</div>
-					<div class="col-6 d-flex flex-column align-content-center gap-2">
-						<!-- titulo de publicacion -->
-						<div class="form-floating mb-3">
-							<input
-								value="2r12r12r12r"
-								required
-								type="text"
-								class="form-control"
-								maxlength="120"
-								id="titleInput"
-								placeholder="Titulo de la publicacion..." />
-							<label for="titleInput">Titulo de la publicación</label>
-						</div>
-						<!-- ubicacion del alojamiento -->
-						<div class="form-floating mb-3">
-							<input
-								value="2r12r12r12r"
-								required
-								type="text"
-								class="form-control"
-								maxlength="120"
-								id="locationInput"
-								placeholder="Ubicacion..." />
-							<label for="locationInput">Ubicacion</label>
-						</div>
-						<!-- capacidad del alojamiento -->
-						<div class="form-floating mb-3">
-							<input
-								value="4"
-								required
-								type="number"
-								class="form-control"
-								maxlength="32"
-								id="capacityInput"
-								placeholder="Capacidad del alojamiento..." />
-							<label for="capacityInput">Capacidad del alojamiento</label>
-						</div>
-						<!-- servicios disponibles -->
-						<!--tendria que ser un select e ir mostrando los servicios agregados  -->
-						<!--
-											Wifi gratuito 🆗 - wifi
-											Estacionamiento gratuito 🚫
-											Piscina ❎ - droplet
-											Gimnasio 🚫
-											Desayuno incluido 🚫
-											Servicio de limpieza diario 🚫
-											Recepción 24 horas 🚫
-											Aire acondicionado  🆗 - air
-											Servicio de lavandería  🚫
-											Cocina completamente equipada 🚫
-											TV por cable/satélite 🆗 tv
-											Servicio de alquiler de bicicletas
-											Bar/Restaurante en el lugar 🆗 cofee
-											Servicio de guardería/niñera
-											Jacuzzi/Spa
-										 -->
-						<div class="form-check">
-							<input
-								class="form-check-input"
-								type="checkbox"
-								value=""
-								id="hasWifi" />
-							<label class="form-check-label" for="hasWifi">
-								Wifi gratuito
-							</label>
-						</div>
-						<div class="form-check">
-							<input
-								class="form-check-input"
-								type="checkbox"
-								value=""
-								id="hasParking" />
-							<label class="form-check-label" for="hasParking">
-								Estacionamiento gratuito
-							</label>
-						</div>
-						<div class="form-check">
-							<input
-								class="form-check-input"
-								type="checkbox"
-								value=""
-								id="hasPool" />
-							<label class="form-check-label" for="hasPool"> Piscina </label>
-						</div>
-						<div class="form-check">
-							<input
-								class="form-check-input"
-								type="checkbox"
-								value=""
-								id="hasGym" />
-							<label class="form-check-label" for="hasGym"> Gimnasio </label>
-						</div>
-						<div class="form-check">
-							<input
-								class="form-check-input"
-								type="checkbox"
-								value=""
-								id="hasBreakfast" />
-							<label class="form-check-label" for="hasBreakfast">
-								Desayuno incluido
-							</label>
-						</div>
-						<!-- descripcion corta limitada en caracteres -->
-						<div class="form-floating">
-							<textarea
-								value="asfasfasfasf"
-								rows="12"
-								required
-								class="form-control"
-								placeholder="Describe la publicación acá..."
-								id="descriptionTextArea"></textarea>
-							<label for="descriptionTextArea"
-								>Describe la publicación acá...</label
-							>
-						</div>
-						<!-- precio -->
-						<div class="form-floating">
-							<input
-								value="424214"
-								required
-								type="number"
-								class="form-control"
-								max="999999999"
-								id="priceInput"
-								placeholder="Password" />
-							<label for="priceInput">Precio de la publicación</label>
-						</div>
+		<div id="headerBefore">
+			<!-- El header se inserta antes de este div -->
+		</div>
 
-						<input
-							type="submit"
-							class="btn btn-primary"
-							value="Agregar publicación" />
-					</div>
-				</form>
-			</section>
+		<main class="container-lg">
+			<h2 class="display-2">Publicaciones</h2>
+
 			<section>
-				<h2>Buscar publicaciones</h2>
-				<form action="" id="searchCardsForm">
+				<h3 class="lead">
+					Explora las publicaciones de nuestros anfitriones y encontra tu
+					proximo destino
+				</h3>
+				<form class="my-4" action="" id="searchCardsForm">
 					<!-- Buscar por ubicacion -->
 					<div class="form-floating">
 						<input
-							value="cordoba"
+							
 							required
 							type="text"
 							class="form-control"
@@ -207,7 +62,7 @@
 					<!-- Buscar por cantidad de personas -->
 					<div class="form-floating">
 						<input
-							value="3"
+							
 							required
 							type="number"
 							max="64"
@@ -233,6 +88,7 @@
 					<input type="submit" class="btn btn-primary" value="Buscar" />
 				</form>
 			</section>
+			<div></div>
 			<section id="cards">
 				<!-- Example of one card -->
 
@@ -257,10 +113,12 @@
 			src="https://cdnjs.cloudflare.com/ajax/libs/filepond/4.30.4/filepond.min.js"
 			integrity="sha512-l+50U3iKl0++46sldyNg5mOh27O0OWyWWsU2UnGfIVcxC+fEttAvao0Rns9KclIELHihYJppMWmM5sWof0M7uA=="
 			crossorigin="anonymous"
-			referrerpolicy="no-referrer"
-			></script>
-
-		<!-- Script de funciones de interaccion con el localStorage -->
+			referrerpolicy="no-referrer"></script>
+		<!-- Funciones de operaciones con dates -->
+		<script src="/js/cards-logic/date-operations.js"></script>
+		<!-- Funciones del sweetAlert -->
+		<script src="/js/sweet-alert-render/sweet-alert.js"></script>
+		<!-- Script de f	unciones de interaccion con el localStorage -->
 		<script src="/js/cards-logic/localsotrage-functions.js"></script>
 
 		<!-- Manejo de la funcion de reservar publicacion -->
@@ -269,5 +127,9 @@
 		<script src="/js/cards-logic/cards.js"></script>
 		<!-- Filtrado de cards por busqueda o categoria -->
 		<script src="/js/cards-logic/filter-search-cards.js"></script>
+		<!-- Para el nav -->
+		<script src="/js/nav.js"></script>
+		<!-- Redireccionamiento del login y signUp -->
+		<script src="/js/mainUserRedirection.js"></script>
 	</body>
 </html>

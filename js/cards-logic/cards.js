@@ -1,141 +1,5 @@
-// Listado de objetos de prueba
-rentalHardCodedCards = [
-	{
-		imageGallery: [
-			'https://source.unsplash.com/random/?beach',
-			'https://source.unsplash.com/random/?ocean',
-		],
-		hostEmail: 'host1@gmail.com',
-		guestsList: [
-			{
-				guestEmail: 'guest1@gmail.com',
-				guestsQuantity: 4,
-				checkInDate: '2023-05-20',
-				checkOutDate: '2023-05-25',
-			},
-		],
-		accommodationTitle: 'Cozy Beachfront Villa',
-		accommodationLocation: 'Mar del Plata',
-		guestCapacity: 4,
-		servicesIcons: ['iconOfWater', 'iconOfPool'],
-		shortDescription:
-			'Experience a relaxing vacation in this cozy beachfront villa in Mar del Plata. Enjoy stunning ocean views and access to a private pool.',
-		accommodationPrice: 150,
-		rating: 9.2,
-		numberOfReviews: randomNumber(1000),
-	},
-	{
-		imageGallery: [
-			'https://source.unsplash.com/random/?mountain',
-			'https://source.unsplash.com/random/?cabin',
-		],
-		hostEmail: 'host2@gmail.com',
-		guestsList: [
-			{
-				guestEmail: 'guest2@gmail.com',
-				guestsQuantity: 2,
-				checkInDate: '2023-06-20',
-				checkOutDate: '2023-06-25',
-			},
-		],
-		accommodationTitle: 'Charming Mountain Cabin',
-		accommodationLocation: 'Bariloche',
-		guestCapacity: 6,
-		servicesIcons: ['iconOfWater', 'iconOfFireplace'],
-		shortDescription:
-			'Escape to the picturesque mountains of Bariloche and stay in this charming cabin. Enjoy hiking trails, breathtaking views, and a cozy fireplace.',
-		accommodationPrice: 120,
-		rating: 3.2,
-		numberOfReviews: randomNumber(1000),
-	},
-	{
-		imageGallery: [
-			'https://source.unsplash.com/random/?city',
-			'https://source.unsplash.com/random/?apartment',
-		],
-		hostEmail: 'host3@gmail.com',
-		guestsList: [
-			{
-				guestEmail: 'guest3@gmail.com',
-				guestsQuantity: 2,
-				checkInDate: '2023-07-20',
-				checkOutDate: '2023-07-25',
-			},
-		],
-		accommodationTitle: 'Luxurious City Apartment',
-		accommodationLocation: 'Buenos Aires',
-		guestCapacity: 8,
-		servicesIcons: ['iconOfGym', 'iconOfConcierge'],
-		shortDescription:
-			'Indulge in luxury at this stylish city apartment in the heart of Buenos Aires. Experience world-class amenities, vibrant nightlife, and top-notch restaurants.',
-		accommodationPrice: 200,
-		rating: 5.2,
-		numberOfReviews: randomNumber(1000),
-	},
-	{
-		imageGallery: [
-			'https://source.unsplash.com/random/?countryside',
-			'https://source.unsplash.com/random/?cottage',
-		],
-		hostEmail: 'host1@gmail.com',
-		guestsList: [
-			{
-				guestEmail: 'guest1@gmail.com',
-				guestsQuantity: 4,
-				checkInDate: '2023-08-20',
-				checkOutDate: '2023-08-25',
-			},
-		],
-		accommodationTitle: 'Rustic Countryside Cottage',
-		accommodationLocation: 'Córdoba',
-		guestCapacity: 4,
-		servicesIcons: ['iconOfGarden', 'iconOfBBQ'],
-		shortDescription:
-			'Get away from the city buzz and unwind in this charming countryside cottage in Córdoba. Enjoy beautiful nature, a private garden, and BBQ facilities.',
-		accommodationPrice: 80,
-		rating: 2.2,
-		numberOfReviews: randomNumber(1000),
-	},
-	{
-		imageGallery: [
-			'https://source.unsplash.com/random/?forest',
-			'https://source.unsplash.com/random/?retreat',
-		],
-		hostEmail: 'host2@gmail.com',
-		guestsList: [
-			{
-				guestEmail: 'guest2@gmail.com',
-				guestsQuantity: 4,
-				checkInDate: '2023-08-20',
-				checkOutDate: '2023-08-25',
-			},
-		],
-		accommodationTitle: 'Secluded Forest Retreat',
-		accommodationLocation: 'Mendoza',
-		guestCapacity: 6,
-		servicesIcons: ['iconOfHiking', 'iconOfWine'],
-		shortDescription:
-			'Immerse yourself in nature at this secluded forest retreat in Mendoza. Discover hiking trails, vineyards, and breathtaking mountain views.',
-		accommodationPrice: 90,
-		rating: 7.0,
-		numberOfReviews: randomNumber(1000),
-	},
-	// ... Agrega aquí los otros objetos restantes
-];
-// ! Agregar a las cards hardcodeadas
-// Chequear si todos los objetos tienen un ID, sino asignarles
-rentalHardCodedCards.forEach((card) => {
-	if (card.hasOwnProperty('id')) {
-		return;
-	}
-	card.id = createRandomID('L');
-});
 // Agrego los datos al localStorage
 let rentalCards = getFromLocalStorage('accommodationDB');
-// Veo si existe en el localStorage
-if (!rentalCards) {
-	rentalCards = addToLocalStorage('accommodationDB', [...rentalHardCodedCards]);
-}
 
 // ! Modelo de datos para cards de alojamiento
 
@@ -177,39 +41,51 @@ function renderCard(idx, obj) {
 		numberOfReviews,
 		id,
 	} = obj;
+	// Formateo el precio
+	let formatPrice = accommodationPrice
+		? accommodationPrice.toLocaleString('sp-AR', {
+				minimumFractionDigits: 2,
+		  })
+		: accommodationPrice;
 
 	// Creo un div en memoria
 	const $div = document.createElement('div');
 	// Agrego las clases a este elemento padre
-	$div.classList.add('card', 'mb-3', 'card-custom');
+	$div.classList.add(
+		'card',
+		'mb-3',
+		'card-custom',
+		'rounded-0',
+		'shadow-sm',
+		'border-1'
+	);
 	// Modifico el interior del html
-	$div.innerHTML = `<div class="row g-0">
-        <div class="col-md-4 carousel-parent" style="height: 125px">
+	$div.innerHTML = `<div id="${id}" class="row g-0 ">
+        <div class="col-sm-4 carousel-parent">
             ${createCarrusselString(imageGallery, id, accommodationTitle)}
         </div>
-        <div class="col-md-8">
-            <div class="card-body">
+        <div class="col-sm-8">
+            <div class="card-body h-100 d-flex flex-column justify-content-between">
                 <div class="d-flex justify-content-between">
                     <h5 class="card-title">${accommodationTitle}</h5>
                     ${createFavoriteStar(id)}
-                </div>
+				</div>
                 ${createRating(rating, numberOfReviews)}
                 <h6 class="card-subtitle mb-2 text-body-secondary muted"></h6>
-                <p class="card-text">
+                
                 <p class="card-text">${shortDescription}</p>
-                <span class="lead">Desde</span><h4 class="card-text"> $${accommodationPrice}/noche</h4>
+                <span class="lead">Desde</span><h4 class="card-text"> $${formatPrice} / noche</h4>
 				<div class="row">
-					<div class="col-6 d-flex align-items-center justify-content-start">
+					<div class="col-12 col-sm-6 d-flex align-items-center justify-content-end justify-content-sm-start">
 						<i height="16" data-feather="map-pin"></i>
 						<span class="small muted">${accommodationLocation}</span>
 						<i height="16" data-feather="user"></i>
 						<span class="small muted">${guestCapacity} Personas</span>
 					</div>
-					<div class="col-6 d-flex align-items-center justify-content-end">
-						<button publication-id=${id} class="btn btn-outline-success">Reservar ahora</button>
+					<div class="col-12 col-sm-6 d-flex align-items-center justify-content-end justify-content-sm-end mt-2">
+						<button publication-id=${id} class="btn btn-success py-2 px-4">Reservar ahora</button>
 					</div>
 				</div>
-                </p>
             </div>
         </div>
     </div>`;
@@ -229,13 +105,13 @@ function createCarrusselString(imgList, idxCarousel, accommodationTitle) {
 		// Creamos el html que mostrara cada imagen y los indicadores
 		if (idx === 0) {
 			// idx===0 es el primer elemento, le doy la clase "active"
-			html = `<div class="carousel-item carousel-custom active" style="max-height: 200px">
+			html = `<div class="carousel-item carousel-custom active">
             <img src=${src} class="d-block w-100 img-fluid object-fit-cover object-center" alt="Imagen de ${accommodationTitle}">
           </div>`;
 			indicator = `<button type="button" data-bs-target="#carousel-num-${idxCarousel}" data-bs-slide-to="${idx}" class="active" aria-current="true" aria-label="Slide ${idx}"></button>`;
 		} else {
 			// el resto no tiene "active"
-			html = `<div class="carousel-item carousel-custom" style="height: 200px">
+			html = `<div class="carousel-item carousel-custom">
             <img src=${src} class="d-block w-100 img-fluid object-fit-cover object-center" alt="Imagen de ${accommodationTitle}">
           </div>`;
 			indicator = `<button type="button" data-bs-target="#carousel-num-${idxCarousel}" data-bs-slide-to="${idx}" aria-label="Slide ${idx}"></button>`;
@@ -246,11 +122,11 @@ function createCarrusselString(imgList, idxCarousel, accommodationTitle) {
 	});
 	// defino el string total de todo el carousel
 	const string = `
-    <div id="carousel-num-${idxCarousel}" class="carousel slide w-100">
+    <div id="carousel-num-${idxCarousel}" class="carousel slide w-100 h-100">
         <div class="carousel-indicators">
             ${carouselIndicators}
         </div>
-        <div class="carousel-inner">
+        <div class="carousel-inner h-100">
             ${carruselItems}
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carousel-num-${idxCarousel}" data-bs-slide="prev">
@@ -284,89 +160,7 @@ function generateFormForCreateCards() {
 	const html = ``;
 }
 
-// !-----------------------------------Filedrop
-// Register the plugin
-FilePond.registerPlugin(FilePondPluginImagePreview);
-FilePond.registerPlugin(FilePondPluginFileValidateType);
-// Get a reference to the file input element
-const inputElement = document.querySelector('input[type="file"]');
-
-// Create a FilePond instance
-const filepond = FilePond.create(inputElement, {
-	labelIdle:
-		'Arrastra las imágenes aquí o  <span class="filepond--label-action"> Selecciónalas desde tu computadora</span>',
-	storeAsFile: true,
-	allowMultiple: true,
-	acceptedFileTypes: ['image/png', 'image/jpeg'],
-	maxFiles: 5,
-	fileValidateTypeDetectType: (source, type) =>
-		new Promise((resolve, reject) => {
-			// Do custom type detection here and return with promise
-
-			resolve(type);
-		}),
-});
-
-// !-----------------------------------Filedrop END
-
 // ?---------------------------form Input
-
-const $formCreateCard = document.querySelector('#createCardForm');
-
-// Manejamos el evento de submit en el form
-$formCreateCard.addEventListener('submit', function (e) {
-	e.preventDefault(); // Prevenimos el reload
-	const el = e.target.elements;
-	let srcImg = []; // Para almacenar las URL de las img
-	// Vemos si existen archivos
-	const fileList = Array.from(el.filepond);
-
-	// ! Falta añadir una imagen tipo placeholder por defecto
-
-	if (fileList.length > 0) {
-		// En caso de que sea solo 1 imagen
-		if (fileList.length === 0) {
-			const src = URL.createObjectURL(el.filepond.files[0]);
-			srcImg.push(src);
-		} else {
-			// Sino, es que tenemos mas de 1
-			fileList.forEach((file) => {
-				console.log(file);
-				const src = URL.createObjectURL(file.files[0]);
-				srcImg.push(src);
-			});
-		}
-	}
-	// Crear array con los servicios que se marcaron como true
-	let servicesList = [];
-	// Revisamos cada input, y por los que son checkbox, vemos si tienen true
-	[...el].forEach((el) => {
-		if (el.type === 'checkbox' && el.checked) {
-			servicesList.push(el.id);
-		}
-	});
-
-	console.log(servicesList);
-
-	const newCard = {
-		id: createRandomID('L'),
-		imageGallery: srcImg,
-		accommodationTitle: el.titleInput.value,
-		accommodationLocation: el.locationInput.value,
-		guestCapacity: el.capacityInput.value,
-		servicesIcons: servicesList,
-		shortDescription: el.descriptionTextArea.value,
-		accommodationPrice: priceInput.valueAsNumber,
-		rating: randomNumber(10),
-		numberOfReviews: randomNumber(1000),
-	};
-
-	rentalCards.unshift(newCard);
-	// renderCard(newCard);
-	renderCardList(rentalCards);
-	// filepond.removeFiles()
-	// this.reset();
-});
 
 // ?---------------------------form Input END
 function renderCardList(array) {
