@@ -144,7 +144,7 @@ async function sweetAlertRender(checkin, checkout, quantity, card) {
 		},
 	})
 		.then(async (result) => {
-			const { days, quantity, price, dateIn, dateOut } = result.value;
+			const { days, quantity, price, swalIn, swalOut } = result.value;
 			const totalCost = days * quantity * price;
 			const { value: formValues } = await Swal.fire({
 				icon: 'success',
@@ -171,8 +171,8 @@ async function sweetAlertRender(checkin, checkout, quantity, card) {
 					publicationId: card.id,
 					hostEmail: card.hostEmail,
 					guestsQuantity: quantity,
-					checkInDate: dateIn,
-					checkOutDate: dateOut,
+					checkInDate: swalIn,
+					checkOutDate: swalOut,
 					totalCost,
 					location: card.accommodationLocation,
 				};
@@ -193,8 +193,8 @@ async function sweetAlertRender(checkin, checkout, quantity, card) {
 				const newReservationInCard = {
 					guestEmail: emailUserGuest,
 					guestsQuantity: quantity,
-					checkInDate: dateIn,
-					checkOutDate: dateOut,
+					checkInDate: swalIn,
+					checkOutDate: swalOut,
 				};
 				// Añadimos la reservacion
 				listOfCards[pubIdx].guestsList.push(newReservationInCard);
@@ -215,8 +215,8 @@ async function sweetAlertRender(checkin, checkout, quantity, card) {
 					publicationId: card.id,
 					guestEmail: emailUserGuest,
 					guestsQuantity: quantity,
-					checkInDate: dateIn,
-					checkOutDate: dateOut,
+					checkInDate: swalIn,
+					checkOutDate: swalOut,
 					totalCost,
 				};
 				// Añadimos el id de la publicacion a ese usuario
