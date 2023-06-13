@@ -21,18 +21,20 @@ function mainPersonalTable() {
 	// Obtengo que tipo de tabla vamos a mostrar
 	if (currentUser.type === 'guest') {
 		// El usuario es guest, mostrar sus reservas
-		document.querySelector('#titlePage').textContent = 'Tabla de Reservaciones';
+		document.querySelector('#titlePage').textContent = `
+        Bienvenido ${currentUser.firstName}! Estas son tus reservas.
+        `;
 		// Obtenemos la lista de reservas del usuario
 		// Buscamos el usuario en la lista de usuarios
 		const findUser = globalUsers.guestsUsers.find(
 			(user) => user.emailInput === currentUser.emailLogin
 		);
-		const bookingList = findUser.userBookings;
+		const reservationList = findUser.userBookings;
 
 		renderGuestTable(
 			$container,
-			'all',
-			bookingList,
+			'guest',
+			reservationList,
 			'Destino',
 			'Fecha de salida',
 			'Fecha de regreso',
@@ -44,18 +46,31 @@ function mainPersonalTable() {
 	}
 	if (currentUser.type === 'host') {
 		// El usuario es guest, mostrar sus publicaciones o reservas
-		document.querySelector('#titlePage').textContent = 'Tabla Publicaciones';
-		// Mostrar botones para alternar la funcionalidad de la tabla
-		// TODO Terminar la logica de cambiar el tipo de tabla a mostrar
-		document.querySelector('#tableButtons').innerHTML = `
-        <button class="btn btn-primary">Mis reservas</button>
-        <button class="btn btn-primary">Mis publicaciones</button>
+		document.querySelector('#titlePage').textContent = `
+        Bienvenido ${currentUser.firstName}! Estos son tus alquileres.
         `;
+
+		const findUser = globalUsers.hostUsers.find(
+			(user) => user.emailInput === currentUser.emailLogin
+		);
+
+		const bookingList = findUser.ownerBookings;
+
+		renderGuestTable(
+			$container,
+			'host',
+			bookingList,
+			'Fecha de la operación',
+			'Fecha de salida',
+			'Fecha de regreso',
+			'Monto a pagar',
+			'Cantidad de huéspedes',
+			'Email del inquilino',
+			'Publicación'
+		);
 	}
 
-	let usersBD = getFromLocalStorage('usersBD') || [];
-
-	// Logica para manejar la tabla de usuarios que ve el administrador
+	// Logica para manejar la tabla personal de guest
 	function createGuestTable(arrayToRender, mode, ...args) {
 		const $table = document.createElement('table');
 		$table.classList.add('table');
@@ -77,26 +92,36 @@ function mainPersonalTable() {
             Ir
         </button>`;
 
-		function createRow(obj, idx) {
+		function createRow(obj, idx, mode) {
+			let email = '';
+			let location = '';
+			if (mode === 'guest') {
+				email = obj.hostEmail;
+				location = obj.location;
+			}
+			if (mode === 'host') {
+				email = obj.guestEmail;
+				location = new Date(obj.dateOfReservation).toLocaleString();
+			}
 			return `
-		<tr>
-			<th scope="row">${idx}</th>
-			<td>${obj.location}</td>
-			<td>${obj.checkInDate}</td>
-			<td>${obj.checkOutDate}</td>
-			<td>${obj.totalCost}</td>
-			<td>${obj.guestsQuantity}</td>
-			<td>${obj.hostEmail}</td>
-			<td>${button(obj)}</td>
-		</tr>
-		`;
+                <tr>
+                    <th scope="row">${idx}</th>
+                    <td>${location}</td>
+                    <td>${obj.checkInDate}</td>
+                    <td>${obj.checkOutDate}</td>
+                    <td>${obj.totalCost}</td>
+                    <td>${obj.guestsQuantity}</td>
+                    <td>${email}</td>
+                    <td>${button(obj)}</td>
+                </tr>
+                `;
 		}
 		let tableBodyInnerHost = ``;
 		let tableBodyInnerGuest = ``;
 		let number = 0;
 		arrayToRender.forEach((obj, idx) => {
 			number++;
-			tableBodyInnerHost += createRow(obj, number);
+			tableBodyInnerHost += createRow(obj, number, mode);
 		});
 
 		$tableHead.innerHTML = tableHeadInner;
@@ -105,15 +130,13 @@ function mainPersonalTable() {
 		$table.appendChild($tableBody);
 		return $table;
 	}
-	// ! Setear el container de la tabla
+
 	// Renderizar la tabla en funcion del modo
 	function renderGuestTable(htmlParent, mode, array, ...args) {
 		htmlParent.innerHTML = '';
 		const $tableUsers = createGuestTable(array, mode, ...args);
 		htmlParent.appendChild($tableUsers);
 	}
-	// Renderizo por primera vez la tabla
-	// renderGuestTable($containerForUserTable, 'all');
 	// ! Logica para modificar lo que se muestra en la tabla de usuarios ----------
 	// Controllers de los buttons para mostrar tabla
 	document
@@ -121,86 +144,12 @@ function mainPersonalTable() {
 		.forEach((btn) =>
 			btn.addEventListener('click', handleClickLinkPublication)
 		);
-	// document.querySelector('#showGuestsUsers').onclick = () => {
-	// 	addToLocalStorage('userTableViewMode', {
-	// 		category: 'guest',
-	// 	});
-	// 	renderGuestTable($containerForUserTable, 'guest');
-	// };
-	// document.querySelector('#showHostUsers').onclick = () => {
-	// 	addToLocalStorage('userTableViewMode', {
-	// 		category: 'host',
-	// 	});
-	// 	renderGuestTable($containerForUserTable, 'host');
-	// };
-	// document.querySelector('#showAllUsers').onclick = () => {
-	// 	addToLocalStorage('userTableViewMode', {
-	// 		category: 'all',
-	// 	});
-	// 	renderGuestTable($containerForUserTable, 'all');
-	// };
-	// Handler para click en link de publicaciones
+	// Handler que redirecciona a la publicacion
 	function handleClickLinkPublication(e) {
 		const publicationId = e.target.attributes['publication-id'].value;
 		const path = '/html/cards.html';
 		const query = `#${publicationId}`;
 		window.location.href = path + query;
-	}
-	// ! Logica para aprobar o banear usuarios al click de los botones respectivos--------------------
-	// Handler para los botones de ban
-	function handleTableButtonClick(e) {
-		// Obtener la accion a realizar con el boton
-		const actionToRealize = e.target.attributes['btn-mode'].value;
-		// Obtener el email del usuario del boton
-		const userEmail = e.target.attributes['btn-target'].value;
-		// Obtener el tipo de usuario
-		const userType = e.target.attributes['btn-user-type'].value;
-		// Leer los datos del usuario en la base de datos
-		let globalUsersBD = getFromLocalStorage('usersBD');
-		// Encontrar el usuario de la bd
-		let findUser;
-		let path;
-		if (userType === 'host') {
-			path = globalUsersBD.hostUsers;
-			findUser = globalUsersBD.hostUsers.find(
-				(user) => user.emailInput === userEmail
-			);
-		}
-		if (userType === 'guest') {
-			path = globalUsersBD.guestsUsers;
-			findUser = globalUsersBD.guestsUsers.find(
-				(user) => user.emailInput === userEmail
-			);
-		}
-		// Si el boton es de ban, poner false
-		if (actionToRealize === 'ban') {
-			findUser.isRegistrationApproved = false;
-			e.target.attributes['btn-mode'].value = 'approve';
-		}
-		if (actionToRealize === 'approve') {
-			findUser.isRegistrationApproved = true;
-			e.target.attributes['btn-mode'].value = 'ban';
-		}
-		// Añado de vuelta al localStorage
-		if (userType === 'host') {
-			// ! AÑADIR SWEET ALERT
-			addToLocalStorage('usersBD', {
-				hostUsers: [...globalUsersBD.hostUsers, findUser],
-				...globalUsersBD,
-			});
-		}
-		if (userType === 'guest') {
-			// ! AÑADIR SWEET ALERT
-			addToLocalStorage('usersBD', {
-				guestsUsers: [...globalUsersBD.guestsUsers, findUser],
-				...globalUsersBD,
-			});
-		}
-		usersBD = getFromLocalStorage('usersBD');
-		const viewMode = getFromLocalStorage('userTableViewMode');
-		renderGuestTable($containerForUserTable, viewMode.category);
-
-		console.log(viewMode);
 	}
 }
 mainPersonalTable();
