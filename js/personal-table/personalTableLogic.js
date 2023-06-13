@@ -222,7 +222,7 @@ function mainPersonalTable() {
 	// ! Logica para modificar lo que se muestra en la tabla de usuarios ----------
 	// Controllers de los buttons para mostrar tabla
 	document
-		.querySelectorAll('button[guest]')
+		.querySelectorAll('button[guest], button[host]')
 		.forEach((btn) =>
 			btn.addEventListener('click', handleClickLinkPublication)
 		);
