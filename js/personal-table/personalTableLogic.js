@@ -135,14 +135,16 @@ function mainPersonalTable() {
 		console.log(arrayToRender, mode);
 
 		let button = (obj, mode) => `
-        <button	publication-id=${obj.publicationId} ${mode}=true class="btn btn-outline-primary">
+        <button	publication-id=${obj.publicationId} ${mode}=true class="my-1 btn btn-secondary">
             Ir
         </button>`;
+		let tableCaption = '';
 
 		function createRow(obj, idx, mode) {
 			let email = '';
 			let location = '';
 			if (mode === 'host-publications') {
+				tableCaption = `Tabla de publicaciones`;
 				const date = new Date(obj.dateOfCreation).toLocaleString();
 				const actionButtons = `
                 <div>
@@ -170,10 +172,12 @@ function mainPersonalTable() {
 			if (mode === 'guest') {
 				email = obj.hostEmail;
 				location = obj.location;
+				tableCaption = `Tabla de reservas`;
 			}
 			if (mode === 'host') {
 				email = obj.guestEmail;
 				location = new Date(obj.dateOfReservation).toLocaleString();
+				tableCaption = `Tabla de alquileres`;
 			}
 			return `
                 <tr>
@@ -195,11 +199,22 @@ function mainPersonalTable() {
 			number++;
 			tableBodyInnerHost += createRow(obj, number, mode);
 		});
-
+		let caption = `<caption>
+			<h3 class="">${tableCaption}</h3>
+		</caption>`;
+		$tableBody.classList.add('table-group-divider');
 		$tableHead.innerHTML = tableHeadInner;
 		$tableBody.innerHTML = tableBodyInnerHost + tableBodyInnerGuest;
+		$tableHead.classList.add('align-middle');
+		$table.innerHTML += caption;
 		$table.appendChild($tableHead);
 		$table.appendChild($tableBody);
+		$table.classList.add(
+			'text-center',
+			'align-middle',
+			'table-hover',
+			'caption-top'
+		);
 		return $table;
 	}
 

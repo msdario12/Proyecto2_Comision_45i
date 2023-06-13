@@ -29,7 +29,8 @@ function renderNavElements() {
 		if (user.type === 'host') {
 			classColor = 'text-bg-success';
 			button =
-				'<li><a personal-table id="#myPublications" class="dropdown-item" href="#">Mis publicaciones</a></li>';
+				`<li><a personal-table id="#myPublications" class="dropdown-item" href="#">Mis publicaciones</a></li>
+				<li><a personal-table id="#myRentals" class="dropdown-item" href="#">Mis alquileres</a></li>`;
 		}
 		if (user.type === 'admin') {
 			classColor = 'text-bg-warning';

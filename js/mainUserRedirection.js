@@ -40,5 +40,17 @@ function handleClickPersonalTable(e) {
 	const path = '/html/personal-table.html';
 	const query = `?type=${type}`;
 
+	let mode = '';
+	if (type === '#myPublications') {
+		mode = 'hostPublications';
+	}
+	if (type === '#myRentals') {
+		mode = 'hostBookings';
+	}
+
+	const viewMode = addToLocalStorage('personalTableViewMode', {
+		category: mode,
+	});
+
 	window.location.href = path + query;
 }
