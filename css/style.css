@@ -28,12 +28,13 @@
   /* Aquí empiezan los estilos para las tarjetas del Main */
 #card-primer-fila{
     margin-top: .2rem;
-    margin-bottom: 2rem;
+    /* margin-bottom: 1rem; */
     border-radius: 15px 30px 15px 30px;
 }
 
 #card-segunda-fila{
     border-radius: 25px 25px 25px 25px;
+    margin-top: 0;
     margin-bottom: 1rem;
 }
 
