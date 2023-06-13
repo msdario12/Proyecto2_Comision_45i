@@ -174,7 +174,7 @@ async function sweetAlertRender(checkin, checkout, quantity, card) {
 					checkInDate: dateIn,
 					checkOutDate: dateOut,
 					totalCost,
-					location: accommodationLocation,
+					location: card.accommodationLocation,
 				};
 				// Añadimos el id de la publicacion a ese usuario
 				guestsUsers[findUserGuestIndex].userBookings.unshift(newBookingInGuest);
