@@ -41,6 +41,12 @@ function renderCard(idx, obj) {
 		numberOfReviews,
 		id,
 	} = obj;
+	// Formateo el precio
+	let formatPrice = accommodationPrice
+		? accommodationPrice.toLocaleString('sp-AR', {
+				minimumFractionDigits: 2,
+		  })
+		: accommodationPrice;
 
 	// Creo un div en memoria
 	const $div = document.createElement('div');
@@ -61,7 +67,7 @@ function renderCard(idx, obj) {
                 <h6 class="card-subtitle mb-2 text-body-secondary muted"></h6>
                 
                 <p class="card-text">${shortDescription}</p>
-                <span class="lead">Desde</span><h4 class="card-text"> $${accommodationPrice}/noche</h4>
+                <span class="lead">Desde</span><h4 class="card-text"> $${formatPrice} / noche</h4>
 				<div class="row">
 					<div class="col-12 col-sm-6 d-flex align-items-center justify-content-end justify-content-sm-start">
 						<i height="16" data-feather="map-pin"></i>

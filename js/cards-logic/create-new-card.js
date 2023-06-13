@@ -123,6 +123,7 @@ function createFormNewCard() {
 		const actualDate = new Date().toString();
 		const idCard = createRandomID('L');
 		// Añado el email del host y creo el array de las reservaciones
+		const priceFormat = parseFloat(priceInput.value);
 		const newCard = {
 			id: idCard,
 			imageGallery: srcImg,
@@ -133,7 +134,7 @@ function createFormNewCard() {
 			guestCapacity: el.capacityInput.value,
 			servicesIcons: servicesList,
 			shortDescription: el.descriptionTextArea.value,
-			accommodationPrice: priceInput.valueAsNumber,
+			accommodationPrice: priceFormat,
 			rating: randomNumber(10),
 			numberOfReviews: randomNumber(1000),
 		};
