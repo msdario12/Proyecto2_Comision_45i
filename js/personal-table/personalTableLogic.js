@@ -1,4 +1,12 @@
 function mainPersonalTable() {
+	// Creo en localStorage, la vista activa
+	let personalTableViewMode = getFromLocalStorage('personalTableViewMode');
+	// Si no existe, lo agrego
+	if (!personalTableViewMode) {
+		personalTableViewMode = addToLocalStorage('personalTableViewMode', {
+			category: 'hostPublications',
+		});
+	}
 	// Obtener datos del usuario actual
 	const currentUser = getFromLocalStorage('currentUser');
 
@@ -63,8 +71,8 @@ function mainPersonalTable() {
         Bienvenido ${currentUser.firstName}! Estos son tus alquileres y publicaciones.
         `;
 		document.querySelector('#tableButtons').innerHTML = `
-        <button host-button id="hostBookings" class="btn btn-secondary">Mis publicaciones</button>
-        <button host-button id="hostPublications" class="btn btn-info">Mis alquileres</button>
+        <button change-view-btn id="hostPublications" class="btn btn-secondary">Mis publicaciones</button>
+        <button change-view-btn id="hostBookings" class="btn btn-info">Mis alquileres</button>
         `;
 
 		const findUser = globalUsers.hostUsers.find(
@@ -73,19 +81,40 @@ function mainPersonalTable() {
 
 		const bookingList = findUser.ownerBookings;
 
-		// Inicialmente se renderiza la tabla de alquileres
-		// renderGuestTable(
-		// 	$container,
-		// 	'host',
-		// 	bookingList,
-		// 	'Fecha de la operación',
-		// 	'Fecha de salida',
-		// 	'Fecha de regreso',
-		// 	'Monto a pagar',
-		// 	'Cantidad de huéspedes',
-		// 	'Email del inquilino',
-		// 	'Publicación'
-		// );
+		console.log(personalTableViewMode.category);
+
+		if (personalTableViewMode.category === 'hostPublications') {
+			const userListings = findUser.userListings;
+
+			renderGuestTable(
+				$container,
+				'host-publications',
+				userListings,
+				'Última modificación',
+				'Título',
+				'Ubicación',
+				'Cantidad de huéspedes',
+				'Descripción',
+				'Precio por noche',
+				'Acciones'
+			);
+		}
+		if (personalTableViewMode.category === 'hostBookings') {
+			const bookingList = findUser.ownerBookings;
+
+			renderGuestTable(
+				$container,
+				'host',
+				bookingList,
+				'Fecha de la operación',
+				'Fecha de salida',
+				'Fecha de regreso',
+				'Monto a pagar',
+				'Cantidad de huéspedes',
+				'Email del inquilino',
+				'Publicación'
+			);
+		}
 	}
 
 	// Logica para manejar la tabla personal de guest
@@ -176,8 +205,18 @@ function mainPersonalTable() {
 
 	// Renderizar la tabla en funcion del modo
 	function renderGuestTable(htmlParent, mode, array, ...args) {
+		let msg = '';
+		if (mode === 'host') {
+			msg = 'tus alquileres';
+		}
+		if (mode === 'host-publications') {
+			msg = 'tus publicaciones';
+		}
 		htmlParent.innerHTML = '';
-		const $tableUsers = createGuestTable(array, mode, ...args);
+		let $tableUsers = createGuestTable(array, mode, ...args);
+		if (array.length === 0) {
+			$tableUsers.innerHTML = `<h4>No hay datos de ${msg} por acá</h4>`;
+		}
 		htmlParent.appendChild($tableUsers);
 	}
 	// ! Logica para modificar lo que se muestra en la tabla de usuarios ----------
@@ -196,64 +235,16 @@ function mainPersonalTable() {
 	}
 	// Controlador para cambiar el modo de tabla del host
 	document
-		.querySelectorAll('button[host-button]')
+		.querySelectorAll('button[change-view-btn]')
 		.forEach((btn) => btn.addEventListener('click', handleClickHostTableMode));
 	// Handler para cambiar el modo de la tabla del host
 	function handleClickHostTableMode(e) {
 		const mode = e.target.id;
-
-		const findUser = globalUsers.hostUsers.find(
-			(user) => user.emailInput === currentUser.emailLogin
-		);
-
-		if (mode === 'hostBookings') {
-			const bookingList = findUser.ownerBookings;
-
-			// En caso de no tener reservas
-			if (bookingList.length === 0) {
-				$container.innerHTML = `<h4>Aún tienes reservas en tus publicaciones</h4>`;
-				return;
-			}
-
-			renderGuestTable(
-				$container,
-				'host',
-				bookingList,
-				'Fecha de la operación',
-				'Fecha de salida',
-				'Fecha de regreso',
-				'Monto a pagar',
-				'Cantidad de huéspedes',
-				'Email del inquilino',
-				'Publicación'
-			);
-			mainPersonalTable();
-			return;
-		}
-		if (mode === 'hostPublications') {
-			const userListings = findUser.userListings;
-
-			// En caso de no tener publicaciones
-			if (userListings.length === 0) {
-				$container.innerHTML = `<h4>Todavía no publicaste ningún aviso, que estas esperando?</h4>`;
-				return;
-			}
-
-			renderGuestTable(
-				$container,
-				'host-publications',
-				userListings,
-				'Última modificación',
-				'Título',
-				'Ubicación',
-				'Cantidad de huéspedes',
-				'Descripción',
-				'Precio por noche',
-				'Acciones'
-			);
-			mainPersonalTable();
-			return;
-		}
+		console.log(e);
+		addToLocalStorage('personalTableViewMode', {
+			category: mode,
+		});
+		mainPersonalTable();
 	}
 	// Controlador para redireccionar a editar la publicacion
 	document
