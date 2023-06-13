@@ -58,14 +58,39 @@
 						<!-- ubicacion del alojamiento -->
 						<div class="form-floating mb-3">
 							<input
-								value="2r12r12r12r"
+								class="form-control"
 								required
 								type="text"
-								class="form-control"
 								maxlength="120"
+								list="datalistOptions"
 								id="locationInput"
 								placeholder="Ubicacion..." />
-							<label for="locationInput">Ubicacion</label>
+							<datalist id="datalistOptions">
+								<option value="Buenos Aires"></option>
+								<option value="Catamarca"></option>
+								<option value="Chaco"></option>
+								<option value="Chubut"></option>
+								<option value="Córdoba"></option>
+								<option value="Corrientes"></option>
+								<option value="Entre Ríos"></option>
+								<option value="Formosa"></option>
+								<option value="Jujuy"></option>
+								<option value="La Pampa"></option>
+								<option value="La Rioja"></option>
+								<option value="Mendoza"></option>
+								<option value="Misiones"></option>
+								<option value="Neuquén"></option>
+								<option value="Río Negro"></option>
+								<option value="Salta"></option>
+								<option value="San Juan"></option>
+								<option value="San Luis"></option>
+								<option value="Santa Cruz"></option>
+								<option value="Santa Fe"></option>
+								<option value="Santiago del Estero"></option>
+								<option value="Tierra del Fuego"></option>
+								<option value="Tucumán"></option>
+							</datalist>
+							<label for="locationInput" class="form-label">Ubicacion...</label>
 						</div>
 						<!-- capacidad del alojamiento -->
 						<div class="form-floating mb-3">
@@ -79,6 +104,7 @@
 								placeholder="Capacidad del alojamiento..." />
 							<label for="capacityInput">Capacidad del alojamiento</label>
 						</div>
+
 						<!-- servicios disponibles -->
 						<!--tendria que ser un select e ir mostrando los servicios agregados  -->
 						<!--
