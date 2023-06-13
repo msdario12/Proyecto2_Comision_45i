@@ -16,7 +16,7 @@
       href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;1,100;1,300&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/contacto/css/nav.css" />
+  
     <link rel="stylesheet" href="/contacto/css/contacto.css" />
     <link rel="stylesheet" href="/contacto/css/footer.css" />
 
@@ -34,19 +34,39 @@
   </head>
   <body>
     <header>
-      <div id="logo"><h1>descansAR</h1></div>
-      <button id="abrir" class="abrir-menu"><i class="bi bi-list"></i></button>
-      <nav class="nav" id="nav">
-        <button id="cerrar" class="cerrar-menu">
-          <i class="bi bi-x-lg"></i>
-        </button>
-        <ul class="nav-list">
-          <li><a href="">Home</a></li>
-          <li><a href="">About</a></li>
-          <li><a href="">Contacto</a></li>
-          <li><a href="">Entrar</a></li>
-        </ul>
-      </nav>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+				<div class="container-fluid">
+				  <a class="navbar-brand" href="/assets/logo.png
+          "><img id="logo"  src="/contacto/assets/logo.png" alt="" style="width: 60px;"> DescansAR</a>
+				  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				  </button>
+				  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+					<ul class="navbar-nav">
+					  <li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="#">Home</a>
+					  </li>
+					  <li class="nav-item">
+						<a class="nav-link" href="#">Contacto</a>
+					  </li>
+					  <li class="nav-item">
+						<a class="nav-link" href="#">Sobre nosotros</a>
+					  </li>
+					  
+					  <li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						  <i class="bi bi-person-circle"></i> Bienvenido, usuario
+						</a>
+						<ul class="dropdown-menu">
+						  <li><a class="dropdown-item" href="#">Iniciar sesion</a></li>
+						  <li><a class="dropdown-item" href="#">Crear cuenta</a></li>
+						</ul>
+					  </li>
+					</ul>
+				  </div>
+				</div>
+			  </nav>
+			</nav>
     </header>
     <main>
       <section id="caja-contacto">
