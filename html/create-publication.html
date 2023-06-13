@@ -29,213 +29,226 @@
 		<title>Crear una publicacion</title>
 	</head>
 	<body>
-		<h1 class="">Nueva publicación</h1>
-		<main>
-			<section class="container">
-				<h2 id="pageTitleNewCard">Crear una publicacion</h2>
-				<form id="createCardForm" class="row">
-					<div
-						class="col-6 d-flex flex-column justify-content-center align-content-center">
+		<main class="container-lg">
+			<!-- Anterior -->
+			<h2 id="pageTitleNewCard" class="display-2 gap-0 mb-5">
+				Crear una publicación
+			</h2>
+			<section
+				class="row justify-content-center align-items-center position-relative">
+				<form
+					id="createCardForm"
+					class="col-10 row border gap-0 p-0 shadow align-items-center">
+					<div class="col-12 col-md-6 p-3">
 						<!-- carga de imagenes -->
-						<div>
-							<input
-								type="file"
-								name="filepond"
-								id="filepond"
-								class="filepond"
-								multiple
-								data-allow-reorder="true"
-								data-max-file-size="4MB"
-								data-max-files="4" />
-						</div>
-					</div>
-					<div class="col-6 d-flex flex-column align-content-center gap-2">
-						<!-- titulo de publicacion -->
-						<div class="input-group mb-3">
-							<span class="input-group-text">
-								<i class="fa-solid fa-pen"></i>
-							</span>
-							<div class="form-floating">
-								<input
-									value="2r12r12r12r"
-									required
-									type="text"
-									class="form-control"
-									maxlength="120"
-									id="titleInput"
-									placeholder="Titulo de la publicacion..." />
-								<label for="titleInput">Titulo de la publicación</label>
-							</div>
-						</div>
-						<!-- ubicacion del alojamiento -->
-						<div class="input-group mb-3">
-							<span class="input-group-text">
-								<i class="fa-solid fa-map-location-dot"></i>
-							</span>
-							<div class="form-floating">
-								<input
-									class="form-control"
-									required
-									type="text"
-									maxlength="120"
-									list="datalistOptions"
-									id="locationInput"
-									placeholder="Ubicacion..." />
-								<datalist id="datalistOptions">
-									<option value="Buenos Aires"></option>
-									<option value="Catamarca"></option>
-									<option value="Chaco"></option>
-									<option value="Chubut"></option>
-									<option value="Córdoba"></option>
-									<option value="Corrientes"></option>
-									<option value="Entre Ríos"></option>
-									<option value="Formosa"></option>
-									<option value="Jujuy"></option>
-									<option value="La Pampa"></option>
-									<option value="La Rioja"></option>
-									<option value="Mendoza"></option>
-									<option value="Misiones"></option>
-									<option value="Neuquén"></option>
-									<option value="Río Negro"></option>
-									<option value="Salta"></option>
-									<option value="San Juan"></option>
-									<option value="San Luis"></option>
-									<option value="Santa Cruz"></option>
-									<option value="Santa Fe"></option>
-									<option value="Santiago del Estero"></option>
-									<option value="Tierra del Fuego"></option>
-									<option value="Tucumán"></option>
-								</datalist>
-								<label for="locationInput" class="form-label"
-									>Ubicacion...</label
-								>
-							</div>
-						</div>
-						<!-- capacidad del alojamiento -->
-						<div class="input-group mb-3">
-							<span class="input-group-text">
-								<i class="fa-solid fa-users"></i>
-							</span>
-							<div class="form-floating">
-								<input
-									value="4"
-									required
-									type="number"
-									class="form-control"
-									maxlength="32"
-									id="capacityInput"
-									placeholder="Capacidad del alojamiento..." />
-								<label for="capacityInput">Capacidad del alojamiento</label>
-							</div>
-						</div>
-
-						<!-- servicios disponibles -->
-						<!--tendria que ser un select e ir mostrando los servicios agregados  -->
-						<!--
-											Wifi gratuito 🆗 - wifi
-											Estacionamiento gratuito 🚫
-											Piscina ❎ - droplet
-											Gimnasio 🚫
-											Desayuno incluido 🚫
-											Servicio de limpieza diario 🚫
-											Recepción 24 horas 🚫
-											Aire acondicionado  🆗 - air
-											Servicio de lavandería  🚫
-											Cocina completamente equipada 🚫
-											TV por cable/satélite 🆗 tv
-											Servicio de alquiler de bicicletas
-											Bar/Restaurante en el lugar 🆗 cofee
-											Servicio de guardería/niñera
-											Jacuzzi/Spa
-										 -->
-						<div class="form-check">
-							<input
-								class="form-check-input"
-								type="checkbox"
-								value=""
-								id="hasWifi" />
-							<label class="form-check-label" for="hasWifi">
-								Wifi gratuito
-							</label>
-						</div>
-						<div class="form-check">
-							<input
-								class="form-check-input"
-								type="checkbox"
-								value=""
-								id="hasParking" />
-							<label class="form-check-label" for="hasParking">
-								Estacionamiento gratuito
-							</label>
-						</div>
-						<div class="form-check">
-							<input
-								class="form-check-input"
-								type="checkbox"
-								value=""
-								id="hasPool" />
-							<label class="form-check-label" for="hasPool"> Piscina </label>
-						</div>
-						<div class="form-check">
-							<input
-								class="form-check-input"
-								type="checkbox"
-								value=""
-								id="hasGym" />
-							<label class="form-check-label" for="hasGym"> Gimnasio </label>
-						</div>
-						<div class="form-check">
-							<input
-								class="form-check-input"
-								type="checkbox"
-								value=""
-								id="hasBreakfast" />
-							<label class="form-check-label" for="hasBreakfast">
-								Desayuno incluido
-							</label>
-						</div>
-						<!-- descripcion corta limitada en caracteres -->
-						<div class="input-group mb-3">
-							<span class="input-group-text">
-								<i class="fa-regular fa-rectangle-list"></i>
-							</span>
-							<div class="form-floating">
-								<textarea
-									value="asfasfasfasf"
-									placeholder="Describe tu publicación acá..."
-									required
-									class="form-control"
-									id="descriptionTextArea"></textarea>
-								<label for="descriptionTextArea"
-									>Describe tu publicación acá...</label
-								>
-							</div>
-						</div>
-						<!-- precio -->
-						<div class="input-group mb-3">
-							<span class="input-group-text">
-								<i class="fa-solid fa-dollar-sign"></i>
-							</span>
-							<div class="form-floating">
-								<input
-									value="500.00"
-									step="25"
-									required
-									type="number"
-									class="form-control"
-									max="999999999"
-									id="priceInput"
-									placeholder="Password" />
-								<label for="priceInput">Precio de la publicación</label>
-							</div>
-							<span class="input-group-text"> por noche </span>
-						</div>
 
 						<input
-							name="submitButton"
-							type="submit"
-							class="btn btn-primary"
-							value="Agregar publicación" />
+							type="file"
+							name="filepond"
+							id="filepond"
+							class="filepond"
+							multiple
+							data-allow-reorder="true"
+							data-max-file-size="4MB"
+							data-max-files="4" />
+					</div>
+					<div class="h-100 col-12 col-md-6 p-3">
+						<div
+							class="d-flex flex-column align-content-center gap-2 justify-content-evenly">
+							<h3 class="mb-4">Completa los siguientes campos</h3>
+							<!-- titulo de publicacion -->
+							<div>
+								<div class="input-group mb-3">
+									<span class="input-group-text">
+										<i class="fa-solid fa-pen"></i>
+									</span>
+									<div class="form-floating">
+										<input
+											value="2r12r12r12r"
+											required
+											type="text"
+											class="form-control"
+											maxlength="120"
+											id="titleInput"
+											placeholder="Titulo de la publicacion..." />
+										<label for="titleInput">Titulo de la publicación</label>
+									</div>
+								</div>
+								<!-- ubicacion del alojamiento -->
+								<div class="input-group mb-3">
+									<span class="input-group-text">
+										<i class="fa-solid fa-map-location-dot"></i>
+									</span>
+									<div class="form-floating">
+										<input
+											class="form-control"
+											required
+											type="text"
+											maxlength="120"
+											list="datalistOptions"
+											id="locationInput"
+											placeholder="Ubicacion..." />
+										<datalist id="datalistOptions">
+											<option value="Buenos Aires"></option>
+											<option value="Catamarca"></option>
+											<option value="Chaco"></option>
+											<option value="Chubut"></option>
+											<option value="Córdoba"></option>
+											<option value="Corrientes"></option>
+											<option value="Entre Ríos"></option>
+											<option value="Formosa"></option>
+											<option value="Jujuy"></option>
+											<option value="La Pampa"></option>
+											<option value="La Rioja"></option>
+											<option value="Mendoza"></option>
+											<option value="Misiones"></option>
+											<option value="Neuquén"></option>
+											<option value="Río Negro"></option>
+											<option value="Salta"></option>
+											<option value="San Juan"></option>
+											<option value="San Luis"></option>
+											<option value="Santa Cruz"></option>
+											<option value="Santa Fe"></option>
+											<option value="Santiago del Estero"></option>
+											<option value="Tierra del Fuego"></option>
+											<option value="Tucumán"></option>
+										</datalist>
+										<label for="locationInput" class="form-label"
+											>Ubicacion...</label
+										>
+									</div>
+								</div>
+								<!-- capacidad del alojamiento -->
+								<div class="input-group mb-3">
+									<span class="input-group-text">
+										<i class="fa-solid fa-users"></i>
+									</span>
+									<div class="form-floating">
+										<input
+											value="4"
+											required
+											type="number"
+											class="form-control"
+											maxlength="32"
+											id="capacityInput"
+											placeholder="Capacidad del alojamiento..." />
+										<label for="capacityInput">Capacidad del alojamiento</label>
+									</div>
+								</div>
+								<!-- servicios disponibles -->
+								<!--tendria que ser un select e ir mostrando los servicios agregados  -->
+								<!--
+													Wifi gratuito 🆗 - wifi
+													Estacionamiento gratuito 🚫
+													Piscina ❎ - droplet
+													Gimnasio 🚫
+													Desayuno incluido 🚫
+													Servicio de limpieza diario 🚫
+													Recepción 24 horas 🚫
+													Aire acondicionado  🆗 - air
+													Servicio de lavandería  🚫
+													Cocina completamente equipada 🚫
+													TV por cable/satélite 🆗 tv
+													Servicio de alquiler de bicicletas
+													Bar/Restaurante en el lugar 🆗 cofee
+													Servicio de guardería/niñera
+													Jacuzzi/Spa
+												 -->
+								<div class="mb-3">
+									<div class="form-check">
+										<input
+											class="form-check-input"
+											type="checkbox"
+											value=""
+											id="hasWifi" />
+										<label class="form-check-label" for="hasWifi">
+											Wifi gratuito
+										</label>
+									</div>
+									<div class="form-check">
+										<input
+											class="form-check-input"
+											type="checkbox"
+											value=""
+											id="hasParking" />
+										<label class="form-check-label" for="hasParking">
+											Estacionamiento gratuito
+										</label>
+									</div>
+									<div class="form-check">
+										<input
+											class="form-check-input"
+											type="checkbox"
+											value=""
+											id="hasPool" />
+										<label class="form-check-label" for="hasPool">
+											Piscina
+										</label>
+									</div>
+									<div class="form-check">
+										<input
+											class="form-check-input"
+											type="checkbox"
+											value=""
+											id="hasGym" />
+										<label class="form-check-label" for="hasGym">
+											Gimnasio
+										</label>
+									</div>
+									<div class="form-check">
+										<input
+											class="form-check-input"
+											type="checkbox"
+											value=""
+											id="hasBreakfast" />
+										<label class="form-check-label" for="hasBreakfast">
+											Desayuno incluido
+										</label>
+									</div>
+								</div>
+								<!-- descripcion corta limitada en caracteres -->
+								<div class="input-group mb-3">
+									<span class="input-group-text">
+										<i class="fa-regular fa-rectangle-list"></i>
+									</span>
+									<div class="form-floating">
+										<textarea
+											value="asfasfasfasf"
+											placeholder="Describe tu publicación acá..."
+											required
+											class="form-control"
+											id="descriptionTextArea"></textarea>
+										<label for="descriptionTextArea"
+											>Describe tu publicación acá...</label
+										>
+									</div>
+								</div>
+								<!-- precio -->
+								<div class="input-group mb-4">
+									<span class="input-group-text">
+										<i class="fa-solid fa-dollar-sign"></i>
+									</span>
+									<div class="form-floating">
+										<input
+											value="500.00"
+											step="25"
+											required
+											type="number"
+											class="form-control"
+											max="999999999"
+											id="priceInput"
+											placeholder="Password" />
+										<label for="priceInput">Precio de la publicación</label>
+									</div>
+									<span class="input-group-text"> por noche </span>
+								</div>
+							</div>
+							<input
+								name="submitButton"
+								type="submit"
+								class="btn btn-primary py-2"
+								value="Agregar publicación" />
+						</div>
 					</div>
 				</form>
 			</section>

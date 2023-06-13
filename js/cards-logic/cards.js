@@ -51,9 +51,16 @@ function renderCard(idx, obj) {
 	// Creo un div en memoria
 	const $div = document.createElement('div');
 	// Agrego las clases a este elemento padre
-	$div.classList.add('card', 'mb-3', 'card-custom');
+	$div.classList.add(
+		'card',
+		'mb-3',
+		'card-custom',
+		'rounded-0',
+		'shadow-sm',
+		'border-1'
+	);
 	// Modifico el interior del html
-	$div.innerHTML = `<div id="${id}" class="row g-0">
+	$div.innerHTML = `<div id="${id}" class="row g-0 ">
         <div class="col-sm-4 carousel-parent">
             ${createCarrusselString(imageGallery, id, accommodationTitle)}
         </div>
@@ -76,7 +83,7 @@ function renderCard(idx, obj) {
 						<span class="small muted">${guestCapacity} Personas</span>
 					</div>
 					<div class="col-12 col-sm-6 d-flex align-items-center justify-content-end justify-content-sm-end mt-2">
-						<button publication-id=${id} class="btn btn-outline-success">Reservar ahora</button>
+						<button publication-id=${id} class="btn btn-success py-2 px-4">Reservar ahora</button>
 					</div>
 				</div>
             </div>
