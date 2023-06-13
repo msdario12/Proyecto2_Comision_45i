@@ -11,7 +11,7 @@ function createLogin(mode, urlToRedirect) {
 	const params = paramsGeneral[mode];
 	const html = `
     <!-- email -->
-                    <h2 class="mb-3 align-self-center">${params.title}</h2>
+                    <h2 class="mb-4 align-self-center">${params.title}</h2>
 					<div style="justify-self: center">
 						<div class="form-floating mb-3">
 							<input
