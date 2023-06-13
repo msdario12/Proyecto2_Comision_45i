@@ -152,10 +152,15 @@ async function sweetAlertRender(checkin, checkout, quantity, card) {
 		},
 	})
 		.then(async (result) => {
+			if (!result.value) {
+				return;
+			}
 			const { days, quantity, price, swalIn, swalOut } = result.value;
-			const totalCost = days * quantity * price;
+			const totalCost = (days * quantity * price).toLocaleString('sp-AR', {
+				minimumFractionDigits: 2,
+			});
 			const { value: formValues } = await Swal.fire({
-				icon: 'success',
+				icon: 'info',
 				title: `El monto total es de $${totalCost}`,
 				confirmButtonText: 'Confirmar reserva',
 				showCloseButton: true,
@@ -237,13 +242,16 @@ async function sweetAlertRender(checkin, checkout, quantity, card) {
 				hostUsers[findUserHostIndex].ownerBookings.unshift(newBookingInHost);
 				// Guardamos la reserva en el usuario en el localStorage
 				addToLocalStorage('usersBD', { ...usersList, hostUsers });
+				return true;
 			}
 		})
 		.then((res) => {
-			Swal.fire({
-				icon: 'success',
-				title: 'Confirmación reservada!',
-			});
+			if (res) {
+				Swal.fire({
+					icon: 'success',
+					title: 'Confirmación reservada!',
+				});
+			}
 		});
 	// TODO poner https://sweetalert2.github.io/recipe-gallery/login-form.html de ahi copiar como hace un chain con then() para anidar y pasar los datos entre los alerts y asi pasar las fechas y cantidad de huespedes
 	// TODO cambiar la forma en que se seleccionan los elementos de los alerts usando los que provee el metodo.
