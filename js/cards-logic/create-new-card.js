@@ -145,6 +145,12 @@ function createFormNewCard() {
 		globalUsersBD.hostUsers[userIndex].userListings.push({
 			idCard,
 			dateOfCreation: actualDate,
+			accommodationTitle: el.titleInput.value,
+			accommodationLocation: el.locationInput.value,
+			guestCapacity: el.capacityInput.value,
+			servicesIcons: servicesList,
+			shortDescription: el.descriptionTextArea.value,
+			accommodationPrice: priceInput.valueAsNumber,
 		});
 		console.log(globalUsersBD);
 		addToLocalStorage('usersBD', globalUsersBD);

@@ -30,6 +30,19 @@ function mainPersonalTable() {
 			(user) => user.emailInput === currentUser.emailLogin
 		);
 		const reservationList = findUser.userBookings;
+		// Chequeamos si tiene reservas, sino mostrar un mensaje
+
+		if (reservationList.length === 0) {
+			$container.innerHTML = `
+            <div class="d-flex flex-column gap-2">
+                <h4>Parece que no tienes realizada ninguna reserva aún, no pierdas tiempo y explora las publicaciones de nuestros anfitriones!</h4>
+                <div class="d-flex justify-content-center">
+                    <a href="/html/cards.html" class="btn btn-primary">Encontrar mi proximo destino</a>
+                </div>
+            </div>
+            `;
+			return;
+		}
 
 		renderGuestTable(
 			$container,
@@ -47,7 +60,11 @@ function mainPersonalTable() {
 	if (currentUser.type === 'host') {
 		// El usuario es guest, mostrar sus publicaciones o reservas
 		document.querySelector('#titlePage').textContent = `
-        Bienvenido ${currentUser.firstName}! Estos son tus alquileres.
+        Bienvenido ${currentUser.firstName}! Estos son tus alquileres y publicaciones.
+        `;
+		document.querySelector('#tableButtons').innerHTML = `
+        <button host-button id="hostPublications" class="btn btn-secondary">Mis publicaciones</button>
+        <button host-button id="hostBookings" class="btn btn-info">Mis alquileres</button>
         `;
 
 		const findUser = globalUsers.hostUsers.find(
@@ -56,6 +73,7 @@ function mainPersonalTable() {
 
 		const bookingList = findUser.ownerBookings;
 
+		// Inicialmente se renderiza la tabla de alquileres
 		renderGuestTable(
 			$container,
 			'host',
@@ -87,7 +105,7 @@ function mainPersonalTable() {
         `;
 		console.log(arrayToRender, mode);
 
-		const button = (obj) => `
+		let button = (obj) => `
         <button	publication-id=${obj.publicationId} class="btn btn-outline-primary">
             Ir
         </button>`;
@@ -95,6 +113,21 @@ function mainPersonalTable() {
 		function createRow(obj, idx, mode) {
 			let email = '';
 			let location = '';
+			if (mode === 'host-publications') {
+				const date = new Date(obj.dateOfCreation).toLocaleString();
+				return `
+                <tr>
+                    <th scope="row">${idx}</th>
+                    <td>${date}</td>
+                    <td>${obj.accommodationTitle}</td>
+                    <td>${obj.accommodationLocation}</td>
+                    <td>${obj.guestCapacity}</td>
+                    <td>${obj.shortDescription}</td>
+                    <td>${obj.accommodationPrice}</td>
+                    <td>${button(obj)}</td>
+                </tr>
+                `;
+			}
 			if (mode === 'guest') {
 				email = obj.hostEmail;
 				location = obj.location;
@@ -150,6 +183,54 @@ function mainPersonalTable() {
 		const path = '/html/cards.html';
 		const query = `#${publicationId}`;
 		window.location.href = path + query;
+	}
+	// Controlador para cambiar el modo de tabla del host
+	document
+		.querySelectorAll('button[host-button]')
+		.forEach((btn) => btn.addEventListener('click', handleClickHostTableMode));
+	// Handler para cambiar el modo de la tabla del host
+	function handleClickHostTableMode(e) {
+		console.log(e);
+		const mode = e.target.id;
+
+		const findUser = globalUsers.hostUsers.find(
+			(user) => user.emailInput === currentUser.emailLogin
+		);
+
+		if (mode === 'hostBookings') {
+			const bookingList = findUser.ownerBookings;
+
+			renderGuestTable(
+				$container,
+				'host',
+				bookingList,
+				'Fecha de la operación',
+				'Fecha de salida',
+				'Fecha de regreso',
+				'Monto a pagar',
+				'Cantidad de huéspedes',
+				'Email del inquilino',
+				'Publicación'
+			);
+			return;
+		}
+		if (mode === 'hostPublications') {
+			const userListings = findUser.userListings;
+
+			renderGuestTable(
+				$container,
+				'host-publications',
+				userListings,
+				'Fecha de creación',
+				'Título',
+				'Ubicación',
+				'Cantidad de huéspedes',
+				'Descripción',
+				'Precio por noche',
+				'Editar la publicacion'
+			);
+			return;
+		}
 	}
 }
 mainPersonalTable();
