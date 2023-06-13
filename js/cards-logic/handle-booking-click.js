@@ -34,6 +34,7 @@ async function sweetAlertRender(checkin, checkout, quantity, card) {
 	Swal.fire({
 		title: `Confirma tu reserva en ${card.accommodationTitle}`,
 		confirmButtonText: 'Cotizar reserva',
+		showCloseButton: true,
 		html: `<form action="" id="searchCardsFormAlert">
             <!-- Buscar por cantidad de personas -->
             <div class="form-floating mb-4">
@@ -77,7 +78,7 @@ async function sweetAlertRender(checkin, checkout, quantity, card) {
                 name="dateCheckOutInput" />
         </form>
         `,
-		focusConfirm: false,
+		focusConfirm: true,
 		preConfirm: () => {
 			const swalIn = Swal.getPopup().querySelector(
 				'#dateCheckinInputAlert'
