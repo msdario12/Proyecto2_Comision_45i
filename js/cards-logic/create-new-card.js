@@ -50,6 +50,10 @@ function createFormNewCard() {
 	}
 
 	const $formCreateCard = document.querySelector('#createCardForm');
+	// Hacemos que el input de precio tenga siempre 2 decimales
+	document.querySelector('input#priceInput').addEventListener('change', (e) => {
+		e.target.value = parseFloat(e.target.value).toFixed(2);
+	});
 	// Manejamos el evento de submit en el form
 	$formCreateCard.addEventListener('submit', async function (e) {
 		e.preventDefault(); // Prevenimos el reload
