@@ -5,50 +5,83 @@
     font-family: jetbrains mono 'Courier New', Courier, monospace Arial, Helvetica, sans-serif Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   }
 
+  body{
+    background-color: white
+  }
+  /* Aquí empiezan los estilos para la barra de busqueda para generar reservas en el Main */
+  .container{
+    align-content: center;
+    flex-wrap: wrap;
+    
+  }
+  .row #card-busqueda{    
+    margin-top: 1rem;
+    border: none;
+  }
 
+  .row #buscar-reservas{
+    margin-top: .70rem;
+  }
 
-/* *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family: Arial, Helvetica, sans-serif;
+  /* Aquí terminan los estilos para la barra de busqueda para generar reservas en el Main */
+
+  /* Aquí empiezan los estilos para las tarjetas del Main */
+#card-primer-fila{
+    margin-top: .2rem;
+    /* margin-bottom: 1rem; */
+    border-radius: 15px 30px 15px 30px;
 }
 
-body{
-    display: flex;     
+#card-segunda-fila{
+    border-radius: 25px 25px 25px 25px;
+    margin-top: 0;
+    margin-bottom: 1rem;
 }
 
-footer{
-    background: #333;
-    align-items: flex-end;
-    position:absolute;
+#card-tercer-fila{
+    border-radius: 30px 10px 30px 10px;
+    margin-bottom: 2rem;
+}
+
+.row #card-segunda-fila{
+    margin: 1rem;
+}
+  /* Aquí terminan los estilos para las tarjetas del Main */
+
+/* Aquí empiezan los estilos para el Footer */
+
+footer {
+    position: relative;
     width: 100%;
     background: #3586ff;
     min-height: 100px;
     padding: 20px 50px;
+    display: flex;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
-    min-height: 10vh;
 }
-
-footer .imgSocial a img{
+footer .imgSocial a img {
     width: 20px;
 }
 
-footer .imgSocial, footer .menu {
+footer .imgSocial,
+footer .menu {
     position: relative;
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
-    margin:10px 0;
+    margin: 10px 0;
     flex-wrap: wrap;
-} 
-
-footer .imgSocial a, footer .menu li{
- list-style: none;
 }
 
-footer .imgSocial a img footer .menu li a {
+footer .imgSocial a,
+footer .menu li {
+    list-style: none;
+}
+
+footer .imgSocial a img,
+footer .menu li a {
     font-size: 2em;
     color: #fff;
     margin: 0 10px;
@@ -57,7 +90,7 @@ footer .imgSocial a img footer .menu li a {
 }
 
 footer .imgSocial a img:hover {
-    transform: translateY(-10PX);
+    transform: translateY(-10px);
 }
 
 footer .menu li a {
@@ -65,11 +98,11 @@ footer .menu li a {
     color: #fff;
     margin: 0 10px;
     display: inline-block;
-   text-decoration: none;
-   opacity: 0.7s;
+    text-decoration: none;
+    opacity: 0.7;
 }
 
-footer .menu li a :hover {
+footer .menu li a:hover {
     opacity: 1;
 }
 
@@ -83,33 +116,33 @@ footer p {
 
 footer .ola {
     position: absolute;
-    top:-100px ;
+    top: -100px;
     left: 0;
     width: 100%;
     height: 100px;
     background: white url(ola.png);
     background-size: 1000px 100px;
-
 }
 
 footer .ola#ola1 {
-    z-index:1000 ;
+    z-index: 1000;
     opacity: 1;
     bottom: 0;
     animation: animateOla 5s linear infinite;
 }
+/* Aquí terminan los estilos para el footer */
 
+/* Animación de Ola para El footer */
 @keyframes animateOla {
-        0%
-        {
-    background-position-x:1000px;
-        }
-        100%
-        {
-    background-position-x:0px ;
-        }
-    } */
-    @media (min-width: 768px) {
+    0% {
+        background-position-x: 1000px;
+    }
+    100% {
+        background-position-x: 0;
+    }
+}
+
+    @media (min-width: 768px) {
     #busqueda{
         flex-direction: column;
         align-items: center;

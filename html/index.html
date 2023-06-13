@@ -13,7 +13,8 @@
 		<!-- CSS -->
 		<!-- <link rel="stylesheet" href="/css/style.css" /> -->
 		<!-- Para el navbar -->
-		<!-- <link
+		
+		<link
 			rel="stylesheet"
 			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" /> -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -21,34 +22,94 @@
 		<link
 			href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;1,100;1,300&display=swap"
 			rel="stylesheet" />
-		<link
+			<link rel="stylesheet" href="/css/nav.css" />
+			<link
 			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
 			rel="stylesheet"
 			integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-			crossorigin="anonymous" />
-		<link rel="stylesheet" href="/css/nav.css" />
+			crossorigin="anonymous"
+		  />
+		  <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
+		<!-- Hasta aquí es para el navbar -->
 		<link
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css" />
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js"></script>
-
-		<!-- Hasta aquí es para el navbar -->
-
+		<link
+		rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+	  />
+	  <link rel="preconnect" href="https://fonts.googleapis.com" />
+	  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	  <link
+		href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;1,100;1,300&display=swap"
+		rel="stylesheet"
+	  />
+  
+	  <link
+		href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+		rel="stylesheet"
+		integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+		crossorigin="anonymous"
+	  />
+		<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+		crossorigin="anonymous"
+	  ></script>
 		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
+		<!-- tarjetas -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 		<title>Home DescansAR</title>
 	</head>
 	<body>
-		<div id="headerBefore">
-			<!-- El header se inserta antes de este div -->
-		</div>
+		<!-- Barra de navegación -->
+		<header class="header-with-border">
+			<nav class="navbar navbar-expand-lg bg-body-tertiary">
+				<div class="container-fluid">
+				  <a class="navbar-brand" href="#">DescansAR</a>
+				  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"><i class="bi bi-justify"></i></span>
+				  </button>
+				  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+					<ul class="navbar-nav">
+					  <li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="#">Home</a>
+					  </li>
+					  <li class="nav-item">
+						<a class="nav-link" href="#">Contacto</a>
+					  </li>
+					  <li class="nav-item">
+						<a class="nav-link" href="#">Sobre nosotros</a>
+					  </li>
+					  
+					  <li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						  <i class="bi bi-person-circle"></i> Bienvenido, usuario
+						</a>
+						<ul class="dropdown-menu">
+						  <li><a class="dropdown-item" href="#">Iniciar sesion</a></li>
+						  <li><a class="dropdown-item" href="#">Crear cuenta</a></li>
+						</ul>
+					  </li>
+					</ul>
+				  </div>
+				</div>
+			  </nav>
+			</nav>
+		</header>
 
 		<!-- Busqueda -->
-		<div class="container">
-			<div class="row justify-content-center">
+		<div class="container" id="card-busqueda">
+			<div class="row justify-content-center" id="card-busqueda>
 				<div class="col-lg-12">
-					<div class="card">
+					<div class="card" id="card-busqueda">
 						<div class="card-body">
 							<form class="form-group fw-bolder" id="mainSearchForm">
 								<div class="row">
@@ -98,7 +159,7 @@
 									</div>
 								</div>
 								<div class="row justify-content-center">
-									<div class="d-grid gap-2 col-md-6 mx-auto">
+									<div class="d-grid gap-2 col-md-6 mx-auto" id="buscar-reservas">
 										<input
 											type="submit"
 											class="btn btn-outline-primary fs-5 fw-bolder"
@@ -112,229 +173,127 @@
 			</div>
 		</div>
 
-		<!-- <div class="container-fluid"></div> -->
-		<!-- InicinioConteiner principal -->
-		<!-- TARJETAS CON CAROUSEL -->
-		<div id="placesCarousel" class="carousel slide" data-ride="carousel">
-			<div class="carousel-inner">
-				<div class="carousel-item active">
-					<div class="container">
-						<div class="row">
-							<div class="col-lg-4 col-md-6">
-								<div class="card">
-									<img
-										src="ruta-de-la-imagen"
-										class="card-img-top"
-										alt="Imagen del lugar" />
-									<div class="card-body">
-										<h5 class="card-title">Nombre del Lugar</h5>
-										<p class="card-text">Descripción del lugar.</p>
-										<a href="#" class="btn btn-primary">Ver Detalles</a>
-									</div>
-								</div>
-							</div>
-							<!-- Repite el código de la tarjeta para cada lugar -->
-						</div>
-					</div>
-				</div>
-				<!-- nueva tarjeta -->
-				<div class="carousel-item active">
-					<div class="container">
-						<div class="row">
-							<div class="col-lg-4 col-md-6">
-								<div class="card">
-									<img
-										src="ruta-de-la-imagen"
-										class="card-img-top"
-										alt="Imagen del lugar" />
-									<div class="card-body">
-										<h5 class="card-title">Nombre del Lugar</h5>
-										<p class="card-text">Descripción del lugar.</p>
-										<a href="#" class="btn btn-primary">Ver Detalles</a>
-									</div>
-								</div>
-							</div>
-							<!-- Repite el código de la tarjeta para cada lugar -->
-						</div>
-					</div>
-				</div>
-				<!-- nueva tarjeta -->
-				<div class="carousel-item active">
-					<div class="container">
-						<div class="row">
-							<div class="col-lg-4 col-md-6">
-								<div class="card">
-									<img
-										src="ruta-de-la-imagen"
-										class="card-img-top"
-										alt="Imagen del lugar" />
-									<div class="card-body">
-										<h5 class="card-title">Nombre del Lugar</h5>
-										<p class="card-text">Descripción del lugar.</p>
-										<a href="#" class="btn btn-primary">Ver Detalles</a>
-									</div>
-								</div>
-							</div>
-							<!-- Repite el código de la tarjeta para cada lugar -->
-						</div>
-					</div>
-				</div>
-				<!-- nueva tarjeta -->
-				<div class="carousel-item active">
-					<div class="container">
-						<div class="row">
-							<div class="col-lg-4 col-md-6">
-								<div class="card">
-									<img
-										src="ruta-de-la-imagen"
-										class="card-img-top"
-										alt="Imagen del lugar" />
-									<div class="card-body">
-										<h5 class="card-title">Nombre del Lugar</h5>
-										<p class="card-text">Descripción del lugar.</p>
-										<a href="#" class="btn btn-primary">Ver Detalles</a>
-									</div>
-								</div>
-							</div>
-							<!-- Repite el código de la tarjeta para cada lugar -->
-						</div>
-					</div>
-				</div>
-				<!-- nueva tarjeta -->
-				<div class="carousel-item active">
-					<div class="container">
-						<div class="row">
-							<div class="col-lg-4 col-md-6">
-								<div class="card">
-									<img
-										src="ruta-de-la-imagen"
-										class="card-img-top"
-										alt="Imagen del lugar" />
-									<div class="card-body">
-										<h5 class="card-title">Nombre del Lugar</h5>
-										<p class="card-text">Descripción del lugar.</p>
-										<a href="#" class="btn btn-primary">Ver Detalles</a>
-									</div>
-								</div>
-							</div>
-							<!-- Repite el código de la tarjeta para cada lugar -->
-						</div>
-					</div>
-				</div>
-				<!-- nueva tarjeta -->
-				<div class="carousel-item active">
-					<div class="container">
-						<div class="row">
-							<div class="col-lg-4 col-md-6">
-								<div class="card">
-									<img
-										src="ruta-de-la-imagen"
-										class="card-img-top"
-										alt="Imagen del lugar" />
-									<div class="card-body">
-										<h5 class="card-title">Nombre del Lugar</h5>
-										<p class="card-text">Descripción del lugar.</p>
-										<a href="#" class="btn btn-primary">Ver Detalles</a>
-									</div>
-								</div>
-							</div>
-							<!-- Repite el código de la tarjeta para cada lugar -->
-						</div>
-					</div>
-				</div>
-				<!-- Agrega más elementos carousel-item según sea necesario -->
-			</div>
-			<a
-				class="carousel-control-prev"
-				href="#placesCarousel"
-				role="button"
-				data-slide="prev">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="sr-only">Anterior</span>
-			</a>
-			<a
-				class="carousel-control-next"
-				href="#placesCarousel"
-				role="button"
-				data-slide="next">
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="sr-only">Siguiente</span>
-			</a>
-		</div>
+  <!-- Inicio código para tarjetas del Main  -->
+<div class="container">
+  <!-- Primer Fila de tarjetas -->
+	<div class="row">
+    <div class="col-md-6">
+      <div class="card" id="card-primer-fila" style="height: 15rem;">
+        <img class="card-img-top" src="imagen1.jpg" alt="Imagen 1">
+        <div class="card-body">
+          <h5 class="card-title">Hotel 1</h5>
+          <p class="card-text">Descripción del hotel 1.</p>
+          <a href="#" class="btn btn-primary">Reservar</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-6">
+      <div class="card"  id="card-primer-fila" style="height: 15rem;">
+        <img class="card-img-top" src="imagen2.jpg" alt="Imagen 2">
+        <div class="card-body">
+          <h5 class="card-title">Hotel 2</h5>
+          <p class="card-text">Descripción del hotel 2.</p>
+          <a href="#" class="btn btn-primary">Reservar</a>
+        </div>
+      </div>
+    </div>
+    
+   <!-- Segunda Fila de tarjetas-->
 
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-4 col-md-6">
-					<div class="card">
-						<img
-							src="ruta-de-la-imagen"
-							class="card-img-top"
-							alt="Imagen del lugar" />
-						<div class="card-body">
-							<h5 class="card-title">Nombre del Lugar</h5>
-							<p class="card-text">Descripción del lugar.</p>
-							<p class="card-text">Ubicación del lugar.</p>
-							<a href="#" class="btn btn-primary">Ver Detalles</a>
-						</div>
-					</div>
-				</div>
-				<!-- Repite el código de la tarjeta para cada lugar -->
-			</div>
-		</div>
+  <div class="row" id="card-segunda-fila">
+    <div class="col-md-3">
+      <div class="card" id="card-segunda-fila" style="height: 15rem;">
+        <img class="card-img-top" src="imagen1.jpg" alt="Imagen 1">
+        <div class="card-body">
+          <h5 class="card-title">Hotel 3</h5>
+          <p class="card-text">Descripción del hotel 1.</p>
+          <a href="#" class="btn btn-primary">Reservar</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-3">
+      <div class="card" id="card-segunda-fila" style="height: 15rem;">
+        <img class="card-img-top" src="imagen2.jpg" alt="Imagen 2">
+        <div class="card-body">
+          <h5 class="card-title">Hotel 4</h5>
+          <p class="card-text">Descripción del hotel 2.</p>
+          <a href="#" class="btn btn-primary">Reservar</a>
+        </div>
+      </div>
+    </div>
 
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-4 col-md-6">
-					<div class="card">
-						<img
-							src="ruta-de-la-imagen"
-							class="card-img-top"
-							alt="Imagen del lugar" />
-						<div class="card-body">
-							<h5 class="card-title">Nombre del Lugar</h5>
-							<p class="card-text">Descripción del lugar.</p>
-							<a href="#" class="btn btn-primary">Ver Detalles</a>
-						</div>
-					</div>
-				</div>
-				<!-- Repite el código de la tarjeta para cada lugar -->
-			</div>
+	<div class="col-md-3">
+		<div class="card" id="card-segunda-fila" style="height: 15rem;">
+		  <img class="card-img-top" src="imagen2.jpg" alt="Imagen 2">
+		  <div class="card-body">
+			<h5 class="card-title">Hotel 4</h5>
+			<p class="card-text">Descripción del hotel 2.</p>
+			<a href="#" class="btn btn-primary">Reservar</a>
+		  </div>
 		</div>
+	  </div>
+    
+    <div class="col-md-3">
+      <div class="card" id="card-segunda-fila" style="height: 15rem;">
+        <img class="card-img-top" src="imagen3.jpg" alt="Imagen 3">
+        <div class="card-body">
+          <h5 class="card-title">Hotel 5</h5>
+          <p class="card-text">Descripción del hotel 3.</p>
+          <a href="#" class="btn btn-primary">Reservar</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-		<div class="container text-center">
-			<!-- Contenido principal -->
-			<div class="row g-2">
-				<div class="col-6">
-					<div class="p-3">Custom column padding</div>
-				</div>
-				<div class="col-6">
-					<div class="p-3">Custom column padding</div>
-				</div>
-				<div class="col-6">
-					<div class="p-3">Custom column padding</div>
-				</div>
-				<div class="col-6">
-					<div class="p-3">Custom column padding</div>
-				</div>
-				<div class="col-6">
-					<div class="p-3">Custom column padding</div>
-				</div>
-				<div class="col-6">
-					<div class="p-3">Custom column padding</div>
-				</div>
-			</div>
-		</div>
-		<!-- </div> Fin del conteiner -->
+  <!-- Tercer Fila de tarjetas -->
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card" id="card-tercer-fila">
+        <img class="card-img-top" src="imagen1.jpg" alt="Imagen 1">
+        <div class="card-body">
+          <h5 class="card-title">Hotel 1</h5>
+          <p class="card-text">Descripción del hotel 1.</p>
+          <a href="#" class="btn btn-primary">Reservar</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="card" id="card-tercer-fila">
+        <img class="card-img-top" src="imagen2.jpg" alt="Imagen 2">
+        <div class="card-body">
+          <h5 class="card-title">Hotel 2</h5>
+          <p class="card-text">Descripción del hotel 2.</p>
+          <a href="#" class="btn btn-primary">Reservar</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="card" id="card-tercer-fila">
+        <img class="card-img-top" src="imagen3.jpg" alt="Imagen 3">
+        <div class="card-body">
+          <h5 class="card-title">Hotel 3</h5>
+          <p class="card-text">Descripción del hotel 3.</p>
+          <a href="#" class="btn btn-primary">Reservar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Fin código para tarjetas del Main  -->
 		<!-- Footer -->
 
-		<!-- <footer> 
-      <div class="olas">
+	<footer class="main-footer"> 
+      <!-- <div class="olas">
           <div class="ola" id="ola1"></div>
           <div class="ola" id="ola2"></div>
           <div class="ola" id="ola3"></div>
           <div class="ola" id="ola4"></div>
 
-      </div>
+      </div> -->
 
           <div class="imgSocial">
               <a href=""><img src="/assets/imgFooter/facebook.png" alt="logo facebook"></a>
@@ -356,7 +315,7 @@
             <p>©2023 DescansAR
               Privacidad/Términos y condiciones/©2023 DescansAR
             </p>
-  </footer>    -->
+  </footer>   
 		<!-- Fin del Footer -->
 
 		<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script> -->
@@ -373,10 +332,14 @@
 		<script src="/js/cards-logic/localsotrage-functions.js"></script>
 		<!-- Valores iniciales del localStorage -->
 		<script src="/js/initialValues.js"></script>
-		<!-- Para el nav -->
-		<script src="/js/nav.js"></script>
-		<!-- Manejador del formulario de search -->
-		<script src="/js/mainSearchHandler.js"></script>
+			<!-- Manejador del formulario de search -->
+			<script src="/js/mainSearchHandler.js"></script>
+
+			<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+			<!-- Para el nav -->
+			<script src="/js/nav.js"></script>
 		<!-- Redireccionamiento del login y signUp -->
 		<script src="/js/mainUserRedirection.js"></script>
 	</body>
