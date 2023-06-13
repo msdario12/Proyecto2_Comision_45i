@@ -31,11 +31,11 @@ const inputElement = document.querySelector('input[type="file"]');
 // Create a FilePond instance
 const filepond = FilePond.create(inputElement, {
 	labelIdle:
-		'Arrastra las imágenes aquí o  <span class="filepond--label-action"> Selecciónalas desde tu computadora</span>',
+		'Arrastra las imágenes aquí o  <span class="filepond--label-action"> Selecciónalas desde tu computadora</span>. Puedes subir hasta 4 imágenes',
 	storeAsFile: true,
 	allowMultiple: true,
 	acceptedFileTypes: ['image/png', 'image/jpeg'],
-	maxFiles: 5,
+	maxFiles: 4,
 });
 
 // !-----------------------------------Filedrop END
