@@ -15,6 +15,9 @@ function handleChangeInputsAlert(e) {
 			...searchParams,
 			checkInDateSearch: e.target.value,
 		});
+		// Setear el valor el input checkout en funcion de este valor
+		e.target.form.elements.dateCheckoutInputAlert.min = e.target.value;
+		e.target.form.elements.dateCheckoutInputAlert.value = e.target.value;
 	}
 	if (e.target.id === 'dateCheckoutInputAlert') {
 		addToLocalStorage('searchParams', {
@@ -24,6 +27,10 @@ function handleChangeInputsAlert(e) {
 	}
 }
 async function sweetAlertRender(checkin, checkout, quantity, card) {
+	// Logica para establecer valores minimos de los inputs date
+	const actualDay = new Date();
+	const stringDay = formatDate(actualDay);
+	console.log(stringDay);
 	Swal.fire({
 		title: `Confirma tu reserva en ${card.accommodationTitle}`,
 		confirmButtonText: 'Cotizar reserva',
@@ -49,6 +56,7 @@ async function sweetAlertRender(checkin, checkout, quantity, card) {
             <input
 				alert-input
                 alert
+				min="${stringDay}"
 				require
 				onchange="handleChangeInputsAlert(event)"
                 type="date"
