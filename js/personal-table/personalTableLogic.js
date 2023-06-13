@@ -63,8 +63,8 @@ function mainPersonalTable() {
         Bienvenido ${currentUser.firstName}! Estos son tus alquileres y publicaciones.
         `;
 		document.querySelector('#tableButtons').innerHTML = `
-        <button host-button id="hostPublications" class="btn btn-secondary">Mis publicaciones</button>
-        <button host-button id="hostBookings" class="btn btn-info">Mis alquileres</button>
+        <button host-button id="hostBookings" class="btn btn-secondary">Mis publicaciones</button>
+        <button host-button id="hostPublications" class="btn btn-info">Mis alquileres</button>
         `;
 
 		const findUser = globalUsers.hostUsers.find(
@@ -74,18 +74,18 @@ function mainPersonalTable() {
 		const bookingList = findUser.ownerBookings;
 
 		// Inicialmente se renderiza la tabla de alquileres
-		renderGuestTable(
-			$container,
-			'host',
-			bookingList,
-			'Fecha de la operación',
-			'Fecha de salida',
-			'Fecha de regreso',
-			'Monto a pagar',
-			'Cantidad de huéspedes',
-			'Email del inquilino',
-			'Publicación'
-		);
+		// renderGuestTable(
+		// 	$container,
+		// 	'host',
+		// 	bookingList,
+		// 	'Fecha de la operación',
+		// 	'Fecha de salida',
+		// 	'Fecha de regreso',
+		// 	'Monto a pagar',
+		// 	'Cantidad de huéspedes',
+		// 	'Email del inquilino',
+		// 	'Publicación'
+		// );
 	}
 
 	// Logica para manejar la tabla personal de guest
@@ -105,8 +105,8 @@ function mainPersonalTable() {
         `;
 		console.log(arrayToRender, mode);
 
-		let button = (obj) => `
-        <button	publication-id=${obj.publicationId} class="btn btn-outline-primary">
+		let button = (obj, mode) => `
+        <button	publication-id=${obj.publicationId} ${mode}=true class="btn btn-outline-primary">
             Ir
         </button>`;
 
@@ -124,7 +124,7 @@ function mainPersonalTable() {
                     <td>${obj.guestCapacity}</td>
                     <td>${obj.shortDescription}</td>
                     <td>${obj.accommodationPrice}</td>
-                    <td>${button(obj)}</td>
+                    <td>${button(obj, mode)}</td>
                 </tr>
                 `;
 			}
@@ -145,7 +145,7 @@ function mainPersonalTable() {
                     <td>${obj.totalCost}</td>
                     <td>${obj.guestsQuantity}</td>
                     <td>${email}</td>
-                    <td>${button(obj)}</td>
+                    <td>${button(obj, mode)}</td>
                 </tr>
                 `;
 		}
@@ -173,7 +173,7 @@ function mainPersonalTable() {
 	// ! Logica para modificar lo que se muestra en la tabla de usuarios ----------
 	// Controllers de los buttons para mostrar tabla
 	document
-		.querySelectorAll('button[publication-id]')
+		.querySelectorAll('button[guest]')
 		.forEach((btn) =>
 			btn.addEventListener('click', handleClickLinkPublication)
 		);
@@ -190,7 +190,6 @@ function mainPersonalTable() {
 		.forEach((btn) => btn.addEventListener('click', handleClickHostTableMode));
 	// Handler para cambiar el modo de la tabla del host
 	function handleClickHostTableMode(e) {
-		console.log(e);
 		const mode = e.target.id;
 
 		const findUser = globalUsers.hostUsers.find(
@@ -212,6 +211,7 @@ function mainPersonalTable() {
 				'Email del inquilino',
 				'Publicación'
 			);
+			mainPersonalTable();
 			return;
 		}
 		if (mode === 'hostPublications') {
@@ -229,8 +229,21 @@ function mainPersonalTable() {
 				'Precio por noche',
 				'Editar la publicacion'
 			);
+			mainPersonalTable();
 			return;
 		}
+	}
+	// Controlador para redireccionar a editar la publicacion
+	document
+		.querySelectorAll('button[host-publications]')
+		.forEach((btn) => btn.addEventListener('click', handleClickEditCard));
+	// Handler para controlar el redireccionamiento para la edicion
+	function handleClickEditCard(e) {
+		const publicationId = e.target.attributes['publication-id'].value;
+		console.log(publicationId);
+		const path = '/html/create-publication.html';
+		const query = `?edit=true&id=${publicationId}`;
+		window.location.href = path + query;
 	}
 }
 mainPersonalTable();

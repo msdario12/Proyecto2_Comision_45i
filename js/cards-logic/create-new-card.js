@@ -143,7 +143,7 @@ function createFormNewCard() {
 			globalUsersBD.hostUsers[userIndex].userListings = [];
 		}
 		globalUsersBD.hostUsers[userIndex].userListings.push({
-			idCard,
+			publicationId: idCard,
 			dateOfCreation: actualDate,
 			accommodationTitle: el.titleInput.value,
 			accommodationLocation: el.locationInput.value,
@@ -173,3 +173,40 @@ function createFormNewCard() {
 
 // Render form para nuevas cards
 createFormNewCard();
+
+//! Funcion para poder usar el mismo formulario para editar una publicacion
+// Leemos los parametros de la URL
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+
+if (urlParams.has('edit')) {
+	console.log('Si tiene rey');
+	// entonces el form va a funcionar para editar la card en vez de crear una nueva
+	const publicationId = urlParams.get('id');
+	const cardsList = getFromLocalStorage('accommodationDB');
+	const findCard = cardsList.find((card) => card.id === publicationId);
+	const {
+		accommodationPrice: price,
+		accommodationLocation: location,
+		accommodationTitle: title,
+		guestCapacity: capacity,
+		imageGallery: gallery,
+		shortDescription: description,
+	} = findCard;
+	// Establecemos los valores de los inputs
+	const $form = document.querySelector('#createCardForm');
+	console.log($form.elements);
+	const el = $form.elements;
+	// Seteamos los valores
+	el.priceInput.value = price;
+	el.locationInput.value = location;
+	el.titleInput.value = title;
+	el.capacityInput = capacity;
+	el.descriptionTextArea = description;
+	// Galeria de imagenes
+	filepond.setOptions({
+		labelIdle:
+			'<span class="filepond--label-action">Añade</span>, arrastra o elimina las imagenes de tu publicación',
+	});
+	gallery.forEach((img) => filepond.addFile(img));
+}
