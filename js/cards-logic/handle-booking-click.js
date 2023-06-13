@@ -145,9 +145,10 @@ async function sweetAlertRender(checkin, checkout, quantity, card) {
 	})
 		.then(async (result) => {
 			const { days, quantity, price, dateIn, dateOut } = result.value;
+			const totalCost = days * quantity * price;
 			const { value: formValues } = await Swal.fire({
 				icon: 'success',
-				title: `El monto total es de $${days * quantity * price}`,
+				title: `El monto total es de $${totalCost}`,
 				confirmButtonText: 'Confirmar reserva',
 				showCloseButton: true,
 			});
@@ -172,6 +173,8 @@ async function sweetAlertRender(checkin, checkout, quantity, card) {
 					guestsQuantity: quantity,
 					checkInDate: dateIn,
 					checkOutDate: dateOut,
+					totalCost,
+					location: accommodationLocation,
 				};
 				// Añadimos el id de la publicacion a ese usuario
 				guestsUsers[findUserGuestIndex].userBookings.unshift(newBookingInGuest);
@@ -214,6 +217,7 @@ async function sweetAlertRender(checkin, checkout, quantity, card) {
 					guestsQuantity: quantity,
 					checkInDate: dateIn,
 					checkOutDate: dateOut,
+					totalCost,
 				};
 				// Añadimos el id de la publicacion a ese usuario
 				console.log(findUserHostIndex);
