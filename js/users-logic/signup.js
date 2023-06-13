@@ -43,7 +43,7 @@ function createSignUp(mode) {
 						name="emailInput"
 						id="emailInput"
 						placeholder="Ingrese su email" />
-					<label for="emailInput">Nombre de usuario</label>
+					<label for="emailInput">Ingrese su email</label>
 				</div>
 				<!-- nombre -->
 				<div class="form-floating mb-3">
@@ -57,7 +57,7 @@ function createSignUp(mode) {
 						id="nameInput"
 						name="nameInput"
 						placeholder="Nombre de usuario" />
-					<label for="nameInput">Ingrese su nombre completo</label>
+					<label for="nameInput">Ingrese su primer nombre</label>
 				</div>
 				<!-- apellido -->
 				<div class="form-floating mb-3">
