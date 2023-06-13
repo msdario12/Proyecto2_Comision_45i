@@ -17,45 +17,36 @@
 		<link
 			href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
 			rel="stylesheet" />
+		<!-- Fontawesome -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+			integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer" />
+		<link rel="stylesheet" href="../css/cards.css" />
 		<link rel="stylesheet" href="../css/cards.css" />
 
 		<title>Login</title>
 	</head>
 	<body>
-		<h1 class="">Card</h1>
-		<a href="#"></a>
-		<main>
-			<h2>Login</h2>
-			<button id="guestLogin" class="btn btn-info">
-				Autenticarse como huésped
-			</button>
-			<button id="hostLogin" class="btn btn-secondary">
-				Autenticarse como anfitrión
-			</button>
-			<section class="container" id="loginContainer">
-				<!-- form login injected via javascript -->
-			</section>
-			<section class="container">
-				<h2>Boton de logout</h2>
-				<button id="logoutButton" class="btn btn-danger">Logout</button>
-			</section>
-			<h2>Registro</h2>
-			<button id="guestSignUp" class="btn btn-info">
-				Registrarme como huésped
-			</button>
-			<button id="hostSignUp" class="btn btn-secondary">
-				Registrarme como anfitrión
-			</button>
-			<section class="container" id="signupContainer">
-				<!-- Form inject from javascript -->
-			</section>
-			<div id="tableButtons">
-				<!-- Table injecto from javascript -->
+		<main class="container-lg">
+			<div
+				class="row min-vh-100 justify-content-center align-items-center position-relative">
+				<h2 class="position-absolute top-0 display-2 gap-0 p-0">Login</h2>
+				<div class="col-9 row border gap-0 p-0 shadow-sm">
+					<div class="col-6 p-0 d-none d-md-block">
+						<img
+							class="img-fluid object-fit-cover w-100"
+							style="height: 500px"
+							src="https://source.unsplash.com/random/?travel"
+							alt="" />
+					</div>
+					<section class="col-12 col-md-6 p-3" id="loginContainer">
+						<!-- form login injected via javascript -->
+					</section>
+				</div>
 			</div>
-
-			<section class="container" id="usersTableContainer">
-				<!-- Table injecto from javascript -->
-			</section>
 		</main>
 		<!-- SweetAlert 2 -->
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

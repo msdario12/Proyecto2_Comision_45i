@@ -11,40 +11,49 @@ function createLogin(mode, urlToRedirect) {
 	const params = paramsGeneral[mode];
 	const html = `
     <!-- email -->
-                    <h2>${params.title}</h2>
-					<div class="form-floating mb-3">
-						<input
-							value="email@gmail.com"
-							required
-							type="email"
-							class="form-control"
-							maxlength="64"
-							minlength="4"
-							name="emailLogin"
-							id="emailLogin"
-							placeholder="Ingrese su email" />
-						<label for="emailLogin">Email</label>
+                    <h2 class="mb-3 align-self-center">${params.title}</h2>
+					<div style="justify-self: center">
+						<div class="form-floating mb-3">
+							<input
+								value="email@gmail.com"
+								required
+								type="email"
+								class="form-control"
+								maxlength="64"
+								minlength="4"
+								name="emailLogin"
+								id="emailLogin"
+								placeholder="Ingrese su email" />
+							<label for="emailLogin">Email</label>
+						</div>
+						<!-- contraseña -->
+						<div class="form-floating mb-3">
+							<input
+								value="contrasena"
+								required
+								type="password"
+								class="form-control"
+								maxlength="256"
+								minlength="8"
+								id="passwordLogin"
+								name="passwordLogin"
+								placeholder="Ingrese su contraseña" />
+							<label for="passwordLogin">Ingrese su contraseña</label>
+						</div>
+						<div class="text-center">
+							<input type="submit" mode=${mode} class="btn btn-primary py-2 px-4" value="Login" />
+						</div>
 					</div>
-					<!-- contraseña -->
-					<div class="form-floating mb-3">
-						<input
-							value="contrasena"
-							required
-							type="password"
-							class="form-control"
-							maxlength="256"
-							minlength="8"
-							id="passwordLogin"
-							name="passwordLogin"
-							placeholder="Ingrese su contraseña" />
-						<label for="passwordLogin">Ingrese su contraseña</label>
-					</div>
-					<input type="submit" mode=${mode} class="btn btn-primary" value="Login" />
     `;
 	const $form = document.createElement('form');
-	$form.innerHTML = html;
 	$form.setAttribute('id', 'userLogin');
-	// $form.classList.add('row');
+	$form.classList.add(
+		'd-flex',
+		'flex-column',
+		'h-100',
+		'justify-content-center'
+	);
+	$form.innerHTML = html;
 	return $form;
 }
 // Funcion para renderizar el form del login
@@ -60,14 +69,14 @@ function renderLoginForm(mode, urlToRedirect = false) {
 	document.querySelector('#loginContainer').appendChild($formLogin);
 }
 // Handler del click para el login
-function handleClickLogin(e) {
-	// Defino si el boton fue de guest o host para el signup
-	const mode = e.target.id === 'hostLogin' ? 'host' : 'guest';
-	renderLoginForm(mode);
-}
-// Controladores de los botones de registro
-document.querySelector('#guestLogin').onclick = handleClickLogin;
-document.querySelector('#hostLogin').onclick = handleClickLogin;
+// function handleClickLogin(e) {
+// 	// Defino si el boton fue de guest o host para el signup
+// 	const mode = e.target.id === 'hostLogin' ? 'host' : 'guest';
+// 	renderLoginForm(mode);
+// }
+// // Controladores de los botones de registro
+// document.querySelector('#guestLogin').onclick = handleClickLogin;
+// document.querySelector('#hostLogin').onclick = handleClickLogin;
 
 // Manejador del submit del login
 function handleLogin(e, urlToRedirect) {
