@@ -29,7 +29,7 @@ $header.innerHTML = `
 					<li class="d-flex align-items-center">
 						<a href="/html/create-publication.html">Publicar</a>
 					</li>
-					<li users-table class="d-flex d-none align-items-center">
+					<li users-table=true class="d-none align-items-center">
 						<a href="/html/users-table.html">Tabla de Usuarios</a>
 					</li>
 					<li class="d-flex align-items-center" id="dropdownSignUp">
@@ -140,7 +140,7 @@ function renderNavElements() {
 		if (user.type === 'admin') {
 			classColor = 'text-bg-warning';
 			// Le doy display flex al boton de tabla de usuarios
-			document.querySelector('li[users-table]').classList.toggle('d-none');
+			document.querySelector('li[users-table]').classList.toggle('d-flex');
 		}
 		document.querySelector('#dropdownSignUp').innerHTML = '';
 		// document.querySelector('#dropdownSignUp').style.display = 'none';

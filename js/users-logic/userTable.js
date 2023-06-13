@@ -18,7 +18,7 @@ function mainTable() {
 `;
 	// Obtengo el currentUser
 	const currentUser = getFromLocalStorage('currentUser');
-	if (!currentUser) {
+	if (!currentUser || currentUser.type !== 'admin') {
 		renderAlertErrorHome('Ups, esta página es solo para administradores');
 	}
 	// Veo si el usuario es admin para renderizar la tabla
