@@ -47,7 +47,7 @@ function renderCard(idx, obj) {
 	// Agrego las clases a este elemento padre
 	$div.classList.add('card', 'mb-3', 'card-custom');
 	// Modifico el interior del html
-	$div.innerHTML = `<div class="row g-0">
+	$div.innerHTML = `<div id="${id}" class="row g-0">
         <div class="col-sm-4 carousel-parent">
             ${createCarrusselString(imageGallery, id, accommodationTitle)}
         </div>

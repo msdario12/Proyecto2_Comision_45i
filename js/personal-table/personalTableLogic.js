@@ -61,42 +61,43 @@ function mainPersonalTable() {
     </tr>
     `;
 		console.log(arrayToRender, mode);
-		// Pasar como string "ban" o "approve"
-		const createButton = (obj, action) => {
-			let className = '';
-			let msg = '';
-			if (action === 'ban') {
-				msg = 'Deshabilitar Usuario';
-				className = 'btn btn-danger';
-			}
-			if (action === 'approve') {
-				msg = 'Habilitar Usuario';
-				className = 'btn btn-success';
-			}
-			return `
-		<button btn-target=${obj.emailInput} 
-				btn-mode=${action} 
-				btn-user-type=${obj.type} 
-				class="${className}">
-		${msg}
-		</button>`;
-		};
+		// !Pasar como string "ban" o "approve"
+		// const createButton = (obj, action) => {
+		// 	let className = '';
+		// 	let msg = '';
+		// 	if (action === 'ban') {
+		// 		msg = 'Deshabilitar Usuario';
+		// 		className = 'btn btn-danger';
+		// 	}
+		// 	if (action === 'approve') {
+		// 		msg = 'Habilitar Usuario';
+		// 		className = 'btn btn-success';
+		// 	}
+		// 	return `
+		// <button btn-target=${obj.emailInput}
+		// 		btn-mode=${action}
+		// 		btn-user-type=${obj.type}
+		// 		class="${className}">
+		// ${msg}
+		// </button>`;
+		// };
+
+		const button = (obj) => `
+        <button	publication-id=${obj.publicationId} class="btn btn-outline-primary">
+            Ir
+        </button>`;
 
 		function createRow(obj, idx) {
 			return `
 		<tr>
 			<th scope="row">${idx}</th>
-			<td>${obj.dateOfReservation}</td>
-			<td>${obj.guestsQuantity}</td>
-			<td>${obj.hostEmail}</td>
-			<td>${obj.publicationId}</td>
+			<td>${obj.location}</td>
 			<td>${obj.checkInDate}</td>
 			<td>${obj.checkOutDate}</td>
-			<td>${
-				obj.isRegistrationApproved
-					? createButton(obj, 'ban')
-					: createButton(obj, 'approve')
-			}</td>
+			<td>${obj.totalCost}</td>
+			<td>${obj.guestsQuantity}</td>
+			<td>${obj.hostEmail}</td>
+			<td>${button(obj)}</td>
 		</tr>
 		`;
 		}
@@ -129,7 +130,8 @@ function mainPersonalTable() {
 			'Fecha de regreso',
 			'Monto a pagar',
 			'Cantidad de huéspedes',
-			'Email del dueño'
+			'Email del dueño',
+			'Publicación'
 		);
 		htmlParent.appendChild($tableUsers);
 		// banButtons = document.querySelectorAll('button[btn-target]');
@@ -139,6 +141,11 @@ function mainPersonalTable() {
 	// renderUserTable($containerForUserTable, 'all');
 	// ! Logica para modificar lo que se muestra en la tabla de usuarios ----------
 	// Controllers de los buttons para mostrar tabla
+	document
+		.querySelectorAll('button[publication-id]')
+		.forEach((btn) =>
+			btn.addEventListener('click', handleClickLinkPublication)
+		);
 	// document.querySelector('#showGuestsUsers').onclick = () => {
 	// 	addToLocalStorage('userTableViewMode', {
 	// 		category: 'guest',
@@ -157,8 +164,15 @@ function mainPersonalTable() {
 	// 	});
 	// 	renderUserTable($containerForUserTable, 'all');
 	// };
+	// Handler para click en link de publicaciones
+	function handleClickLinkPublication(e) {
+		const publicationId = e.target.attributes['publication-id'].value;
+		const path = '/html/cards.html';
+		const query = `#${publicationId}`;
+		window.location.href = path + query;
+	}
 	// ! Logica para aprobar o banear usuarios al click de los botones respectivos--------------------
-	// Controlador para los botones de ban
+	// Handler para los botones de ban
 	function handleTableButtonClick(e) {
 		// Obtener la accion a realizar con el boton
 		const actionToRealize = e.target.attributes['btn-mode'].value;
