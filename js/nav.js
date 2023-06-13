@@ -14,6 +14,7 @@ document.head.appendChild($linkIconsBootstrap);
 document.head.appendChild($linkCssNav);
 const $header = document.createElement('header');
 $header.setAttribute('id', 'mainHeader');
+// ? Aca esta todo el html del nav
 $header.innerHTML = `
 <div id="logo"><h1>descansAR</h1></div>
 			<button id="abrir" class="abrir-menu"><i class="bi bi-list"></i></button>
@@ -22,7 +23,7 @@ $header.innerHTML = `
 					<i class="bi bi-x-lg"></i>
 				</button>
 				<ul class="nav-list">
-					<li class="d-flex align-items-center"><a href="">Home</a></li>
+					<li class="d-flex align-items-center"><a href="/html/index.html">Home</a></li>
 					<li class="d-flex align-items-center"><a href="">About</a></li>
 					<li class="d-flex align-items-center"><a href="">Contacto</a></li>
 					<li class="d-flex align-items-center">
