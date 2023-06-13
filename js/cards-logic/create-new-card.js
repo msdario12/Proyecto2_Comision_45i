@@ -17,6 +17,10 @@ function createRandomID(prefix) {
 	return String(prefix).toUpperCase() + num1 + vowel + num2;
 }
 
+// Leemos los parametros de la URL
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+
 // !-----------------------------------Filedrop
 // Register the plugin
 FilePond.registerPlugin(FilePondPluginImagePreview);
@@ -130,6 +134,17 @@ function createFormNewCard() {
 			numberOfReviews: randomNumber(1000),
 		};
 
+		// !Si estamos en modo edicion, eliminamos la card del localStorage
+		if (urlParams.has('edit')) {
+			const publicationId = urlParams.get('id');
+			const cardsList = getFromLocalStorage('accommodationDB');
+			const findCardIndex = cardsList.findIndex(
+				(card) => card.id === publicationId
+			);
+			cardsList.splice(findCardIndex, 1);
+			addToLocalStorage('accommodationDB', cardsList);
+		}
+
 		// Añadimos la nueva card al localStorage de las publicaciones
 		const rentalCards = getFromLocalStorage('accommodationDB');
 		addToLocalStorage('accommodationDB', [newCard, ...rentalCards]);
@@ -175,9 +190,6 @@ function createFormNewCard() {
 createFormNewCard();
 
 //! Funcion para poder usar el mismo formulario para editar una publicacion
-// Leemos los parametros de la URL
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
 
 if (urlParams.has('edit')) {
 	console.log('Si tiene rey');
@@ -197,16 +209,24 @@ if (urlParams.has('edit')) {
 	const $form = document.querySelector('#createCardForm');
 	console.log($form.elements);
 	const el = $form.elements;
+	// Cambiamos el texto del boton de submit
+
 	// Seteamos los valores
 	el.priceInput.value = price;
 	el.locationInput.value = location;
 	el.titleInput.value = title;
-	el.capacityInput = capacity;
-	el.descriptionTextArea = description;
+	el.capacityInput.value = capacity;
+	el.descriptionTextArea.value = description;
 	// Galeria de imagenes
+	// Cambiamos el mensaje del boton de submit
+	el.submitButton.value = 'Modificar publicación';
+	// Cambiamos el titulo de la pagina
+	document.querySelector('#pageTitleNewCard').textContent =
+		'Editar una publicación';
 	filepond.setOptions({
 		labelIdle:
 			'<span class="filepond--label-action">Añade</span>, arrastra o elimina las imagenes de tu publicación',
 	});
+	// Por cada imagen de la galeria, la cargamos en el visualizador
 	gallery.forEach((img) => filepond.addFile(img));
 }
