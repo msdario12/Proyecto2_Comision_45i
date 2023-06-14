@@ -11,6 +11,26 @@ header {
 	justify-content: space-between;
 	padding: 2rem;
 	background-color: rgb(241, 241, 237);
+	width: 100vw;
+}
+
+nav{
+	width: 100%;
+}
+#caja-registro{
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	
+}
+
+#navbarNavDropdown{
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100vh;
+
 }
 
 .abrir-menu,

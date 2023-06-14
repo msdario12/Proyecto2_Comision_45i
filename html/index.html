@@ -69,11 +69,12 @@
 		<title>DescansAR - Home</title>
 	</head>
 	<body>
-		<div id="headerBefore">
+		<!-- poner de id "headerBefore" para que se inserte el otro navbar -->
+		<div id="">  
 			<!-- El header se inserta antes de este div -->
 		</div>
 		<!-- Barra de navegación -->
-		<!-- <header class="header-with-border">
+		<header class="header-with-border">
 			<nav class="navbar navbar-expand-lg bg-body-tertiary">
 				<div class="container-fluid">
 				  <a class="navbar-brand" href="#"><img id="logo"  src="/assets/logo.png" alt="" style="width: 50px;">descansAR</a>
@@ -83,7 +84,7 @@
 				  <div class="collapse navbar-collapse" id="navbarNavDropdown">
 					<ul class="navbar-nav">
 					  <li class="nav-item">
-						<a class="nav-link active" aria-current="page" href="#">Home</a>
+						<a class="nav-link active" aria-current="page" href="/html/index.html">Home</a>
 					  </li>
 					  <li class="nav-item">
 						<a class="nav-link" href="#">Contacto</a>
@@ -91,22 +92,99 @@
 					  <li class="nav-item">
 						<a class="nav-link" href="#">Sobre nosotros</a>
 					  </li>
-					  
-					  <li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-						  <i class="bi bi-person-circle"></i> Bienvenido, usuario
-						</a>
-						<ul class="dropdown-menu">
-						  <li><a class="dropdown-item" href="#">Iniciar sesion</a></li>
-						  <li><a class="dropdown-item" href="#">Crear cuenta</a></li>
-						</ul>
+
+
+
+					 
+					  <li class="nav-item">
+						<a class="nav-link" href="/html/create-publication.html">Publicar</a>
 					  </li>
+
+					   
+
+					   
+
+					 
 					</ul>
+
+					<div id="caja-registro">
+						<li users-table=true class="d-none align-items-center">
+							<a href="/html/users-table.html">Tabla de Usuarios</a>
+						</li>
+						<li class="d-flex align-items-center" id="dropdownSignUp">
+							<div class="dropdown">
+								<button
+									class="btn btn-primary dropdown-toggle"
+									type="button"
+									data-bs-toggle="dropdown"
+									aria-expanded="false">
+									Registrarme
+								</button>
+								<ul class="dropdown-menu">
+									<li>
+										<a
+											id="signup-guest"
+											class="dropdown-item"
+											redirection
+											signup
+											href="#"
+											>Como huésped</a
+										>
+									</li>
+									<li>
+										<a
+											id="signup-host"
+											redirection
+											signup
+											class="dropdown-item"
+											href="#"
+											>Como anfitrión</a
+										>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="d-flex align-items-center" id="dropdownLogin">
+							<div class="dropdown">
+								<button
+									class="btn btn-secondary dropdown-toggle"
+									type="button"
+									data-bs-toggle="dropdown"
+									aria-expanded="false">
+									Login
+								</button>
+								<ul class="dropdown-menu">
+									<li>
+										<a
+											id="login-guest"
+											redirection
+											login
+											class="dropdown-item"
+											href="#"
+											>Como huésped</a
+										>
+									</li>
+									<li>
+										<a
+											id="login-host"
+											redirection
+											login
+											class="dropdown-item"
+											href="#"
+											>Como anfitrión</a
+										>
+									</li>
+								</ul>
+							</div>
+						</li>
+						  
+					
+					</div>
 				  </div>
 				</div>
 			  </nav>
 			</nav>
-		</header> -->
+		</header> 
 
 		<!-- Busqueda -->
 		<div class="container" id="card-busqueda">
@@ -336,7 +414,7 @@
 					><img src="/assets/imgFooter/instagram.png" alt="logo instagram"
 				/></a>
 				<a href=""
-					><img src="/assets/imgFooter/signo-de-twitter.png" alt="logo twitter"
+					><img src="/assets/imgFooter/twitter.png" alt="logo twitter"
 				/></a>
 				<a href=""
 					><img src="/assets/imgFooter/telegrama.png" alt="logo telegram"
