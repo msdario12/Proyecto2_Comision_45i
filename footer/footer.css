@@ -23,7 +23,7 @@ footer {
     width: 100%;
     height: auto;
     padding: 50px 100px;
-    background: #212020;
+    background: rgb(11,87, 215);
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
