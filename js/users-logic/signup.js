@@ -219,7 +219,7 @@ function handleNewUserRegister(e) {
 			'Por favor espera a que un administrador apruebe tu cuenta, seras redirigido en',
 			'info',
 			2000,
-			'/html/index.html'
+			'/index.html'
 		);
 	}
 	if (mode === 'guest') {
@@ -234,7 +234,7 @@ function handleNewUserRegister(e) {
 			'Bienvenido!, ahora puedes reservar en nuestro sitio!. Seras redirigido en',
 			'success',
 			2000,
-			'/html/index.html'
+			'/index.html'
 		);
 	}
 	console.log(globalUsersBD, mode);

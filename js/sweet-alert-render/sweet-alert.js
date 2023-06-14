@@ -51,7 +51,7 @@ function renderAlertSuccessHome(title) {
 		willClose: () => {
 			clearInterval(timerInterval);
 			// redirecciono al home
-			window.location.href = '/html/index.html';
+			window.location.href = '/index.html';
 		},
 	}).then((result) => {
 		/* Read more about handling dismissals below */
@@ -79,7 +79,7 @@ function renderAlertErrorHome(title) {
 		willClose: () => {
 			clearInterval(timerInterval);
 			// redirecciono al home
-			window.location.href = '/html/index.html';
+			window.location.href = '/index.html';
 		},
 	}).then((result) => {
 		/* Read more about handling dismissals below */

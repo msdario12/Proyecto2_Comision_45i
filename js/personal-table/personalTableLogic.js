@@ -17,7 +17,7 @@ function mainPersonalTable() {
 			'Seras redireccionado al home en',
 			'error',
 			1500,
-			'/html/index.html'
+			'/index.html'
 		);
 	}
 
