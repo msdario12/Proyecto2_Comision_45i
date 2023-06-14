@@ -58,7 +58,7 @@ function renderFilteredCardsByParams(obj) {
 	} = obj;
 
 	// Convierto a lowerCase
-	searchParam = searchParam.toLowerCase();
+	// searchParam = searchParam.toLowerCase();
 	ubicationParam = ubicationParam ? ubicationParam.toLowerCase() : '';
 
 	// Lista de fechas interiores
@@ -106,7 +106,7 @@ function renderFilteredCardsByParams(obj) {
 			}
 
 			// Todas las condiciones deben ser true para mostrar esa card como disponible
-			return hasTitle && hasQuantity && hasUbication && !hasDateAvailable;
+			return hasQuantity && hasUbication && !hasDateAvailable;
 		});
 		return filtered;
 	}
