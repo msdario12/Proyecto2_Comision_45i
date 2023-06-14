@@ -30,66 +30,21 @@
 		</div>
 
 		<main class="container-lg">
-			<h2 class="display-2">Publicaciones</h2>
+			<h2 class="display-2 my-2">Publicaciones</h2>
 
 			<section>
 				<h3 class="lead">
 					Explora las publicaciones de nuestros anfitriones y encontra tu
 					proximo destino
 				</h3>
-				<form class="my-4" action="" id="searchCardsForm">
-					<!-- Buscar por ubicacion -->
-					<div class="form-floating">
-						<input
-							required
-							type="text"
-							class="form-control"
-							name="searchUbicationInput"
-							id="searchUbicationInput"
-							placeholder="Su destino" />
-						<label for="searchUbicationInput">Su destino</label>
-					</div>
-					<!-- Buscar por titulo -->
-					<div class="form-floating">
-						<input
-							type="text"
-							class="form-control"
-							name="searchTitleInput"
-							id="searchTitleInput"
-							placeholder="Busqueda" />
-						<label for="searchTitleInput"
-							>Buscar por titulo de la publicacion</label
-						>
-					</div>
-					<!-- Buscar por cantidad de personas -->
-					<div class="form-floating">
-						<input
-							required
-							type="number"
-							max="64"
-							class="form-control"
-							name="searchCapacityInput"
-							id="searchCapacityInput"
-							placeholder="Cantidad de huéspedes" />
-						<label for="searchCapacityInput">Cantidad de huéspedes</label>
-					</div>
-					<!-- Input entrada - datepicker -->
-					<input
-						type="date"
-						id="dateCheckinInput"
-						placeholder="Llegada"
-						name="dateCheckInInput" />
-					<!-- Input entrada - datepicker -->
-					<input
-						type="date"
-						id="dateCheckoutInput"
-						placeholder="Salida"
-						name="dateCheckOutInput" />
-					<!-- Input submit -->
-					<input type="submit" class="btn btn-primary" value="Buscar" />
-				</form>
 			</section>
+			<div
+				class="sticky-md-top top-0 z-3 bg-white p-4 my-3 shadow shadow-md border border-1"
+				id="searchBarFromHome">
+				<!-- Aca se inserta la barra desde el home -->
+			</div>
 			<div></div>
+
 			<section id="cards" class="mb-5">
 				<!-- Example of one card -->
 
@@ -143,8 +98,11 @@
 			integrity="sha512-l+50U3iKl0++46sldyNg5mOh27O0OWyWWsU2UnGfIVcxC+fEttAvao0Rns9KclIELHihYJppMWmM5sWof0M7uA=="
 			crossorigin="anonymous"
 			referrerpolicy="no-referrer"></script>
+
 		<!-- Funciones de operaciones con dates -->
 		<script src="/js/cards-logic/date-operations.js"></script>
+		<!-- Inserto searchBar del main -->
+		<script src="/js/cards-logic/searchBarLogic.js"></script>
 		<!-- Funciones del sweetAlert -->
 		<script src="/js/sweet-alert-render/sweet-alert.js"></script>
 		<!-- Script de f	unciones de interaccion con el localStorage -->
@@ -156,6 +114,7 @@
 		<script src="/js/cards-logic/cards.js"></script>
 		<!-- Filtrado de cards por busqueda o categoria -->
 		<script src="/js/cards-logic/filter-search-cards.js"></script>
+
 		<!-- Para el nav -->
 		<script src="/js/nav.js"></script>
 		<!-- Redireccionamiento del login y signUp -->
