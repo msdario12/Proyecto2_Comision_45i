@@ -86,8 +86,10 @@ footer p{
   margin-right: 10px;
   text-decoration: none;
   border-radius: 4px;
+  
 }
  .sci li a:hover{
+  transform: translateY(-10px); 
  background: #f00; 
  }
 
