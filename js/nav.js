@@ -16,7 +16,7 @@ const $header = document.createElement('header');
 $header.setAttribute('id', 'mainHeader');
 // ? Aca esta todo el html del nav
 $header.innerHTML = `
-<div id="logo"><a class="navbar-brand" href="#"><img id="logo"  src="/assets/logo.png" alt="" style="width: 50px;">descansAR</a></div>
+<div id="logo"><a class="navbar-brand" href="/html/index.html"><img id="logo"  src="/assets/logo.png" alt="" style="width: 50px;">descansAR</a></div>
 			<button id="abrir" class="abrir-menu"><i class="bi bi-list"></i></button>
 			<nav class="nav" id="nav">
 				<button id="cerrar" class="cerrar-menu">
@@ -25,7 +25,7 @@ $header.innerHTML = `
 				<ul class="nav-list">
 					<li class="d-flex align-items-center"><a href="/html/index.html">Home</a></li>
 					<li class="d-flex align-items-center"><a href="/html/about.html">About</a></li>
-					<li class="d-flex align-items-center"><a href="">Contacto</a></li>
+					<li class="d-flex align-items-center"><a href="/html/contacto1.html">Contacto</a></li>
 					<li class="d-flex align-items-center">
 						<a href="/html/create-publication.html">Publicar</a>
 					</li>
