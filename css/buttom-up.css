@@ -1,0 +1,91 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  font-size: 10px;
+}
+header {
+  height: 6rem;
+  background-color: beige;
+  padding: 0 5rem;
+}
+ul li {
+  display: inline-block;
+  line-height: 6rem;
+  font-size: 2rem;
+  padding: 0 2rem;
+}
+.container {
+  max-width: 80rem;
+  margin: auto;
+  padding-top: 4rem;
+}
+.container p {
+  font-size: 2rem;
+  line-height: 3rem;
+  margin-bottom: 2rem;
+}
+
+/* gotop */
+.go-top-container {
+  position: fixed;
+  bottom: 4rem;
+  right: 4rem;
+  width: 6.6rem;
+  height: 6.6rem;
+  z-index: -1;
+}
+
+.go-top-buttom {
+  width: 0rem;
+  height: 0rem;
+  background-color: #2071b2;
+  border-radius: 50%;
+  cursor: pointer;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  transition: 0.2s;
+  
+}
+.go-top-buttom i {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  color: white;
+  font-size: 1.7rem;
+  transition: 0.2s;
+}
+
+.show {
+  z-index: 10;
+}
+
+.show .go-top-buttom {
+  animation: popup 0.3s ease-in-out;
+  width: 6.6rem;
+  height: 6.6rem;
+  z-index: 11;
+}
+.show i {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+@keyframes popup {
+  0% {
+    width: 0rem;
+    height: 0rem;
+  }
+  50% {
+    width: 8rem;
+    height: 8rem;
+  }
+  100% {
+    width: 6.6rem;
+    height: 6.6rem;
+  }
+}
