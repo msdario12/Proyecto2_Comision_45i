@@ -19,6 +19,7 @@
 		<link
 			href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
 			rel="stylesheet" />
+		<link rel="stylesheet" href="/css/footer.css" />
 		<link rel="stylesheet" href="../css/cards.css" />
 
 		<title>Tabla de usuarios</title>
@@ -28,15 +29,40 @@
 			<!-- El header se inserta antes de este div -->
 		</div>
 
-		<h1 class="">Tabla de usuarios</h1>
-		<main>
-			<div id="tableButtons">
+		<main class="container-lg">
+			<div id="tableButtons" class="d-flex justify-content-center my-5 gap-3">
 				<!-- Table injecto from javascript -->
 			</div>
-			<section class="container" id="usersTableContainer">
+			<section class="table-responsive-md mb-5" id="usersTableContainer">
 				<!-- Table injecto from javascript -->
 			</section>
 		</main>
+		<footer class="main-footer">
+			<!-- <div class="olas">
+				<div class="ola" id="ola1"></div>
+				<div class="ola" id="ola2"></div>
+				<div class="ola" id="ola3"></div>
+				<div class="ola" id="ola4"></div>
+	  
+			</div> -->
+
+			<div class="imgSocial">
+				<a href=""><img src="/assets/facebook.png" alt="logo facebook" /></a>
+				<a href=""><img src="/assets/instagram.png" alt="logo instagram" /></a>
+				<a href=""><img src="/assets/twitter.png" alt="logo twitter" /></a>
+				<a href=""><img src="/assets/telegrama.png" alt="logo telegram" /></a>
+				<a href=""><img src="/assets/whatsapp.png" alt="logo whatsapp" /></a>
+			</div>
+
+			<div class="menu">
+				<li><a href="">Nuestra Empresa </a></li>
+				<li><a href="">Acerca de</a></li>
+				<li><a href="">Servicios</a></li>
+				<li><a href="">Equipo</a></li>
+				<li><a href="">Contacto</a></li>
+			</div>
+			<p>©2023 DescansAR Privacidad/Términos y condiciones/©2023 DescansAR</p>
+		</footer>
 		<!-- SweetAlert 2 -->
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 		<!-- Feathers icons - openSource -->
