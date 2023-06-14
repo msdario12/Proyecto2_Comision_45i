@@ -1,41 +1,39 @@
-*{
-
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
 }
 
-body{
-    background: #f2f2f2;
-   
+body {
+  background: #f2f2f2;
 }
 
-
-#titulo{
-    font-size: 60px;
+#titulo {
+  font-size: 60px;
 }
 
-#carta{
-    display: flex;
-  
-    
+#carta {
+  display: flex;
 }
 
-
+@media (max-width: 992px) {
+  #carta {
+    flex-direction: column;
+  }
+}
 
 /* Aquí empiezan los estilos para el footer */
 footer {
-   
-    width: 100%;
-    background: #3586ff;
-    min-height: 100px;
-    padding: 20px 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 50px;
+  width: 100%;
+  background: #3586ff;
+  min-height: 100px;
+  padding: 20px 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 50px;
 }
 footer .imgSocial a img {
   width: 20px;
@@ -107,13 +105,3 @@ footer .ola#ola1 {
   animation: animateOla 5s linear infinite;
 }
 /* Aquí terminan los estilos para el footer */
-
-/* Animación de Ola para del footer */
-@keyframes animateOla {
-  0% {
-    background-position-x: 1000px;
-  }
-  100% {
-    background-position-x: 0;
-  }
-}
