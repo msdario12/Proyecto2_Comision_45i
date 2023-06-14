@@ -165,15 +165,7 @@ footer .ola#ola1 {
 }
 /* Aquí terminan los estilos para el footer */
 
-/* Animación de Ola para El footer */
-@keyframes animateOla {
-  0% {
-    background-position-x: 1000px;
-  }
-  100% {
-    background-position-x: 0;
-  }
-}
+
 
 @media (min-width: 768px) {
   #busqueda {
