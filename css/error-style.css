@@ -37,7 +37,7 @@ section .bannerVideo video
 
 section .bannerVideo video.active
 {
- opacity: 1;
+ opacity: 1.5;
 }
  
 .container
@@ -93,7 +93,7 @@ section .bannerVideo video.active
 .container .content .bannerText div h1
 {
     color: #fff;
-    font-size: 6em;
+    font-size: 8em;
     line-height: 1em;
     font-weight: 700; 
 }
@@ -101,14 +101,14 @@ section .bannerVideo video.active
 .container .content .bannerText div p
 {
  color: #fff;
- font-size: 18px;
+ font-size: 22px;
  margin: 20px  0;
 }
 
 
 .container a
 {
-   font-size: 14px;
+   font-size: 18px;
    text-decoration: none;
    text-transform: uppercase;
    display: inline-block;
