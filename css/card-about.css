@@ -2,8 +2,8 @@
 :root {
   --d: 700ms;
   --e: cubic-bezier(0.19, 1, 0.22, 1);
-  --font-sans: "Rubik", sans-serif;
-  --font-serif: "Cardo", serif;
+  /* --font-sans: "Rubik", sans-serif;
+  --font-serif: "Cardo", serif; */
 }
 
 * {
@@ -17,7 +17,7 @@
   padding: 1rem;
   max-width: 1024px;
   margin: 0 auto;
-  font-family: var(--font-sans);
+  /* font-family: var(--font-sans); */
 }
 @media (min-width: 600px) {
   .page-content {
@@ -127,7 +127,7 @@
 }
 
 .copy {
-  font-family: var(--font-serif);
+  /* font-family: var(--font-serif); */
   font-size: 1.125rem;
   font-style: italic;
   line-height: 1.35;
@@ -193,7 +193,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
+  /* font-family: "Roboto", sans-serif; */
 }
 
 body {
