@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<link rel="shortcut icon" href="/assets/logo.png" />
+		<!-- icono de la pestaña -->
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- CSS bootstrap -->
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+			crossorigin="anonymous" />
+		<!-- CSS filepond -->
+		<link
+			href="https://unpkg.com/filepond@^4/dist/filepond.css"
+			rel="stylesheet" />
+		<link
+			href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+			rel="stylesheet" />
+		<!-- Fontawesome -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+			integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer" />
+		<link rel="stylesheet" href="/css/footer.css" />
+		<link rel="stylesheet" href="../css/cards.css" />
+
+		<title>Crear una publicacion</title>
+	</head>
+	<body>
+		<div id="headerBefore">
+			<!-- El header se inserta antes de este div -->
+		</div>
+		<main class="container-lg mb-5">
+			<!-- Anterior -->
+			<h2 id="pageTitleNewCard" class="display-2 gap-0 mt-3 mb-5">
+				Crear una publicación
+			</h2>
+			<section
+				class="row justify-content-center align-items-center position-relative">
+				<form
+					id="createCardForm"
+					class="col-10 row border gap-0 p-0 shadow align-items-center">
+					<div class="col-12 col-md-6 p-4">
+						<!-- carga de imagenes -->
+
+						<input
+							type="file"
+							name="filepond"
+							id="filepond"
+							class="filepond"
+							multiple
+							data-allow-reorder="true"
+							data-max-file-size="4MB"
+							data-max-files="4" />
+					</div>
+					<div class="h-100 col-12 col-md-6 p-4">
+						<div
+							class="d-flex flex-column align-content-center gap-2 justify-content-evenly">
+							<h3 class="mb-4">Completa los siguientes campos</h3>
+							<!-- titulo de publicacion -->
+							<div>
+								<div class="input-group mb-3">
+									<span class="input-group-text">
+										<i class="fa-solid fa-pen"></i>
+									</span>
+									<div class="form-floating">
+										<input
+											required
+											type="text"
+											class="form-control"
+											maxlength="120"
+											id="titleInput"
+											placeholder="Titulo de la publicacion..." />
+										<label for="titleInput">Titulo de la publicación</label>
+									</div>
+								</div>
+								<!-- ubicacion del alojamiento -->
+								<div class="input-group mb-3">
+									<span class="input-group-text">
+										<i class="fa-solid fa-map-location-dot"></i>
+									</span>
+									<div class="form-floating">
+										<input
+											class="form-control"
+											required
+											type="text"
+											maxlength="120"
+											list="datalistOptions"
+											id="locationInput"
+											placeholder="Ubicacion..." />
+										<datalist id="datalistOptions">
+											<option value="Buenos Aires"></option>
+											<option value="Catamarca"></option>
+											<option value="Chaco"></option>
+											<option value="Chubut"></option>
+											<option value="Córdoba"></option>
+											<option value="Corrientes"></option>
+											<option value="Entre Ríos"></option>
+											<option value="Formosa"></option>
+											<option value="Jujuy"></option>
+											<option value="La Pampa"></option>
+											<option value="La Rioja"></option>
+											<option value="Mendoza"></option>
+											<option value="Misiones"></option>
+											<option value="Neuquén"></option>
+											<option value="Río Negro"></option>
+											<option value="Salta"></option>
+											<option value="San Juan"></option>
+											<option value="San Luis"></option>
+											<option value="Santa Cruz"></option>
+											<option value="Santa Fe"></option>
+											<option value="Santiago del Estero"></option>
+											<option value="Tierra del Fuego"></option>
+											<option value="Tucumán"></option>
+										</datalist>
+										<label for="locationInput" class="form-label"
+											>Ubicacion...</label
+										>
+									</div>
+								</div>
+								<!-- capacidad del alojamiento -->
+								<div class="input-group mb-3">
+									<span class="input-group-text">
+										<i class="fa-solid fa-users"></i>
+									</span>
+									<div class="form-floating">
+										<input
+											required
+											type="number"
+											class="form-control"
+											maxlength="32"
+											id="capacityInput"
+											placeholder="Capacidad del alojamiento..." />
+										<label for="capacityInput">Capacidad del alojamiento</label>
+									</div>
+								</div>
+								<!-- servicios disponibles -->
+								<!--tendria que ser un select e ir mostrando los servicios agregados  -->
+								<!--
+													Wifi gratuito 🆗 - wifi
+													Estacionamiento gratuito 🚫
+													Piscina ❎ - droplet
+													Gimnasio 🚫
+													Desayuno incluido 🚫
+													Servicio de limpieza diario 🚫
+													Recepción 24 horas 🚫
+													Aire acondicionado  🆗 - air
+													Servicio de lavandería  🚫
+													Cocina completamente equipada 🚫
+													TV por cable/satélite 🆗 tv
+													Servicio de alquiler de bicicletas
+													Bar/Restaurante en el lugar 🆗 cofee
+													Servicio de guardería/niñera
+													Jacuzzi/Spa
+												 -->
+								<div class="mb-3">
+									<div class="form-check">
+										<input
+											class="form-check-input"
+											type="checkbox"
+											value=""
+											id="hasWifi" />
+										<label class="form-check-label" for="hasWifi">
+											Wifi gratuito
+										</label>
+									</div>
+									<div class="form-check">
+										<input
+											class="form-check-input"
+											type="checkbox"
+											value=""
+											id="hasParking" />
+										<label class="form-check-label" for="hasParking">
+											Estacionamiento gratuito
+										</label>
+									</div>
+									<div class="form-check">
+										<input
+											class="form-check-input"
+											type="checkbox"
+											value=""
+											id="hasPool" />
+										<label class="form-check-label" for="hasPool">
+											Piscina
+										</label>
+									</div>
+									<div class="form-check">
+										<input
+											class="form-check-input"
+											type="checkbox"
+											value=""
+											id="hasGym" />
+										<label class="form-check-label" for="hasGym">
+											Gimnasio
+										</label>
+									</div>
+									<div class="form-check">
+										<input
+											class="form-check-input"
+											type="checkbox"
+											value=""
+											id="hasBreakfast" />
+										<label class="form-check-label" for="hasBreakfast">
+											Desayuno incluido
+										</label>
+									</div>
+								</div>
+								<!-- descripcion corta limitada en caracteres -->
+								<div class="input-group mb-3">
+									<span class="input-group-text">
+										<i class="fa-regular fa-rectangle-list"></i>
+									</span>
+									<div class="form-floating">
+										<textarea
+											placeholder="Describe tu publicación acá..."
+											required
+											class="form-control"
+											id="descriptionTextArea"></textarea>
+										<label for="descriptionTextArea"
+											>Describe tu publicación acá...</label
+										>
+									</div>
+								</div>
+								<!-- precio -->
+								<div class="input-group mb-4">
+									<span class="input-group-text">
+										<i class="fa-solid fa-dollar-sign"></i>
+									</span>
+									<div class="form-floating">
+										<input
+											step="25"
+											required
+											type="number"
+											class="form-control"
+											max="999999999"
+											id="priceInput"
+											placeholder="Password" />
+										<label for="priceInput">Precio de la publicación</label>
+									</div>
+									<span class="input-group-text"> por noche </span>
+								</div>
+							</div>
+							<input
+								name="submitButton"
+								type="submit"
+								class="btn btn-primary py-2"
+								value="Agregar publicación" />
+						</div>
+					</div>
+				</form>
+			</section>
+		</main>
+		<footer class="main-footer">
+			<!-- <div class="olas">
+				<div class="ola" id="ola1"></div>
+				<div class="ola" id="ola2"></div>
+				<div class="ola" id="ola3"></div>
+				<div class="ola" id="ola4"></div>
+	  
+			</div> -->
+
+			<div class="imgSocial">
+				<a href=""><img src="/assets/facebook.png" alt="logo facebook" /></a>
+				<a href=""><img src="/assets/instagram.png" alt="logo instagram" /></a>
+				<a href=""><img src="/assets/twitter.png" alt="logo twitter" /></a>
+				<a href=""><img src="/assets/telegrama.png" alt="logo telegram" /></a>
+				<a href=""><img src="/assets/whatsapp.png" alt="logo whatsapp" /></a>
+			</div>
+
+			<div class="menu">
+				<li><a href="">Nuestra Empresa </a></li>
+				<li><a href="">Acerca de</a></li>
+				<li><a href="">Servicios</a></li>
+				<li><a href="">Equipo</a></li>
+				<li><a href="">Contacto</a></li>
+			</div>
+			<p>©2023 DescansAR Privacidad/Términos y condiciones/©2023 DescansAR</p>
+		</footer>
+		<!-- sweet alert 2 -->
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+		<!-- Feathers icons - openSource -->
+		<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+		<!-- Bootstrap CDN -->
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+			crossorigin="anonymous"></script>
+		<!-- filepond validation -->
+		<script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
+		<!-- filepond img-preview -->
+		<script src="https://unpkg.com/filepond-plugin-image-preview@4.6.11/dist/filepond-plugin-image-preview.js"></script>
+		<!-- Script filepond -->
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/filepond/4.30.4/filepond.min.js"
+			integrity="sha512-l+50U3iKl0++46sldyNg5mOh27O0OWyWWsU2UnGfIVcxC+fEttAvao0Rns9KclIELHihYJppMWmM5sWof0M7uA=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"></script>
+		<!-- Alerts de sweetAlert -->
+		<script src="/js/sweet-alert-render/sweet-alert.js"></script>
+		<!-- Script de funciones de interaccion con el localStorage -->
+		<script src="/js/cards-logic/localsotrage-functions.js"></script>
+		<!-- Script propio de la pagina -->
+		<script src="/js/cards-logic/create-new-card.js"></script>
+		<!-- Para el nav -->
+		<script src="/js/nav.js"></script>
+		<!-- Redireccionamiento del login y signUp -->
+		<script src="/js/mainUserRedirection.js"></script>
+	</body>
+</html>

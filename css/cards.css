@@ -1,0 +1,35 @@
+/* Clases para ajustar las dimensiones de las cards */
+.card-custom {
+	/* height: 250px; */
+	/* overflow: hidden; */
+}
+
+.carousel-parent {
+	/* height: 100%; */
+}
+
+.carousel-custom {
+	height: 300px;
+}
+.carousel-custom > img {
+	height: 350px;
+	object-fit: cover;
+	object-position: center;
+}
+
+#descriptionTextArea {
+	height: 100px;
+}
+
+/* Media query  */
+@media (max-height: 570px) {
+	.carousel-custom {
+		height: 100px;
+	}
+	.carousel-custom > img {
+		height: 250px;
+	}
+}
+
+
+

@@ -1,0 +1,141 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: jetbrains mono "Courier New", Courier, monospace Arial, Helvetica,
+    sans-serif Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+
+body {
+  background-color: white;
+  width: 100%;
+  height: auto;
+  position: relative;
+  /* min-height: 300vh; */
+  margin: 0;
+  margin-bottom: 90px;
+}
+/* Aquí empiezan los estilos para la barra de busqueda para generar reservas en el Main */
+.container {
+  align-content: center;
+  flex-wrap: wrap;
+}
+.row #card-busqueda {
+  margin-top: 1rem;
+  border: none;
+}
+
+.row #buscar-reservas {
+  margin-top: 0.7rem;
+}
+
+/* Aquí terminan los estilos para la barra de busqueda para generar reservas en el Main */
+
+/* Aquí empiezan los estilos para las tarjetas del Main */
+#card-primer-fila {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+
+#card-segunda-fila {  
+  border: none;
+  margin-bottom: 1rem;
+}
+
+#card-tercer-fila {
+  margin-bottom: 5rem;
+}
+
+
+/* Aquí terminan los estilos para las tarjetas del Main */
+
+/* Aquí empiezan los estilos para el Footer */
+
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  background: #3586ff;
+  min-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+}
+footer .imgSocial a img {
+  width: 20px;
+}
+
+footer .imgSocial,
+footer .menu {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+  flex-wrap: wrap;
+}
+
+footer .imgSocial a,
+footer .menu li {
+  list-style: none;
+}
+
+footer .imgSocial a img,
+footer .menu li a {
+  font-size: 2em;
+  color: #fff;
+  margin: 0 10px;
+  display: inline-block;
+  transition: 0.5s;
+}
+
+footer .imgSocial a img:hover {
+  transform: translateY(-10px);
+}
+
+footer .menu li a {
+  font-size: 1.2em;
+  color: #fff;
+  margin: 0 10px;
+  display: inline-block;
+  text-decoration: none;
+  opacity: 0.7;
+}
+
+footer .menu li a:hover {
+  opacity: 1;
+}
+
+footer p {
+  color: #fff;
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-size: 1.1em;
+}
+
+
+/* Aquí terminan los estilos para el footer */
+
+
+
+@media (min-width: 768px) {
+  #busqueda {
+    flex-direction: column;
+    align-items: center;
+  }
+
+ 
+}
+
+@media (max-width: 768px) {
+ 
+    .tercerafila {
+      display: none;
+    }
+    }
+
+
