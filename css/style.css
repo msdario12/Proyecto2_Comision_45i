@@ -33,53 +33,27 @@ body {
 
 /* Aquí empiezan los estilos para las tarjetas del Main */
 #card-primer-fila {
-  margin-top: 0.2rem;
   margin-top: 2rem;
   margin-bottom: 2rem;
-
 }
 
-.primerafila {
-  /* border: 1px solid #000; */
-  display: flex;
-  /* height: auto; */
-  flex-wrap: wrap;
-  
-  /* margin-bottom: 15%; */
-  
-}
- 
-.segundafila{
-  
-    /* border: 1px solid #000; */
-    /* height: auto; */
-}
-
-.tercerafila{
-    margin-top: 10%;
-  margin-bottom: 10%;
-    /* border: 1px solid #000; */
-    height: auto;
-} 
 
 #card-segunda-fila {  
-  margin: 50rem;
-  margin-bottom: 2rem;
+  border: none;
+  margin-bottom: 1rem;
 }
 
 #card-tercer-fila {
-  margin-bottom: 2rem;
+  margin-bottom: 5rem;
 }
 
-.row #card-segunda-fila {
-  margin: 1rem;
-}
+
 /* Aquí terminan los estilos para las tarjetas del Main */
 
 /* Aquí empiezan los estilos para el Footer */
 
 footer {
-  position: absolute;
+  position: relative;
   bottom: 0;
   width: 100%;
   background: #3586ff;
@@ -158,17 +132,7 @@ footer p {
 }
 
 @media (max-width: 768px) {
-    .primerafila {
-        flex-direction: row;
-        align-items: center;
-    }
-    
-    .segundafila {
-      display: none;
-      flex-direction: row;
-      align-items: center;
-    }
-    
+ 
     .tercerafila {
       display: none;
     }
