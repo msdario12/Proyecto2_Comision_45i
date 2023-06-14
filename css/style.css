@@ -11,7 +11,7 @@ body {
   width: 100%;
   height: auto;
   position: relative;
-  min-height: 300vh;
+  /* min-height: 300vh; */
 
   margin: 0;
   margin-bottom: 90px;
@@ -38,10 +38,9 @@ body {
   margin-top: 2rem;
   margin-bottom: 2rem;
 
-  border-radius: 15px 30px 15px 30px;
 }
 
-#primerafila {
+.primerafila {
   /* border: 1px solid #000; */
   display: flex;
   height: auto;
@@ -50,28 +49,26 @@ body {
   margin-bottom: 15%;
   
 }
-
-#segundafila{
+ 
+.segundafila{
   
     /* border: 1px solid #000; */
     height: auto;
 }
 
-#tercerafila{
+.tercerafila{
     margin-top: 10%;
   margin-bottom: 10%;
     /* border: 1px solid #000; */
     height: auto;
-}
+} 
 
-#card-segunda-fila {
-  border-radius: 25px 25px 25px 25px;
+#card-segunda-fila {  
   margin: 50rem;
   margin-bottom: 1rem;
 }
 
 #card-tercer-fila {
-  border-radius: 30px 10px 30px 10px;
   margin-bottom: 2rem;
 }
 
@@ -147,22 +144,7 @@ footer p {
   font-size: 1.1em;
 }
 
-footer .ola {
-  position: absolute;
-  top: -100px;
-  left: 0;
-  width: 100%;
-  height: 100px;
-  background: white url(ola.png);
-  background-size: 1000px 100px;
-}
 
-footer .ola#ola1 {
-  z-index: 1000;
-  opacity: 1;
-  bottom: 0;
-  animation: animateOla 5s linear infinite;
-}
 /* Aquí terminan los estilos para el footer */
 
 
@@ -177,16 +159,16 @@ footer .ola#ola1 {
 }
 
 @media (max-width: 768px) {
-    #primerafila {
+    .primerafila {
         flex-direction: row;
         align-items: center;
     }
     
-    #segundafila {
+    .segundafila {
       display: none;
     }
     
-    #tercerafila {
+    .tercerafila {
         flex-direction: row;
         align-items: center;
     }
