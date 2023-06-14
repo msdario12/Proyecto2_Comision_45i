@@ -42,6 +42,7 @@ footer .container .sec{
 
 footer .container .sec.aboutus{
  width: 40%;
+ color:rgb(219, 225, 207);
 }
 
 footer .container h2{
@@ -79,7 +80,7 @@ footer p{
   display: inline-block;
   width: 40px;
   height: 40px;
-  background: #222;
+ 
   display: flex;
   justify-content: center;
   align-items: center;
