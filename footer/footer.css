@@ -1,92 +1,177 @@
-/* Aquí empiezan los estilos para el footer */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+*
+{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+  background: #ede7f6;
+}
+
+
 footer {
     position: relative;
     width: 100%;
-    background: #3586ff;
-    min-height: 100px;
-    padding: 20px 50px;
+    height: auto;
+    padding: 50px 100px;
+    background: #212020;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-footer .imgSocial a img {
-  width: 20px;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
-footer .imgSocial,
-footer .menu {
-  position: relative;
+footer .container{
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 10px 0;
+  justify-content: space-between;
   flex-wrap: wrap;
+  flex-direction: row;
 }
 
-footer .imgSocial a,
-footer .menu li {
+footer .container .sec{
+  margin-right: 30px;
+}
+
+footer .container .sec.aboutus{
+ width: 40%;
+}
+
+footer .container h2{
+  position: relative;
+  color: #fff;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+footer .container h2:before{
+ content:'';
+ position: absolute;
+ bottom: -5px;
+ left: 0;
+ width: 50px;
+ height: 2px;
+ background: #f00;
+}
+
+footer p{
+  color: #999;
+}
+
+.sci{
+  margin-top: 20px;
+  display: flex;
+}
+
+
+.sci li{
   list-style: none;
 }
 
-footer .imgSocial a img,
-footer .menu li a {
-  font-size: 2em;
-  color: #fff;
-  margin: 0 10px;
+.sci li a{
   display: inline-block;
-  transition: 0.5s;
-}
-
-footer .imgSocial a img:hover {
-  transform: translateY(-10px);
-}
-
-footer .menu li a {
-  font-size: 1.2em;
-  color: #fff;
-  margin: 0 10px;
-  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
   text-decoration: none;
-  opacity: 0.7;
+  border-radius: 4px;
 }
+ .sci li a:hover{
+ background: #f00; 
+ }
 
-footer .menu li a:hover {
-  opacity: 1;
-}
-
-footer p {
+.sci li a .fa{
   color: #fff;
-  text-align: center;
-  margin-top: 15px;
+  font-size: 20px;
+}
+
+.quickLinks{
+  position: relative;
+  width: 25%;
+}
+
+.quickLinks ul li{
+  list-style: none;
+  
+}
+
+.quickLinks ul li a{
+  color: #999;
+  text-decoration: none;
   margin-bottom: 10px;
-  font-size: 1.1em;
+  display: inline-block;
+  
 }
 
-footer .ola {
-  position: absolute;
-  top: -100px;
-  left: 0;
+.quickLinks ul li a:hover{
+  color: #fff;
+}
+
+
+.contact{
+  width: calc(35%-60px);
+  margin-right: 0 !important;
+}
+.contact .info{
+  position: relative;
+}
+
+.contact .info li{
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.contact .info li span:nth-child(1){
+  color: #fff;
+  font-size: 20px;
+  margin-right: 10px;
+}
+.contact .info li span{
+  color: #999;
+}
+
+
+.contact .info li a{
+  color: #999;
+  text-decoration: none;
+}
+.contact .info li a:hover{
+  color: #fff;
+}
+.copyrightText{
   width: 100%;
-  height: 100px;
-  background: white url(ola.png);
-  background-size: 1000px 100px;
+  background: #181818;
+  padding: 8px 100px;
+  text-align: center;
+  color: #999;
 }
-
-footer .ola#ola1 {
-  z-index: 1000;
-  opacity: 1;
-  bottom: 0;
-  animation: animateOla 5s linear infinite;
+@media (min-width: 991px){
 }
-/* Aquí terminan los estilos para el footer */
+footer{
+  padding: 40px;
+}
+footer.container{
+flex-direction: column;
+}         
 
-/* Animación de Ola para del footer */
-@keyframes animateOla {
-  0% {
-    background-position-x: 1000px;
-  }
-  100% {
-    background-position-x: 0;
-  }
+footer .container .sec{
+  margin-right: 0;
+  margin-bottom: 40px;
+}
+footer .container .sec.aboutus, .quickLinks, .contact{
+  width: 100%;
+}
+.copyrightText{
+  padding: 8px 40px;
 }
